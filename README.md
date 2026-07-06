@@ -8,12 +8,24 @@
 * Linux version in beta stage. [Compiling instructions](https://github.com/ShendoXT/memcardrex/tree/master/MemcardRex.Linux).
 
 **Support & Development:**
+<br>This project has been alive for almost 20 years (first version was released in 2007.).<br>
+I open sourced it and put it on GitHub in 2014 after having less and less time to work on it.<br>
+I put it on GitHub in hopes that community will keep it alive.<br>
+And they did a bit with VMP and PSV support, PS3 MC Adaptor support and so on...<br><br>
+But demand for more features always fell on me and (I hope) I delivered,<br>
+You guys asked me to do a mac version, I did. You asked me to do a Linux version, I did.<br>
+On the flip side every time I put a donation link for support crickets started chirping.<br>
+In 20 years only ONE person donated and for that I thank him dearly, others<br>
+as soon as they got their requested features implemented promptly left...<br>
+<br>
+So it's all about money for you? Yes. Only me in the entire world needs money to live.<br>
+It's not about money. It's about showing support. You haven't watered the plant and it died.<br>
+People don't appreciate that I took time out of my life to bring them<br>
+additional features that they constantly requested... That doesn't deserve a cup of coffee? My bad.<br>
+I don't want to spend any more of my time on this though...<br>
+<br>
+Let the next, even better editor rises from the fingers of a new coder, or AI maybe?<br>
 
-This project is developed and maintained in personal time and with personal resources.<br>
-Further development (including macOS and Linux support) depends on available time and funding.
-
-If you find this project useful and want to help sustain its development:<br>
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N51QR68V)
 
 <br>**Features:**
 * Tabbed interface - multiple Memory Cards can be opened at the same time.
