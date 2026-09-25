@@ -22,6 +22,9 @@ namespace MemcardRex
         {
             base.ViewWillAppear();
 
+            //Translate dialog labels (zh-CN)
+            Localization.ApplyToView(this.View);
+
             this.View.Window.Title = "Preferences";
 
             //Disable resizing and closing of modal dialog
