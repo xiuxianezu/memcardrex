@@ -1,0 +1,105 @@
+name: Build zh-CN release binaries
+
+on:
+  push:
+    branches: [ zh-CN-language-pack ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            project: MemcardRex.Windows/MemcardRex.csproj
+            rid: win-x64
+            name: Windows-x64
+            single: true
+          - os: ubuntu-latest
+            project: MemcardRex.Linux/MemcardRex.Linux.csproj
+            rid: linux-x64
+            name: Linux-x64
+            single: false
+          - os: macos-latest
+            project: MemcardRex.macOS/MemcardRex.macOS.csproj
+            rid: osx-arm64
+            name: macOS-arm64
+            single: false
+          - os: macos-latest
+            project: MemcardRex.macOS/MemcardRex.macOS.csproj
+            rid: osx-x64
+            name: macOS-x64
+            single: false
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore macOS workload
+        if: runner.os == 'macOS'
+        run: dotnet workload restore ${{ matrix.project }}
+
+      - name: Publish
+        shell: bash
+        run: |
+          EXTRA=""
+          if [ "${{ matrix.single }}" = "true" ]; then
+            EXTRA="-p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true"
+          fi
+          dotnet publish ${{ matrix.project }} -c Release -r ${{ matrix.rid }} --self-contained true $EXTRA -o publish
+
+      - name: Assemble package
+        shell: bash
+        run: |
+          mkdir -p package/Languages package/Plugins
+          cp -r publish/* package/
+          cp MemcardRex.Windows/Languages/zh-CN.xml package/Languages/zh-CN.xml
+          cp MemcardRex.Linux/Languages/zh-CN.xml package/Languages/zh-CN-linux.xml
+          cp MemcardRex.macOS/Languages/zh-CN.xml package/Languages/zh-CN-macos.xml
+          cp MemcardRex.Plugins/CrashResign/bin/Release/net8.0/CrashResign.dll package/Plugins/
+
+      - name: Zip package
+        shell: bash
+        run: |
+          cd package
+          tar -a -c -f ../${{ matrix.name }}.zip *
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: ${{ matrix.name }}.zip
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: zh-CN-build-${{ github.run_number }}
+          name: MemcardRex 简体中文编译版（构建 #${{ github.run_number }}）
+          body: |
+            三平台简体中文版可执行程序，由 GitHub Actions 自动编译，含简体中文界面语言包。
+
+            - Windows-x64.zip：双击运行（自包含单文件，无需安装 .NET）
+            - Linux-x64.zip：需要系统安装 GTK4 / libadwaita
+            - macOS-arm64.zip：Apple Silicon（M1/M2/M3/M4）
+            - macOS-x64.zip：Intel Mac
+
+            源码分支：zh-CN-language-pack（47 个汉化文件）
+            说明：首次运行 macOS 应用如提示无法打开，请在「系统设置 → 隐私与安全性」中允许来自 App Store 和已识别的开发者。
+          files: artifacts/**/*
