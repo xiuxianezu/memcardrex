@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Versioning;
 using System.Windows.Forms;
 
@@ -21,6 +21,8 @@ namespace MemcardRex
         public headerWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         private void headerWindow_Load(object sender, EventArgs e)
@@ -53,7 +55,7 @@ namespace MemcardRex
             if (prodCodeTextbox.Text.Length < 10 && identifierTextbox.Text.Length != 0)
             {
                 //String is not valid
-                MessageBox.Show("Product code must be exactly 10 characters long.", appName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.T("Product code must be exactly 10 characters long."), appName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {

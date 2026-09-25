@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Versioning;
 using System.Windows.Forms;
 
@@ -11,21 +11,23 @@ namespace MemcardRex
         public compareWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         //Show compare dialog
         public void initializeDialog(mainWindow hostWindow, string appName, byte[] save1Data, string save1Title, byte[] save2Data, string save2Title)
         {
             //Set window title
-            this.Text = "Compare saves";
+            this.Text = Localization.T("Compare saves");
 
             compareListView.Columns[0].Width = (int)(compareListView.Columns[0].Width * hostWindow.xScale);
             compareListView.Columns[1].Width = (int)(compareListView.Columns[1].Width * hostWindow.xScale);
             compareListView.Columns[2].Width = (int)(compareListView.Columns[2].Width * hostWindow.xScale);
 
             //Set save titles
-            save1Label.Text = "Save 1: " + save1Title;
-            save2Label.Text = "Save 2: " + save2Title;
+            save1Label.Text = Localization.T("Save 1: ") + save1Title;
+            save2Label.Text = Localization.T("Save 2: ") + save2Title;
             
             //Compare saves
             for (int i = 0; i < save1Data.Length; i++)
@@ -42,7 +44,7 @@ namespace MemcardRex
             //Check if the list contains any items
             if (compareListView.Items.Count < 1)
             {
-                MessageBox.Show("Compared saves are identical.", appName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Localization.T("Compared saves are identical."), appName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 

@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Runtime.Versioning;
+using MemcardRex.Core;
 
 namespace MemcardRex
 {
@@ -18,10 +19,12 @@ namespace MemcardRex
         public preferencesWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         //Load default values
-        public void initializeDialog(mainWindow window, List<mainWindow.HardInterfaces> registeredInterfaces)
+        public void initializeDialog(mainWindow window, List<HardInterfaces> registeredInterfaces)
         {
             hostWindow = window;
 
@@ -44,7 +47,7 @@ namespace MemcardRex
             }
 
             //Load all available hardware interfaces
-            foreach(mainWindow.HardInterfaces iface in registeredInterfaces)
+            foreach(HardInterfaces iface in registeredInterfaces)
             {
                 hardwareInterfacesCombo.Items.Add(iface.displayName);
             }

@@ -1,4 +1,4 @@
-﻿//Generic about window
+//Generic about window
 //Shendo 2009-2024
 
 using System;
@@ -13,6 +13,8 @@ namespace MemcardRex
         public AboutWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         /// <summary>
@@ -30,10 +32,10 @@ namespace MemcardRex
             appNameLabel.Text = applicationName;
 
             //Display program version
-            appVersionLabel.Text = "Version: " + applicationVersion;
+            appVersionLabel.Text = Localization.T("Version: ") + applicationVersion;
 
             //Display program compile date
-            compileDateLabel.Text = "Compile date: " + compileDate;
+            compileDateLabel.Text = Localization.T("Compile date: ") + compileDate;
 
             //Display copyright information
             copyrightLabel.Text = copyrightInfo;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.Versioning;
 using System.Windows.Forms;
 
@@ -14,6 +14,8 @@ namespace MemcardRex
         public commentsWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         //Load initial values

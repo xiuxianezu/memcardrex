@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -11,7 +11,7 @@ namespace MemcardRex.Windows.GUI
     [SupportedOSPlatform("windows")]
     public partial class pocketStationInfo : Form
     {
-        private const string dialogName = "PocketStation info";
+        private static readonly string dialogName = Localization.T("PocketStation info");
         private byte[] biosData;
 
         struct KnownReleases
@@ -29,14 +29,16 @@ namespace MemcardRex.Windows.GUI
         //Crete array of known releases
         static readonly IList<KnownReleases> releaseArray = new ReadOnlyCollection<KnownReleases>
             (new[] {
-             new KnownReleases ("1st release", 0x27E94C07),
-             new KnownReleases ("2nd release", 0xB16CE96C),
+             new KnownReleases (Localization.T("1st release"), 0x27E94C07),
+             new KnownReleases (Localization.T("2nd release"), 0xB16CE96C),
              new KnownReleases ("DTL-H4000", 0x1BABAF29)
             });
 
         public pocketStationInfo()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         private UInt32 calcChecksum()
@@ -70,7 +72,7 @@ namespace MemcardRex.Windows.GUI
                 }
             }
 
-            if (remarkTextbox.Text == "") remarkTextbox.Text = "Unknown / bad dump";
+            if (remarkTextbox.Text == "") remarkTextbox.Text = Localization.T("Unknown / bad dump");
         }
 
         public void ShowSerial(UInt32 serial)
@@ -141,7 +143,7 @@ namespace MemcardRex.Windows.GUI
         {
             SaveFileDialog saveFileDlg = new SaveFileDialog
             {
-                Title = "Save PocketStation BIOS",
+                Title = Localization.T("Save PocketStation BIOS"),
                 Filter = "Binary image|bin.*",
                 FileName = "BIOS.bin"
             };
