@@ -134,5 +134,30 @@ With the USB driver installed and the PS3 Memory Card Adaptor plugged in, you sh
 **Thanks to:**
 <br>@ruantec, Cobalt, TheCloudOfSmoke, RedawgTS, Hard core Rikki, RainMotorsports, Zieg, Bobbi, OuTman, Kevstah2004,  Kubusleonidas, Frédéric Brière, Mark James, Cor'e, DeadlySystem, Padraig Flood and Martin Korth (nocash).
 
+### Simplified Chinese language pack (简体中文语言包)
+The Windows edition ships with a Simplified Chinese language pack (`Languages\zh-CN.xml`) and a lightweight
+localization layer (`Support\Localization.cs`). All user-visible UI strings are translated at startup by
+exact-match lookup, so any future English string simply stays in English until it is added to the pack.
 
+How to customize:
+* To override the built-in translation, place a modified `Languages\zh-CN.xml` next to the executable
+  (`MemcardRex.exe\Languages\zh-CN.xml`). It takes priority over the embedded resource.
+* To build the translation into the application, rebuild the solution — the XML is embedded automatically
+  (`EmbeddedResource Languages\zh-CN.xml`).
+* Add new entries as `<string><source>English text</source><target>中文</target></string>`; use `&#10;`
+  for newlines and keep `<source>` identical to the English text shown in the UI.
 
+All three editions (Windows / Linux / macOS) ship with the Simplified Chinese language pack:
+
+* **Windows** — `MemcardRex.Windows\Languages\zh-CN.xml` + `Support\Localization.cs`. UI strings in
+  Designer/code are wrapped in `Localization.T("...")`; `ApplyToForm` translates each window after it loads.
+* **Linux (GTK)** — `MemcardRex.Linux\Languages\zh-CN.xml` + `Localization.cs`. Embedded `.ui` templates
+  are translated at load time by `Localization.Builder(...)` (labels, titles and tooltips by exact match);
+  code strings are wrapped in `Localization.T("...")`.
+* **macOS** — `MemcardRex.macOS\Languages\zh-CN.xml` + `Localization.cs`. The main menu, toolbars and
+  dialog views are translated at runtime by `ApplyToMenus` / `ApplyToWindow` / `ApplyToView`; code strings
+  are wrapped in `Localization.T("...")`.
+
+The same `zh-CN.xml` dictionary (236 entries) is embedded into every edition. Untranslated by design:
+save-region values (`America/Europe/Japan`), hardware device names (DexDrive, MemCARDuino, ...), file
+format names, emoji toolbar glyphs and the app/version title `MemcardRex 2.0 beta`.

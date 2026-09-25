@@ -31,6 +31,7 @@ public partial class Program(string[] args)
         Utils.CheckLibraryVersions();
         try
         {
+            Localization.Initialize();
             return app.RunWithSynchronizationContext(args);
         }
         catch (Exception ex)
