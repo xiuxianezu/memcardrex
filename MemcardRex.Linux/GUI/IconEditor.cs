@@ -64,7 +64,7 @@ public class IconEditor
 
     public IconEditor(Window parent)
     {
-        var builder = new Builder("MemcardRex.Linux.GUI.IconEditor.ui");
+        var builder = Localization.Builder("MemcardRex.Linux.GUI.IconEditor.ui");
 
         _window = (Window)builder.GetObject("EditorWindow")!;
         _canvas = (DrawingArea)builder.GetObject("Canvas")!;
@@ -217,13 +217,13 @@ public class IconEditor
         setUpDisplay();
 
         //Populate icon list with items
-        if (iconFrames > 0) _sidebarListBox.Append(CreateFrameRow(0, "1st frame", CreateIconTexture(0)));
-        if (iconFrames > 1) _sidebarListBox.Append(CreateFrameRow(1, "2nd frame", CreateIconTexture(1)));
-        if (iconFrames > 2) _sidebarListBox.Append(CreateFrameRow(2, "3rd frame", CreateIconTexture(2)));
+        if (iconFrames > 0) _sidebarListBox.Append(CreateFrameRow(0, Localization.T("1st frame"), CreateIconTexture(0)));
+        if (iconFrames > 1) _sidebarListBox.Append(CreateFrameRow(1, Localization.T("2nd frame"), CreateIconTexture(1)));
+        if (iconFrames > 2) _sidebarListBox.Append(CreateFrameRow(2, Localization.T("3rd frame"), CreateIconTexture(2)));
 
         //Add preview pane if the icons are animated
         if (iconFrames > 1){
-            _sidebarListBox.Append(CreateFrameRow(3, "Preview", CreateIconTexture(previewIndex)));
+            _sidebarListBox.Append(CreateFrameRow(3, Localization.T("Preview"), CreateIconTexture(previewIndex)));
             StartAnimTimer();
         } 
 
@@ -237,11 +237,11 @@ public class IconEditor
 
     private void ExportSelectedIcon(){
         var saver = Gtk.FileChooserNative.New(
-            "Save icon",
+            Localization.T("Save icon"),
             _window,
             Gtk.FileChooserAction.Save,
-            "Save",
-            "Cancel"
+            Localization.T("Save"),
+            Localization.T("Cancel")
         );
 
         saver.SetCurrentName("icon.png");
@@ -401,7 +401,7 @@ public class IconEditor
 
     private void OpenColorPicker(int paletteIndex)
     {
-        var dialog = Gtk.ColorChooserDialog.New("Color", _window);
+        var dialog = Gtk.ColorChooserDialog.New(Localization.T("Color"), _window);
         
         dialog.Rgba = ToGdkRgba(iconPalette[paletteIndex]);
 
@@ -524,8 +524,8 @@ public class IconEditor
             var dialog = new Adw.MessageDialog
             {
                 Modal = true,
-                Heading = "Transparent entry required",
-                Body = "Eraser tool requires transparent entry in the palette.\nDo you want to change currently selected color to transparent?",
+                Heading = Localization.T("Transparent entry required"),
+                Body = Localization.T("Eraser tool requires transparent entry in the palette.\nDo you want to change currently selected color to transparent?"),
                 TransientFor = _window
             };
             dialog.AddResponse("yes", "Yes");

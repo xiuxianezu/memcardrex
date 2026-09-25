@@ -33,7 +33,7 @@ namespace MemcardRex.Linux
 
         public SettingsDialog(Window parent, ref ProgramSettings Settings, string[] hwNames)
         {
-            var builder = new Builder("MemcardRex.Linux.GUI.SettingsDialog.ui");
+            var builder = Localization.Builder("MemcardRex.Linux.GUI.SettingsDialog.ui");
 
             _dialog = (Dialog)builder.GetObject("SettingsDialog")!;
             _dialog.SetTransientFor(parent);
@@ -58,20 +58,20 @@ namespace MemcardRex.Linux
             SavedComPort = Settings.CommunicationPort;
 
             //Icon Background
-            drpIconBg.AppendText("Transparent");
-            drpIconBg.AppendText("Black (Slim PS1 models)");
-            drpIconBg.AppendText("Gray (Older european PS1 models)");
-            drpIconBg.AppendText("Blue (Standard BIOS color)");
+            drpIconBg.AppendText(Localization.T("Transparent"));
+            drpIconBg.AppendText(Localization.T("Black (Slim PS1 models)"));
+            drpIconBg.AppendText(Localization.T("Gray (Older european PS1 models)"));
+            drpIconBg.AppendText(Localization.T("Blue (Standard BIOS color)"));
             drpIconBg.SetActive(Settings.IconBackgroundColor);
 
             //Format Type
-            drpFormat.AppendText("Quick format");
-            drpFormat.AppendText("Full format");
+            drpFormat.AppendText(Localization.T("Quick format"));
+            drpFormat.AppendText(Localization.T("Full format"));
             drpFormat.SetActive(Settings.FormatType);
 
             //Hardware Slot
-            drpSlot.AppendText("Slot 1");
-            drpSlot.AppendText("Slot 2");
+            drpSlot.AppendText(Localization.T("Slot 1"));
+            drpSlot.AppendText(Localization.T("Slot 2"));
             drpSlot.SetActive(Settings.CardSlot);
 
             //Remote port and address

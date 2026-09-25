@@ -41,7 +41,7 @@ public class SaveInfoDialog
 
     public SaveInfoDialog(Window parent)
     {
-        var builder = new Builder("MemcardRex.Linux.GUI.SaveInfoDialog.ui");
+        var builder = Localization.Builder("MemcardRex.Linux.GUI.SaveInfoDialog.ui");
         
         dialog = (Dialog)builder.GetObject("dialog")!;
         saveIcon1 = (Image)builder.GetObject("saveIcon1")!;
@@ -83,8 +83,8 @@ public class SaveInfoDialog
         maxCount = iconFrames;
 
         //Save file data type
-        if (fileType == ps1card.DataTypes.save) fileTypeLabel.SetLabel("Save data");
-        else if (fileType == ps1card.DataTypes.software) fileTypeLabel.SetLabel("Software (PocketStation)");
+        if (fileType == ps1card.DataTypes.save) fileTypeLabel.SetLabel(Localization.T("Save data"));
+        else if (fileType == ps1card.DataTypes.software) fileTypeLabel.SetLabel(Localization.T("Software (PocketStation)"));
 
         string ocupiedSlots = "";
 
