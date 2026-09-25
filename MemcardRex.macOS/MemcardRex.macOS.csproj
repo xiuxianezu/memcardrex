@@ -16,4 +16,8 @@
     </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Languages/zh-CN.xml" LogicalName="MemcardRex.Languages.zh-CN.xml" />
+  </ItemGroup>
+
 </Project>
