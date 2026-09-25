@@ -1,301 +1,564 @@
-//Main window of MemcardRex
-//Shendo 2009-2024
+//Main window of the MemcardRex application
+//Shendo 2009 - 2025
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.IO;
-using System.Runtime.Versioning;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using MemcardRex.Windows.GUI;
+using System.Diagnostics;
 using MemcardRex.Core;
+using System.Runtime.Versioning;
 
 namespace MemcardRex
 {
     [SupportedOSPlatform("windows")]
     public partial class mainWindow : Form
     {
-        //List of open cards
-        List<ps1card> PScard = new List<ps1card>();
-        List<CardListView> cardList = new List<CardListView>();
-        List<CardListView> historyList = new List<CardListView>();
-        List<ImageList> iconList = new List<ImageList>();
-        List<ImageList> historyIconList = new List<ImageList>();
+        //Application related strings
+        const string appName = "MemcardRex";
+        const string appDate = "Unknown";
 
-        //Scaling values
+#if DEBUG
+        const string appVersion = "2.0 beta (Debug)";
+#else
+        const string appVersion = "2.0 beta";
+#endif
+        //All available application settings
+        public ProgramSettings appSettings = new ProgramSettings();
+
+        //Location of the application
+        string appPath = Application.StartupPath;
+
+        //Plugin system (public because plugin dialog has to access it)
+        public rexPluginSystem pluginSystem = new rexPluginSystem();
+
+        //Supported plugins for the currently selected save
+        int[] supportedPlugins = null;
+
+        //Currently clicked plugin (0 - clicked flag, 1 - plugin index)
+        int[] clickedPlugin = new int[]{0,0};
+
         public double xScale = 1.0;
         public double yScale = 1.0;
 
-        //Memory card data
-        ps1card memCard = new ps1card();
+        //List of opened Memory Cards
+        List<ps1card> PScard = new List<ps1card>();
 
-        //Program settings
-        public ProgramSettings appSettings = new ProgramSettings();
+        //Listview of the opened Memory Cards
+        List<CardListView> cardList = new List<CardListView>();
 
-        //Plugin system
-        public rexPluginSystem pluginSystem = new rexPluginSystem();
-        int[] supportedPlugins = null;
-        int[] clickedPlugin = new int[2];
+        //History listview
+        List<ListView> historyList = new List<ListView>();
 
-        //Registerd hardware interfaces
-        public List<HardInterfaces> registeredInterfaces = new List<HardInterfaces>();
+        //List of icons for the saves
+        List<ImageList> iconList = new List<ImageList>();
 
-        //Temp buffer for the save copy/paste
+        //List of icons for the history list
+        List<ImageList> historyIconList = new List<ImageList>();
+
+        //Registered hardware interfaces
+        List<HardInterfaces> registeredInterfaces = new List<HardInterfaces>();
+
+        //Currently active interface
+        private HardInterfaces activeInterface
+        {
+            get
+            {
+                return registeredInterfaces[appSettings.ActiveInterface];
+            }
+        }
+
+        //Currently active Memory Card
+        private ps1card memCard
+        {
+            get { if (PScard.Count == 0) return new ps1card();
+                return PScard[mainTabControl.SelectedIndex];
+            }
+        }
+
+        //Temp buffer used to store saves
         byte[] tempBuffer = null;
         string tempBufferName = null;
 
-        //Active card path and name
-        string appPath = null;
-        string appName = "MemcardRex 2.0 beta";
-        string appVersion = null;
-        string appDate = null;
+        //Supported Memory Card extensions
+        private const string mcSupportedExtensions = "All supported|*.bin;*.ddf;*.gme;*.mc;*.mcd;*.mci;*.mcr;*.mem;*.ps;*.psm;*.srm;*.vgs;*.vm1;*.vmp;*.vmc;*.sav;";
+        private const string mcExtensions = "Standard Memory Card|*.mcr;*.bin;*.ddf;*.mc;*.mcd;*.mci;*.ps;*.psm;*.srm;*.vm1;*.vmc;*.sav|PSP/Vita Memory Card|*.VMP|PS Vita \"MCX\" PocketStation Memory Card|*.BIN|DexDrive Memory Card|*.gme|VGS Memory Card|*.mem;*.vgs";
 
-        //Active slot to restore (for plugin operations)
-        int pluginSlot = 0;
+        //Supported single save extensions
+        private const string ssSupportedExtensions = "All supported|*.mcs;*.ps1;*.PSV;*.mcb;*.mcx;*.pda;*.psx;B???????????*";
+        private const string ssExtensions = "PSXGameEdit/Memory Juggler|*.mcs;*.ps1|PS3 single save|*.PSV|Smart Link/XP, AR, GS, Caetla/Datel|*.mcb;*.mcx;*.pda;*.psx";
 
         public mainWindow()
         {
             InitializeComponent();
+            using (Graphics graphics = CreateGraphics())
+            {
+                xScale = graphics.DpiX / 96.0;
+                yScale = graphics.DpiY / 96.0;
+            }
+
+            BuildToolbarIcons();
+
+            //Create hardware menus
+            BuildHardwareMenus();
+
+            //Apply theme based on the global Windows settings
+            ApplyTheme();
             Localization.ApplyToForm(this);
+
         }
 
-        private void mainWindow_Shown(object sender, EventArgs e)
+        //Register hardware interfaces
+        private void RegisterInterface(HardwareInterface hardInterface, HardwareInterface.Modes mode)
         {
-            //Create new menu for managing plugins
-            pluginSystem.fetchPlugins(appPath + "/Plugins");
+            HardInterfaces regInterface = new HardInterfaces();
+            regInterface.hardwareInterface = hardInterface;
+            regInterface.mode = mode;
+            regInterface.displayName = hardInterface.Name();
 
-            //Set the name of the application
-            appName = "MemcardRex 2.0 beta";
+            //Append via TCP if interface mode is tcp
+            if(mode == HardwareInterface.Modes.tcp) regInterface.displayName += Localization.T(" via TCP");
 
-            //Get version and date
-            appVersion = typeof(mainWindow).Assembly.GetName().Version.ToString();
-            appDate = File.GetLastWriteTime(typeof(mainWindow).Assembly.Location).ToString("yyyy-MM-dd");
+            registeredInterfaces.Add(regInterface);
+        }
+        
+        private void AttachInterface(HardwareInterface hardInterface)
+        {
+            //Serial always available
+            RegisterInterface(hardInterface, HardwareInterface.Modes.serial);
+
+            //Check if interface supports TCP mode
+            if((hardInterface.Features() & HardwareInterface.SupportedFeatures.TcpMode) > 0)
+                RegisterInterface(hardInterface, HardwareInterface.Modes.tcp);
         }
 
-        //Create a new tab page
-        private void createTabPage()
+        //Add all available hardware interfaces
+        private void BuildHardwareMenus()
         {
-            mainTabControl.TabPages.Add(PScard[PScard.Count - 1].cardName);
-            makeListView();
+            AttachInterface(new DexDrive());
+            AttachInterface(new MemCARDuino());
+            AttachInterface(new PS1CardLink());
+            AttachInterface(new Unirom());
+            AttachInterface(new PS3MemCardAdaptor());
+
+            EnableDisableHardwareMenus();
         }
 
-        //Open a Memory Card
-        private void openCard(string fileName)
+        private void EnableDisableHardwareMenus()
         {
-            //Check if user wants to open a new card or a existing one
-            if (fileName == null)
+            //Set currently active interface to hardware menu
+            hardwareToolStripMenuItem.Text = activeInterface.hardwareInterface.Name();
+
+            //Add TCP if TCP interface
+            if (activeInterface.mode == HardwareInterface.Modes.tcp) hardwareToolStripMenuItem.Text += Localization.T(" (TCP)");
+
+            //Enable or disable realtime and PocketStation menus
+            realtimeConnectionToolStripMenuItem.Enabled = ((activeInterface.hardwareInterface.Features() & HardwareInterface.SupportedFeatures.RealtimeMode) > 0);
+            pocketStationToolStripMenuItem.Enabled = ((activeInterface.hardwareInterface.Features() & HardwareInterface.SupportedFeatures.PocketStation) > 0);
+        }
+
+        private void HardwareItem_Activated(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null) return;
+
+            //Read data
+            if(menuItem == readFromToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.read;
+
+            //Write data
+            if (menuItem == writeToToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.write;
+
+            //Format
+            if (menuItem == formatMemoryCardToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.format;
+
+            //Realtime link
+            if (menuItem == realtimeConnectionToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.realtime;
+
+            //Read PocketStation serial
+            if (menuItem == readSerialToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.psinfo;
+
+            //Dump PocketSTation BIOS
+            if (menuItem == dumpBIOSToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.psbios;
+
+            //Set PocketStation time
+            if (menuItem == setDateTimeToolStripMenuItem)
+                activeInterface.hardwareInterface.CommMode = HardwareInterface.CommModes.pstime;
+
+            //Set serial or TCP mode
+            activeInterface.hardwareInterface.Mode = activeInterface.mode;
+
+            //Activate interface
+            InitHardwareCommunication(activeInterface.hardwareInterface);
+        }
+
+        //Communication with real device
+        public void InitHardwareCommunication(HardwareInterface hardInterface)
+        {
+            //Abort if the interface is not valid
+            if (hardInterface == null) return;
+
+            //Set card slot
+            hardInterface.CardSlot = appSettings.CardSlot;
+
+            cardReaderWindow cardReader = new cardReaderWindow(hardInterface);
+
+            //Update setings
+            cardReader.ComPort = appSettings.CommunicationPort;
+            cardReader.RemoteCommAddress = appSettings.RemoteCommAddress;
+            cardReader.RemoteCommPort = appSettings.RemoteCommPort;
+
+            //If the data is to be written fetch the current raw Memory Card data
+            if (hardInterface.CommMode == HardwareInterface.CommModes.write)
+                cardReader.MemoryCard = memCard.SaveMemoryCardStream(appSettings.FixCorruptedCards == 1);
+
+            //Create a new blank formatted Memory Card and write it to device
+            else if (hardInterface.CommMode == HardwareInterface.CommModes.format)
             {
-                //Create a new card
-                PScard.Add(new ps1card());
-                PScard[PScard.Count - 1].cardName = Localization.T("New Memory Card");
-                PScard[PScard.Count - 1].cardLocation = null;
-            }
-            else
-            {
-                //Open card file
-                if (File.Exists(fileName) == true)
+                ps1card blankCard = new ps1card();
+                blankCard.OpenMemoryCard(null, true);
+                
+                //Show warning message
+                if(appSettings.WarningMessages == 1)
                 {
-                    //Open Memory Card file
-                    PScard.Add(new ps1card());
-                    PScard[PScard.Count - 1].OpenMemoryCard(fileName);
+                    if(MessageBox.Show(Localization.T("This operation will wipe all data on the Memory Card.\nProceed?"),
+                        Localization.T("Format Memory Card"), MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
                 }
-                else
-                {
-                    MessageBox.Show(Localization.T("File was not found."), appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
+                cardReader.MemoryCard = blankCard.SaveMemoryCardStream(true);
             }
 
-            //Create a tab page for the new card
-            createTabPage();
-        }
+            cardReader.QuickFormat = appSettings.FormatType == 0;
 
-        //Check if the given ListView control is valid
-        private bool validityCheck(out int listIndex, out int slotNumber)
-        {
-            listIndex = -1;
-            slotNumber = -1;
-
-            //Check if there are any cards open
-            if (PScard.Count < 1) return false;
-            if (cardList.Count < 1) return false;
-
-            //Get current index
-            listIndex = mainTabControl.SelectedIndex;
-
-            //Check if tab page and the listview exist
-            if (listIndex < 0 || cardList.Count < listIndex + 1) return false;
-
-            //Check if there is an item selected
-            if (cardList[listIndex].SelectedIndices.Count < 1) return false;
-            slotNumber = cardList[listIndex].SelectedIndices[0];
-
-            return true;
-        }
-
-        //Save a card to a file
-        private void saveCardFunction(int listIndex)
-        {
-            if (!validityCheck(out listIndex, out int slotNumber)) return;
-
-            if (PScard[listIndex].cardLocation == null)
+            //Read complete event
+            cardReader.ReadingComplete += (s, e) =>
             {
-                saveCardDialog(listIndex);
+                if (hardInterface.CommMode == HardwareInterface.CommModes.read)
+                    cardReaderRead(cardReader.MemoryCard, hardInterface.Name());
+            };
+
+            cardReader.ShowDialog();
+
+            //Check if any errors occured and display them
+            if(cardReader.ErrorMessage != null)
+            {
+                MessageBox.Show(cardReader.ErrorMessage, Localization.T("Unable to start ") + hardInterface.Name(), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            //Save current Memory Card
-            PScard[listIndex].SaveMemoryCard(PScard[listIndex].cardLocation);
-        }
-
-        //Save a Memory Card as dialog
-        private void saveCardDialog(int listIndex)
-        {
-            if (!validityCheck(out listIndex, out int slotNumber)) return;
-
-            SaveFileDialog saveCardDlg = new SaveFileDialog
+            //If this was a serial read display result
+            if(hardInterface.CommMode == HardwareInterface.CommModes.psinfo)
             {
-                Title = Localization.T("Save Memory Card"),
-                Filter = "MemcardRex Memory Card|*.mc|PlayStation Memory Card|*.mcr|DexDrive Memory Card|*.gme",
-                FilterIndex = appSettings.LastSaveFormat
-            };
+                new pocketStationInfo().ShowSerial(cardReader.PocketSerial);
+            }
 
-            if (saveCardDlg.ShowDialog() == DialogResult.OK)
+            //If this was a BIOS read display it in dialog
+            if(hardInterface.CommMode == HardwareInterface.CommModes.psbios && cardReader.OperationCompleted)
             {
-                appSettings.LastSaveFormat = saveCardDlg.FilterIndex;
+                new pocketStationInfo().ShowBios(cardReader.PocketSerial, cardReader.PocketBIOS);
+            }
 
-                switch (saveCardDlg.FilterIndex)
-                {
-                    default:         //MemcardRex format
-                        PScard[listIndex].SaveMemoryCard(saveCardDlg.FileName);
-                        break;
-
-                    case 2:         //PS1 standard format
-                        PScard[listIndex].SavePS1MemoryCard(saveCardDlg.FileName);
-                        break;
-
-                    case 3:         //DexDrive format
-                        PScard[listIndex].SaveDexDriveMemoryCard(saveCardDlg.FileName);
-                        break;
-                }
-
-                refreshListView(listIndex, slotNumber);
-                pushHistory(Localization.T("Card saved"), listIndex, prepareIcons(listIndex, slotNumber, false));
+            //If this was time command display confirmation dialog
+            if (hardInterface.CommMode == HardwareInterface.CommModes.pstime)
+            {
+                MessageBox.Show(Localization.T("Time set successfully"), Localization.T("PocketStation"), MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        //Open a Memory Card dialog
+        //Backup a Memory Card
+        private void backupMemcard(string fileName)
+        {
+            //Check if backuping of memcard is allowed and the filename is valid
+            if (appSettings.BackupMemcards == 1 && fileName != null)
+            {
+                FileInfo fInfo = new FileInfo(fileName);
+
+                //Backup only if file is less then 512KB
+                if (fInfo.Length < 524288)
+                {
+                    //Copy the file
+                    try
+                    {
+                        //Check if the backup directory exists and create it if it's missing
+                        if (!Directory.Exists(appPath + "/Backup")) Directory.CreateDirectory(appPath + "/Backup");
+
+                        //Copy the file (make a backup of it)
+                        File.Copy(fileName, appPath + "/Backup/" + fInfo.Name);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+        }
+
+        //Remove the first "Untitled" card if the user opened a valid card
+        private void filterNullCard()
+        {
+            //Check if there are any cards opened
+            if (PScard.Count > 0)
+            {
+                if (PScard.Count == 2 && PScard[0].cardLocation == null && PScard[0].changedFlag == false)
+                {
+                    closeCard(0);
+                }
+            }
+        }
+
+        //Open a Memory Card with OpenFileDialog
         private void openCardDialog()
         {
-            OpenFileDialog openCardDlg = new OpenFileDialog
+            OpenFileDialog openFileDlg = new OpenFileDialog
             {
                 Title = Localization.T("Open Memory Card"),
-                Filter = "MemcardRex Memory Card|*.mc|PlayStation Memory Card|*.mcr|DexDrive Memory Card|*.gme|All files (*.*)|*.*"
+                Filter = mcSupportedExtensions + "|" + mcExtensions + " | All files|*.*",
+                Multiselect = true
             };
 
             //If user selected a card open it
-            if (openCardDlg.ShowDialog() == DialogResult.OK) openCard(openCardDlg.FileName);
-        }
-
-        //Save a card and its children
-        private int closeAllCards()
-        {
-            int cardClosed = 0;
-
-            //Check if there are any cards
-            if (PScard.Count < 1) return cardClosed;
-
-            //Check if any cards have been modified
-            for (int i = 0; i < PScard.Count; i++)
+            if (openFileDlg.ShowDialog() == DialogResult.OK)
             {
-                if (PScard[i].changedFlag)
+                foreach (string fileName in openFileDlg.FileNames)
                 {
-                    //Ask user if he wants to save the card
-                    if (MessageBox.Show(Localization.T("Save changes to ") + PScard[i].cardName + Localization.T("?"), appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) == DialogResult.No)
-                    {
-                        //Just close the card
-                        PScard[i].changedFlag = false;
-                    }
-                    else if (MessageBox.Show(Localization.T("Save changes to ") + PScard[i].cardName + Localization.T("?"), appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
-                    {
-                        //Do not close the card
-                        cardClosed = 1;
-                    }
+                    openCard(fileName);
                 }
             }
-
-            if (cardClosed == 0)
-            {
-                for (int i = 0; i < PScard.Count; i++)
-                {
-                    if (PScard[i].cardLocation != null)
-                    {
-                        //Save Memory Card
-                        PScard[i].SaveMemoryCard(PScard[i].cardLocation);
-                    }
-
-                    PScard[i].Dispose();
-                }
-
-                PScard.Clear();
-                cardList.Clear();
-                historyList.Clear();
-                iconList.Clear();
-                historyIconList.Clear();
-
-                mainTabControl.TabPages.Clear();
-            }
-
-            return cardClosed;
         }
 
-        //Close the active card
-        private void closeCard(int listIndex, bool dispose = true)
+        //Open a Memory Card from the given filename
+        private void openCard(string fileName)
         {
-            //Check if card should be saved
-            if (PScard[listIndex].changedFlag)
+            //Container for the error message
+            string errorMsg = null;
+
+            //Check if the card already exists
+            foreach (ps1card checkCard in PScard)
             {
-                if (MessageBox.Show(Localization.T("Save changes to ") + PScard[listIndex].cardName + Localization.T("?"), appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) == DialogResult.No)
+                if (checkCard.cardLocation == fileName && fileName != null)
                 {
-                    //Just close the card
-                    PScard[listIndex].changedFlag = false;
-                }
-                else if (MessageBox.Show(Localization.T("Save changes to ") + PScard[listIndex].cardName + Localization.T("?"), appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
-                {
-                    //Do not close the card
+                    //Card is already opened, bring it to front
+                    mainTabControl.SelectedIndex = PScard.IndexOf(checkCard);
                     return;
                 }
             }
 
-            //Check if card should be saved to a file
-            if (PScard[listIndex].cardLocation != null)
+            //Create a new card
+            PScard.Add(new ps1card());
+
+            //Try to open card
+            errorMsg = PScard[PScard.Count - 1].OpenMemoryCard(fileName, appSettings.FixCorruptedCards == 1);
+
+            //If card is sucesfully opened proceed further, else destroy it
+            if (errorMsg == null)
             {
-                PScard[listIndex].SaveMemoryCard(PScard[listIndex].cardLocation);
+                //Backup opened card
+                backupMemcard(fileName);
+
+                //Make a new tab for the opened card
+                createTabPage();
+
+                //Show event in the history tab
+                if(fileName != null) pushHistory(Localization.T("Card opened"), historyList.Count - 1, new Bitmap(16, 16));
+                else pushHistory(Localization.T("Card created"), historyList.Count - 1, new Bitmap(16, 16));
+            }
+            else
+            {
+                //Remove the last card created
+                PScard.RemoveAt(PScard.Count-1);
+
+                //Display error message
+                MessageBox.Show(errorMsg, Localization.T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Create a new tab page for the Memory Card
+        private void createTabPage()
+        {
+            //Make new tab page
+            TabPage tabPage = new TabPage();
+
+            //Add a tab corresponding to opened card
+            mainTabControl.TabPages.Add(tabPage);
+
+            //Make a new ListView control
+            makeListView();
+
+            //Add ListView control to the tab page
+            tabPage.Controls.Add(cardList[cardList.Count - 1]);
+
+            //Add history listview to tab page
+            tabPage.Controls.Add(historyList[historyList.Count - 1]);
+
+            //Delete the initial "Untitled" card
+            if (PScard[PScard.Count - 1].cardLocation != null) filterNullCard();
+
+            //Switch the active tab to the currently opened card
+            mainTabControl.SelectedIndex = PScard.Count - 1;
+
+            //Show the location of the card in the tool strip
+            refreshStatusStrip();
+
+            //Enable "Close", "Close All", "Save" and "Save as" menu items
+            closeToolStripMenuItem.Enabled = true;
+            closeAllToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem.Enabled = true;
+            saveButton.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
+
+            //Select first save in the list
+            cardList[cardList.Count - 1].Items[0].Selected = true;
+        }
+
+        //Save a Memory Card with SaveFileDialog
+        private void saveCardDialog(int listIndex)
+        {
+            //Check if there are any cards to save
+            if (PScard.Count > 0)
+            {
+                ps1card.CardTypes memoryCardType;
+                SaveFileDialog saveFileDlg = new SaveFileDialog
+                {
+                    Title = Localization.T("Save Memory Card"),
+                    Filter = mcExtensions,
+                    FilterIndex = appSettings.LastSaveFormat
+                };
+
+                //If user selected a card save to it
+                if (saveFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (saveFileDlg.FilterIndex != appSettings.LastExportFormat)
+                    {
+                        appSettings.LastSaveFormat = saveFileDlg.FilterIndex;
+                        appSettings.SaveSettings(appPath, appName, appVersion);
+                    }
+                    //Get save type
+                    switch (saveFileDlg.FilterIndex)
+                    {
+                        default:        //Raw Memory Card
+                            memoryCardType = ps1card.CardTypes.raw;
+                            break;
+
+                        case 2:         //VMP Memory Card
+                            memoryCardType = ps1card.CardTypes.vmp;
+                            break;
+
+                        case 3:         //MCX Memory Card
+                            memoryCardType = ps1card.CardTypes.mcx;
+                            break;
+
+                        case 4:         //GME Memory Card
+                            memoryCardType = ps1card.CardTypes.gme;
+                            break;
+
+                        case 5:         //VGS Memory Card
+                            memoryCardType = ps1card.CardTypes.vgs;
+                            break;
+
+                    }
+                    saveMemoryCard(listIndex, saveFileDlg.FileName, memoryCardType);
+                }
+            }
+        }
+
+        //Save a Memory Card to a given filename
+        private void saveMemoryCard(int listIndex, string fileName, ps1card.CardTypes memoryCardType)
+        {
+            if (PScard[listIndex].SaveMemoryCard(fileName, memoryCardType, appSettings.FixCorruptedCards == 1))
+            {
+                refreshListView(listIndex, cardList[listIndex].SelectedIndices[0]);
+                refreshStatusStrip();
+            }
+            else
+                MessageBox.Show(Localization.T("Memory Card could not be saved."), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        //Save a selected Memory Card
+        private void saveCardFunction(int listIndex)
+        {
+            //Check if there are any cards to save
+            if (PScard.Count > 0)
+            {
+                //Check if file can be saved or save dialog must be shown
+                if (PScard[listIndex].cardLocation == null)
+                    saveCardDialog(listIndex);
+                else
+                    saveMemoryCard(listIndex, PScard[listIndex].cardLocation, PScard[listIndex].cardType);
+            }
+        }
+
+        //Cleanly close the selected card
+        private int closeCard(int listIndex, bool switchToFirst)
+        {
+            //Check if there are any cards to delete
+            if (PScard.Count > 0)
+            {
+                //Check if the file has been changed
+                if (PScard[listIndex].changedFlag)
+                {
+                    //Ask for saving before closing
+                    DialogResult result = MessageBox.Show(Localization.T("Do you want to save changes to '") + PScard[listIndex].cardName + Localization.T("'?"), appName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                        saveCardFunction(listIndex);
+                    else if (result == DialogResult.Cancel)
+                        return 1;
+                }
+
+                PScard.RemoveAt(listIndex);
+                cardList.RemoveAt(listIndex);
+                historyList.RemoveAt(listIndex);
+                iconList.RemoveAt(listIndex);
+                historyIconList.RemoveAt(listIndex);
+                mainTabControl.TabPages.RemoveAt(listIndex);
+
+                //Select first tab
+                if (PScard.Count > 0 && switchToFirst)
+                    mainTabControl.SelectedIndex = 0;
+
+                //Refresh plugin list
+                refreshPluginBindings();
+
+                //Enable certain list items
+                enableSelectiveEditItems();
             }
 
-            //Remove all traces of the card
-            if (dispose) PScard[listIndex].Dispose();
-
-            PScard.RemoveAt(listIndex);
-            cardList.RemoveAt(listIndex);
-            historyList.RemoveAt(listIndex);
-            iconList.RemoveAt(listIndex);
-            historyIconList.RemoveAt(listIndex);
-
-            mainTabControl.TabPages.RemoveAt(listIndex);
+            //If this was the last card disable "Close", "Close All", "Save" and "Save as" menu items
+            if (PScard.Count <= 0)
+            {
+                closeToolStripMenuItem.Enabled = false;
+                closeAllToolStripMenuItem.Enabled = false;
+                saveToolStripMenuItem.Enabled = false;
+                saveButton.Enabled = false;
+                saveAsToolStripMenuItem.Enabled = false;
+            }
+            return 0;
         }
 
-        //Close all cards
-        private void closeAllToolStripMenuItem_Click(object sender, EventArgs e)
+        //Overload for closeCard function
+        private int closeCard(int listIndex)
         {
-            closeAllCards();
+            return closeCard(listIndex, true);
         }
 
-        //Close a card
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        //Close all opened cards
+        private int closeAllCards()
         {
-            closeCard(mainTabControl.SelectedIndex);
+            //Run through the loop as long as there are cards opened
+            while (PScard.Count > 0)
+            {
+                mainTabControl.SelectedIndex = 0;
+                if (closeCard(0) == 1)
+                    return 1;
+            }
+            return 0;
         }
 
         //Edit save comments
@@ -303,104 +566,142 @@ namespace MemcardRex
         {
             if (!validityCheck(out int listIndex, out int slotNumber)) return;
 
-            //Open comment editor
+            int slotNum = memCard.GetMasterLinkForSlot(slotNumber);
+
             commentsWindow commentsDlg = new commentsWindow();
 
-            commentsDlg.initializeDialog(memCard.saveName[slotNumber] + Localization.T(" - Comments"), memCard.saveComments[slotNumber]);
+            //Load values to dialog
+            commentsDlg.initializeDialog(memCard.saveName[slotNum], memCard.saveComments[slotNum]);
             commentsDlg.ShowDialog(this);
 
-            //Update save comments if OK was pressed
+            //Update values if OK was pressed
             if (commentsDlg.okPressed)
             {
-                memCard.SetComments(slotNumber, commentsDlg.saveComment);
+                //Insert edited comments back in the card
+                memCard.SetComment(slotNum, commentsDlg.saveComment);
+                pushHistory("Comment edited", mainTabControl.SelectedIndex, prepareIcons(listIndex, slotNum, false));
 
                 refreshListView(listIndex, slotNumber);
-                pushHistory(Localization.T("Comments edited"), listIndex, prepareIcons(listIndex, slotNumber, false));
             }
-
             commentsDlg.Dispose();
         }
 
-        //Show save information
+        //Create and show information dialog
         private void showInformation()
         {
             if (!validityCheck(out int listIndex, out int slotNumber)) return;
 
+            informationWindow informationDlg = new informationWindow();
             int masterSlot = memCard.GetMasterLinkForSlot(slotNumber);
 
-            informationWindow infoDlg = new informationWindow();
+            //Only show info for valid saves
+            if (!(memCard.slotType[masterSlot] == ps1card.SlotTypes.initial || 
+                memCard.slotType[masterSlot] == ps1card.SlotTypes.deleted_initial)) return;
 
-            //Show info about the selected save
-            infoDlg.initializeDialog(memCard.saveName[masterSlot], memCard.saveProdCode[masterSlot], memCard.saveIdentifier[masterSlot],
-                memCard.saveRegion[masterSlot], memCard.saveType[masterSlot], memCard.saveSize[masterSlot], memCard.iconFrames[masterSlot],
-                memCard.iconColorData[masterSlot], memCard.mcIconData[masterSlot], memCard.apIconData[masterSlot], memCard.iconDelay[masterSlot],
-                memCard.GetOccupiedSlots(masterSlot), appSettings.IconBackgroundColor);
-
-            infoDlg.ShowDialog(this);
-            infoDlg.Dispose();
-        }
-
-        //Show save header edit dialog
-        private void editSaveHeader()
-        {
-            if (!validityCheck(out int listIndex, out int slotNumber)) return;
-
-            headerWindow headerDlg = new headerWindow();
+            int iconDelay = 0;
+            byte[] mcIconData = memCard.GetPocketStationIcon(masterSlot, ps1card.IconTypes.MCIcon, out iconDelay);
+            byte[] apIconData = memCard.GetPocketStationIcon(masterSlot, ps1card.IconTypes.APIcon, out iconDelay);
 
             //Load values to dialog
-            headerDlg.initializeDialog(appName, memCard.saveName[masterSlot] + Localization.T(" - Save header"), memCard.saveProdCode[masterSlot],
-                memCard.saveIdentifier[masterSlot], memCard.saveRegion[masterSlot]);
+            informationDlg.initializeDialog(memCard.saveName[masterSlot], memCard.saveProdCode[masterSlot], memCard.saveIdentifier[masterSlot],
+                memCard.saveRegion[masterSlot], memCard.saveDataType[masterSlot], memCard.saveSize[masterSlot], memCard.iconFrames[masterSlot],
+                memCard.iconColorData, mcIconData, apIconData, iconDelay, memCard.FindSaveLinks(masterSlot), appSettings.IconBackgroundColor);
 
-            headerDlg.ShowDialog(this);
+            informationDlg.ShowDialog(this);
 
-            //Update values if OK was pressed
-            if (headerDlg.okPressed)
+            informationDlg.Dispose();
+        }
+
+        //Check if save is properly selected
+        private bool validityCheck(out int listIndex, out int slotNumber)
+        {
+            listIndex = -1;
+            slotNumber = -1;
+
+            //If there are no cards return
+            if (PScard.Count < 1) return false;
+
+            listIndex = mainTabControl.SelectedIndex;
+
+            //Return if no save is selected
+            if (cardList[listIndex].SelectedIndices.Count < 1) return false;
+
+            slotNumber = cardList[listIndex].SelectedIndices[0];
+
+            return true;
+        }
+
+        //Delete/Restore selected save
+        private void deleteRestoreSave(object sender, EventArgs e)
+        {
+            if (!validityCheck(out int listIndex, out int slotNumber)) return;
+
+            int masterSlot = memCard.GetMasterLinkForSlot(slotNumber);
+
+            memCard.ToggleDeleteSave(masterSlot);
+
+            refreshListView(listIndex, slotNumber);
+
+            if (memCard.slotType[masterSlot] == ps1card.SlotTypes.deleted_initial)
+                pushHistory("Save deleted", mainTabControl.SelectedIndex, prepareIcons(listIndex, masterSlot, false));
+            else
+                pushHistory("Save restored", mainTabControl.SelectedIndex, prepareIcons(listIndex, masterSlot, false));
+        }
+
+        //Format selected save
+        private void formatSave(object sender, EventArgs e)
+        {
+            if (!validityCheck(out int listIndex, out int slotNumber)) return;
+
+            int masterSlot = memCard.GetMasterLinkForSlot(slotNumber);
+
+            //Fetch save icon before deletion
+            Bitmap saveIcon = prepareIcons(listIndex, masterSlot, false);
+
+            memCard.FormatSave(masterSlot);
+
+            refreshListView(listIndex, slotNumber);
+
+            pushHistory("Save removed", mainTabControl.SelectedIndex, saveIcon);
+        }
+
+        //Copy save selected save from Memory Card
+        private void copySave(object sender, EventArgs e)
+        {
+            if (!validityCheck(out int listIndex, out int slotNumber)) return;
+
+            int initialSlot = memCard.GetMasterLinkForSlot(slotNumber);
+
+            tempBuffer = PScard[listIndex].GetSaveBytes(initialSlot);
+            tempBufferName = PScard[listIndex].saveName[initialSlot];
+            BmpBuilder bmpImage = new BmpBuilder();
+            Bitmap saveIcon = new Bitmap(new MemoryStream(bmpImage.BuildBmp(PScard[listIndex].iconColorData[initialSlot, 0])));
+
+            //Show temp buffer toolbar info
+            tBufToolButton.Enabled = true;
+            tBufToolButton.Image = saveIcon;
+            tBufToolButton.Text = tempBufferName;
+
+            //Refresh the current list
+            refreshListView(listIndex, slotNumber);
+        }
+
+        //Paste save to Memory Card
+        private void pasteSave()
+        {
+            if (!validityCheck(out int listIndex, out int slotNumber)) return;
+
+            if (tempBuffer == null) return;
+
+            int requiredSlots = 0;
+            if (PScard[listIndex].SetSaveBytes(slotNumber, tempBuffer, out requiredSlots))
             {
-                //Insert data to save header of the selected card and slot
-                memCard.SetHeaderData(masterSlot, headerDlg.prodCode, headerDlg.saveIdentifier, headerDlg.saveRegion);
-
                 refreshListView(listIndex, slotNumber);
-                pushHistory(Localization.T("Header edited"), listIndex, prepareIcons(listIndex, masterSlot, false));
-            }
-
-            headerDlg.Dispose();
-        }
-
-        //Import a save
-        private void importSaveDialog()
-        {
-            if (!validityCheck(out int listIndex, out int slotNumber)) return;
-
-            //Check if the slot to import the save on is free
-            if (PScard[listIndex].slotType[slotNumber] == (byte) ps1card.SlotTypes.formatted)
-            {
-                OpenFileDialog openFileDlg = new OpenFileDialog
-                {
-                    Title = Localization.T("Import save"),
-                    Filter = ssSupportedExtensions + "|" + ssExtensions + "|RAW single save|*"
-                };
-
-                //If user selected a save load it
-                if (openFileDlg.ShowDialog() == DialogResult.OK)
-                {
-                    if (PScard[listIndex].OpenSingleSave(openFileDlg.FileName, slotNumber, out int requiredSlots))
-                    {
-                        refreshListView(listIndex, slotNumber);
-                        pushHistory(Localization.T("Save imported"), listIndex, prepareIcons(listIndex, slotNumber, false));
-                    }
-                    else if (requiredSlots > 0)
-                    {
-                        MessageBox.Show(Localization.T("To complete this operation ") + requiredSlots.ToString() + Localization.T(" free slots are required."), appName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    else
-                    {
-                        MessageBox.Show(Localization.T("The file could not be opened."), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                pushHistory("Save pasted", mainTabControl.SelectedIndex, prepareIcons(listIndex, slotNumber, false));
             }
             else
             {
-                MessageBox.Show(Localization.T("The selected slot is not empty."), appName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.T("To complete this operation ") + requiredSlots.ToString() + Localization.T(" free slots are required."), appName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -519,7 +820,7 @@ namespace MemcardRex
                     if (PScard[listIndex].OpenSingleSave(openFileDlg.FileName, slotNumber, out int requiredSlots))
                     {
                         refreshListView(listIndex, slotNumber);
-                        pushHistory(Localization.T("Save imported"), listIndex, prepareIcons(listIndex, slotNumber, false));
+                        pushHistory(Localization.T("Save imported"), mainTabControl.SelectedIndex, prepareIcons(listIndex, slotNumber, false));
                     }
                     else if (requiredSlots > 0)
                     {
@@ -534,101 +835,6 @@ namespace MemcardRex
             else
             {
                 MessageBox.Show(Localization.T("The selected slot is not empty."), appName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        //Export a save
-        private void exportSaveDialog(bool isRaw)
-        {
-            if (!validityCheck(out int listIndex, out int slotNumber)) return;
-
-            int masterSlot = memCard.GetMasterLinkForSlot(slotNumber);
-
-            byte singleSaveType;
-            string outputFilename;
-
-            if (isRaw)
-            {
-                //RAW file name on the system
-                outputFilename = memCard.saveRegionRaw[masterSlot] + PScard[listIndex].saveProdCode[masterSlot] + PScard[listIndex].saveIdentifier[masterSlot];
-            }
-            else
-            {
-                //Set output filename to be compatible with PS3
-                byte[] identifierASCII = Encoding.ASCII.GetBytes(PScard[listIndex].saveIdentifier[masterSlot]);
-                outputFilename = memCard.saveRegionRaw[masterSlot] + PScard[listIndex].saveProdCode[masterSlot] +
-                    BitConverter.ToString(identifierASCII).Replace("-", "");
-            }
-
-            //This will help us preserve full file title if illegal characters were found in save file name
-            int illegalCharCount = 0;
-            string completeFileName = outputFilename;
-
-            //Filter illegal characters from the name
-            foreach (char illegalChar in "\\/\":*?<>|".ToCharArray())
-            {
-                if (outputFilename.Contains(illegalChar.ToString())) illegalCharCount++;
-                outputFilename = outputFilename.Replace(illegalChar.ToString(), "");
-            }
-
-            SaveFileDialog saveFileDlg = new SaveFileDialog
-            {
-                Title = Localization.T("Export save"),
-                FileName = outputFilename,
-                Filter = ssExtensions,
-                FilterIndex = appSettings.LastExportFormat
-            };
-
-            if (isRaw) saveFileDlg.Filter = "RAW single save|B???????????*";
-
-            //If user selected a card save to it
-            if (saveFileDlg.ShowDialog() == DialogResult.OK)
-            {
-                if (!isRaw && saveFileDlg.FilterIndex != appSettings.LastExportFormat)
-                {
-                    appSettings.LastExportFormat = saveFileDlg.FilterIndex;
-                    //saveProgramSettings();
-                }
-
-                //Get save type
-                switch (saveFileDlg.FilterIndex)
-                {
-                    default:         //MCS single save
-                        singleSaveType = (int) ps1card.SingleSaveTypes.mcs;
-                        break;
-
-                    case 2:         //PS3 signed save
-                        singleSaveType = (int) ps1card.SingleSaveTypes.psv;
-                        break;
-
-                    case 3:        //Action Replay
-                        singleSaveType = (int) ps1card.SingleSaveTypes.psx;
-                        break;
-                }
-
-                //RAW save type
-                if (isRaw)
-                {
-                    singleSaveType = (int) ps1card.SingleSaveTypes.raw;
-
-                    //Create text file with full file name if illegal characters were found
-                    if (illegalCharCount > 0)
-                    {
-                        StreamWriter sw = File.CreateText(saveFileDlg.FileName + "_info.txt");
-                        sw.WriteLine(completeFileName);
-                        sw.WriteLine("");
-                        sw.WriteLine(Localization.T("Region: \"") + memCard.saveRegion[masterSlot] + "\"");
-                        sw.WriteLine(Localization.T("Product code: \"") + PScard[listIndex].saveProdCode[masterSlot] + "\"");
-                        sw.WriteLine(Localization.T("Identifier: \"") + PScard[listIndex].saveIdentifier[masterSlot] + "\"");
-                        sw.WriteLine("");
-                        sw.WriteLine(Localization.T("This text file was created because the exported RAW save file name contains forbidden characters."));
-                        sw.WriteLine(Localization.T("You can use this info when importing for example with uLaunchELF to make your save valid."));
-                        sw.Write(Localization.T("Rename \"") + outputFilename + Localization.T("\" to \"") + completeFileName + Localization.T("\" after importing the save."));
-                        sw.Close();
-                    }
-                }
-
-                PScard[listIndex].SaveSingleSave(saveFileDlg.FileName, masterSlot, singleSaveType);
             }
         }
 
@@ -664,7 +870,7 @@ namespace MemcardRex
             {
                 PScard[listIndex].SetIconBytes(masterSlot, iconDlg.iconData);
                 refreshListView(listIndex, slotNumber);
-                pushHistory(Localization.T("Icon edited"), listIndex, prepareIcons(listIndex, masterSlot, false));
+                pushHistory(Localization.T("Icon edited"), mainTabControl.SelectedIndex, prepareIcons(listIndex, masterSlot, false));
             }
 
             iconDlg.Dispose();
@@ -683,7 +889,7 @@ namespace MemcardRex
         //Create and show about dialog
         private void showAbout()
         {
-            new AboutWindow().initDialog(this, appName, appVersion, appDate, Localization.T("Copyright © Shendo 2025"),
+            new AboutWindow().initDialog(this, appName, appVersion, appDate, Localization.T("Copyright © Shendo 2025"), 
                 Localization.T("Authors: Alvaro Tanarro, bitrot-alpha, lmiori92, \nNico de Poel, KuromeSan, Robxnano, Shendo.\n\n") +
                 Localization.T("Beta testers: Gamesoul Master, Xtreme2damax,\nCarmax91, NKO. \n\n") +
                 Localization.T("Thanks to: @ruantec, Cobalt, TheCloudOfSmoke,\nRedawgTS, Hard core Rikki, RainMotorsports,\nZieg, Bobbi, OuTman, Kevstah2004, Kubusleonidas, \nFrédéric Brière, Cor'e, Gemini, DeadlySystem, \nPadraig Flood, Martin Korth (nocash).\n\n") +
@@ -772,6 +978,7 @@ namespace MemcardRex
             cardList[listIndex].Columns[1].Width = (int)(xScale * 98);
             cardList[listIndex].Columns[2].Width = tabWidth - (int)(xScale * 312) - (int)(xScale * 98) - (int)(xScale * 160);
             cardList[listIndex].View = View.Details;
+            //cardList[listIndex].Click += new System.EventHandler(this.cardList_Click);
             cardList[listIndex].DoubleClick += new System.EventHandler(this.cardList_DoubleClick);
             cardList[listIndex].SelectedIndexChanged += new System.EventHandler(this.cardList_IndexChanged);
 
