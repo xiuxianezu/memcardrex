@@ -1,138 +1,146 @@
 # MemcardRex
-### Advanced PlayStation 1 Memory Card editor
+### 高级 PlayStation 1 记忆卡编辑器
 ![memcardrex](https://github.com/user-attachments/assets/82553694-5cd2-49e8-b900-524dc32ccade)
 
-**Quick download links:**
-* [Latest Windows release](https://github.com/ShendoXT/memcardrex/releases/tag/9909f69)
-* [Latest macOS release](https://github.com/ShendoXT/memcardrex/releases/tag/e85f601)
-* Linux version in beta stage. [Compiling instructions](https://github.com/ShendoXT/memcardrex/tree/master/MemcardRex.Linux).
+**快速下载：**
+* [Windows 最新版（上游原版）](https://github.com/ShendoXT/memcardrex/releases/tag/9909f69)
+* [macOS 最新版（上游原版）](https://github.com/ShendoXT/memcardrex/releases/tag/e85f601)
+* Linux 版本处于测试阶段。[编译说明](https://github.com/ShendoXT/memcardrex/tree/master/MemcardRex.Linux)
+* **简体中文语言包编译版（本仓库 Releases，Windows / Linux / macOS 三平台）**：见下方 [Releases](https://github.com/xiuxianezu/memcardrex/releases) 下载，界面已内置简体中文。
 
-**Support & Development:**
-<br>This project has been alive for almost 20 years (first version was released in 2007.).<br>
-I open sourced it and put it on GitHub in 2014 after having less and less time to work on it.<br>
-I put it on GitHub in hopes that community will keep it alive.<br>
-And they did a bit with VMP and PSV support, PS3 MC Adaptor support and so on...<br><br>
-But demand for more features always fell on me and (I hope) I delivered,<br>
-You guys asked me to do a mac version, I did. You asked me to do a Linux version, I did.<br>
-On the flip side every time I put a donation link for support crickets started chirping.<br>
-In 20 years only ONE person donated and for that I thank him dearly, others<br>
-as soon as they got their requested features implemented promptly left...<br>
+**关于支持与开发：**
+<br>这个项目已经存在了近 20 年（首个版本发布于 2007 年）。<br>
+我在 2014 年将其开源并放到 GitHub 上，因为当时留给它的时间越来越少。<br>
+我把项目放到 GitHub，是希望社区能让它继续活下去。<br>
+社区确实做出了一些贡献，例如 VMP 与 PSV 支持、PS3 记忆卡适配器支持等……<br><br>
+但对更多功能的需求总是落在我身上，而（我希望）我做到了：<br>
+你们让我做 macOS 版，我做了；让我做 Linux 版，我也做了。<br>
+可反过来，每当我放出一个捐赠链接，周围就一片寂静。<br>
+20 年里只有 **一位** 朋友捐赠过，我由衷感谢他；其他人一拿到他们要求的功能就转身离开了……<br>
 <br>
-So it's all about money for you? Yes. Only me in the entire world needs money to live.<br>
-It's not about money. It's about showing support. You haven't watered the plant and it died.<br>
-People don't appreciate that I took time out of my life to bring them<br>
-additional features that they constantly requested... That doesn't deserve a cup of coffee? My bad.<br>
-I don't want to spend any more of my time on this though...<br>
+所以对你来说一切都只关乎钱？是的。全世界只有我一个人需要靠钱活下去。<br>
+但这不是钱的问题，而是支持的表示。你们没有给这株植物浇水，它已经枯死了。<br>
+人们并不感激我抽出生命中的时间，为你们不断要求的额外功能付出……这连一杯咖啡都不值吗？是我不好。<br>
+不过我也不想再在这上面花费任何时间了……<br>
 <br>
-Let the next, even better editor rises from the fingers of a new coder, or AI maybe?<br>
+让下一款更好的编辑器，从新程序员——或者 AI？——的指尖诞生吧。<br>
 
 
-<br>**Features:**
-* Tabbed interface - multiple Memory Cards can be opened at the same time.
-* Ability to copy, delete, restore, export, import and edit saves.
-* Undo/Redo with traversable history list.
-* Plugin support for 3rd party save editors.
-* Hardware interfaces for communication with real Memory Cards.
-* PocketStation support (read serial, dump BIOS, push PC time)
+<br>**功能特性：**
+* 标签页界面——可以同时打开多张记忆卡。
+* 支持复制、删除、恢复、导出、导入和编辑存档。
+* 支持撤销/重做，带有可回溯的历史记录列表。
+* 支持第三方存档编辑器的插件系统。
+* 支持与真实记忆卡通信的硬件接口。
+* PocketStation 支持（读取序列号、导出 BIOS、写入 PC 时间）。
 
-<br>**Requirements:**
-* .NET 8.
+<br>**系统要求：**
+* .NET 8。
 
-<br>**Supported Memory Card formats:**
-* ePSXe/PSEmu Pro Memory Card(*.mcr)
-* DexDrive Memory Card(*.gme)
-* pSX/AdriPSX Memory Card(*.bin)
-* Bleem! Memory Card(*.mcd)
-* VGS Memory Card(*.mem, *.vgs)
-* PSXGame Edit Memory Card(*.mc)
-* DataDeck Memory Card(*.ddf)
-* WinPSM Memory Card(*.ps)
-* Smart Link Memory Card(*.psm)
-* MCExplorer(*.mci)
-* PCSX ReARMed/RetroArch(*.srm)
-* PSP virtual Memory Card(*.VMP)
-* PS3 virtual Memory Card(*.VM1)
-* PS Vita "MCX" PocketStation Memory Card(*.BIN)
-* POPStarter Virtual Memory Card(*.VMC)
-* MiSTer FPGA (PSX Core) Memory Card(*.sav)
+<br>**支持的记忆卡格式：**
+* ePSXe/PSEmu Pro 记忆卡（*.mcr）
+* DexDrive 记忆卡（*.gme）
+* pSX/AdriPSX 记忆卡（*.bin）
+* Bleem! 记忆卡（*.mcd）
+* VGS 记忆卡（*.mem、*.vgs）
+* PSXGame Edit 记忆卡（*.mc）
+* DataDeck 记忆卡（*.ddf）
+* WinPSM 记忆卡（*.ps）
+* Smart Link 记忆卡（*.psm）
+* MCExplorer（*.mci）
+* PCSX ReARMed/RetroArch（*.srm）
+* PSP 虚拟记忆卡（*.VMP）
+* PS3 虚拟记忆卡（*.VM1）
+* PS Vita「MCX」PocketStation 记忆卡（*.BIN）
+* POPStarter 虚拟记忆卡（*.VMC）
+* MiSTer FPGA（PSX 核心）记忆卡（*.sav）
 
-<br>**Supported single save formats:**
-* PSXGame Edit single save(*.mcs)
-* XP, AR, GS, Caetla single save(*.psx)
-* Memory Juggler(*.ps1)
-* Smart Link(*.mcb)
-* Datel(*.mcx,*.pda)
-* RAW single saves
-* PS3 virtual saves (*.psv)
+<br>**支持的单个存档格式：**
+* PSXGame Edit 单存档（*.mcs）
+* XP、AR、GS、Caetla 单存档（*.psx）
+* Memory Juggler（*.ps1）
+* Smart Link（*.mcb）
+* Datel（*.mcx、*.pda）
+* RAW 单存档
+* PS3 虚拟存档（*.psv）
 
-### Hardware interfaces
-MemcardRex supports communication with the real Memory Cards via external devices.
-<br>Make sure to select a proper COM port in Options->Preferences.
+### 硬件接口
+MemcardRex 支持通过外部设备与真实记忆卡通信。
+<br>请确保在「选项 → 偏好设置」中选择正确的 COM 端口。
 
 <details>
 <summary>1. DexDrive</summary>
-Original way of transferring data from MemoryCard to PC and vice versa albeit a little quirky.
-<br>If you encounter problems, unplug power from DexDrive, unplug it from COM port and connect it all again.
+最早在记忆卡与 PC 之间传输数据的方式，虽然有点小毛病。
+<br>如果遇到问题，请拔掉 DexDrive 的电源，从 COM 口拔下后重新连接。
 
-It is recommended that a power cord is connected to DexDrive, otherwise some cards won't be detected.
-<br>Works with native COM port or USB based adapters.
+建议给 DexDrive 接上电源线，否则部分记忆卡可能无法被识别。
+<br>支持原生 COM 口或基于 USB 的转接器。
 </details>
-</summary>
 
 <details>
 <summary>2. MemCARDuino</summary>
-MemCARDuino is an open source Memory Card communication software for various Arduino boards.
-https://github.com/ShendoXT/memcarduino
+MemCARDuino 是一款面向多种 Arduino 开发板的开源记忆卡通信软件。
+<br>https://github.com/ShendoXT/memcarduino
 </details>
-</summary>
 
 <details>
 <summary>3. PS1CardLink</summary>
-PS1CardLink is a software for the actual PlayStation and PSOne consoles.
-<br>It requires an official or home made TTL serial cable for communication with PC.
+PS1CardLink 是用于实体 PlayStation 与 PSOne 主机的软件。
+<br>它需要一条官方或自制的 TTL 串口线来与 PC 通信。
 
-With it your console becomes a Memory Card reader similar to the DexDrive and MemCARDuino.
+有了它，你的主机就变成一个类似 DexDrive 和 MemCARDuino 的记忆卡读取器。
 
-MemcardRex can also talk to the serial port remotely by using a Serial Port Bridge like [esp-link](https://github.com/jeelabs/esp-link).
-<br>It conveniently fits into a PSOne which has otherwise no external hardware ports.
+MemcardRex 还可以通过串口桥接器（如 [esp-link](https://github.com/jeelabs/esp-link)）远程访问串口。
+<br>它可以很方便地塞进一台没有外部硬件端口的 PSOne 里。
 <br>https://github.com/ShendoXT/ps1cardlink
 </details>
-</summary>
 
 <details>
 <summary>4. Unirom</summary>
-Unirom is a shell for the PlayStation and PSOne consoles.
-<br>It requires an official or home made TTL serial cable for communication with PC.
-<br>https://unirom.github.io.
+Unirom 是 PlayStation 与 PSOne 主机的 Shell（引导工具）。
+<br>它需要一条官方或自制的 TTL 串口线来与 PC 通信。
+<br>https://unirom.github.io
 </details>
-</summary>
 
 <details>
-<summary>5. PS3 Memory Card Adaptor</summary>
-The PS3 Memory Card Adaptor is an official Sony USB adapter that allows reading and writing PS1 Memory Cards on a PlayStation 3.
-<br>To use it on a Windows PC, a custom USB driver needs to be installed.
- 
-This USB driver can be easily created and installed using [Zadig](https://zadig.akeo.ie) by following these steps:
-* Plug the PS3 Memory Card Adaptor into a free USB port and start Zadig.
-* Zadig should display the PS3 MCA as an "Unknown Device". Verify that the USB ID matches: 054C 02EA
-* Click the Edit checkbox and name the device "PS3 Memory Card Adaptor"
-* Ensure that "WinUSB" is selected from the list of Driver options and click the Install Driver button.
-    - If you need LibUSB driver support place "libusb-1.0.dll" inside MemcardRex's directory (2.0 RC1 and up only).
-* After about 30 seconds Zadig should show a message that the driver was installed successfully.
+<summary>5. PS3 记忆卡适配器（PS3 Memory Card Adaptor）</summary>
+PS3 记忆卡适配器是索尼官方 USB 适配器，可以在 PlayStation 3 上读写 PS1 记忆卡。
+<br>要在 Windows PC 上使用它，需要安装一个自定义 USB 驱动。
 
-With the USB driver installed and the PS3 Memory Card Adaptor plugged in, you should now be able to read, write and format PS1 Memory Cards.
+这个 USB 驱动可以借助 [Zadig](https://zadig.akeo.ie) 轻松创建并安装，步骤如下：
+* 将 PS3 记忆卡适配器插入空闲 USB 口，然后启动 Zadig。
+* Zadig 应将 PS3 MCA 显示为「Unknown Device」。确认 USB ID 匹配：054C 02EA。
+* 勾选 Edit 复选框，将设备命名为「PS3 Memory Card Adaptor」。
+* 在驱动选项列表中选择「WinUSB」，然后点击 Install Driver 按钮。
+    - 如果需要 LibUSB 驱动支持，请将「libusb-1.0.dll」放入 MemcardRex 目录（仅限 2.0 RC1 及以后版本）。
+* 约 30 秒后，Zadig 应显示驱动安装成功。
+
+安装好 USB 驱动并插上 PS3 记忆卡适配器后，你就可以读写和格式化 PS1 记忆卡了。
 </details>
-</summary>
 
-### Credits
-**Authors:**
-<br>Alvaro Tanarro, bitrot-alpha, Damián Parrino, kevh182, KuromeSan, lmiori92, Nico de Poel, Robxnano, Shendo.
+### 致谢
+**作者：**
+<br>Alvaro Tanarro, bitrot-alpha, Damián Parrino, kevh182, KuromeSan, lmiori92, Nico de Poel, Robxnano, Shendo。
 
-**Beta testers:**
-<br>Gamesoul Master, Xtreme2damax, Carmax91 and NKO.
+**Beta 测试人员：**
+<br>Gamesoul Master, Xtreme2damax, Carmax91 和 NKO。
 
-**Thanks to:**
-<br>@ruantec, Cobalt, TheCloudOfSmoke, RedawgTS, Hard core Rikki, RainMotorsports, Zieg, Bobbi, OuTman, Kevstah2004,  Kubusleonidas, Frédéric Brière, Mark James, Cor'e, DeadlySystem, Padraig Flood and Martin Korth (nocash).
+**感谢：**
+<br>@ruantec, Cobalt, TheCloudOfSmoke, RedawgTS, Hard core Rikki, RainMotorsports, Zieg, Bobbi, OuTman, Kevstah2004, Kubusleonidas, Frédéric Brière, Mark James, Cor'e, DeadlySystem, Padraig Flood 和 Martin Korth (nocash)。
 
+### 简体中文语言包（zh-CN）
+Windows 版内置了简体中文语言包（`Languages\zh-CN.xml`）和轻量级本地化层（`Support\Localization.cs`）。
+程序启动时通过精确匹配查找翻译所有用户可见界面文本；因此任何尚未收录的新英文串会暂时保持英文，直到加入语言包。
 
+如何自定义翻译：
+* 要覆盖内置翻译，请将修改后的 `Languages\zh-CN.xml` 放到可执行文件旁（`MemcardRex.exe\Languages\zh-CN.xml`）。外部文件优先于嵌入资源。
+* 要将翻译编译进应用，请重新编译解决方案——XML 会自动作为嵌入资源（`EmbeddedResource Languages\zh-CN.xml`）。
+* 新增条目格式为 `<string><source>英文原文</source><target>中文</target></string>`；换行请使用 `&#10;`，并保持 `<source>` 与界面显示的英文完全一致。
 
+三个平台版本（Windows / Linux / macOS）均内置简体中文语言包：
+
+* **Windows** —— `MemcardRex.Windows\Languages\zh-CN.xml` + `Support\Localization.cs`。Designer/代码中的界面字符串均用 `Localization.T("...")` 包裹；窗体加载后由 `ApplyToForm` 翻译。
+* **Linux（GTK）** —— `MemcardRex.Linux\Languages\zh-CN.xml` + `Localization.cs`。嵌入的 `.ui` 模板在加载时由 `Localization.Builder(...)` 翻译（标签、标题、提示按精确匹配）；代码字符串用 `Localization.T("...")` 包裹。
+* **macOS** —— `MemcardRex.macOS\Languages\zh-CN.xml` + `Localization.cs`。主菜单、工具栏和对话框视图在运行时由 `ApplyToMenus` / `ApplyToWindow` / `ApplyToView` 翻译；代码字符串用 `Localization.T("...")` 包裹。
+
+同一个 `zh-CN.xml` 字典（236 条翻译）已嵌入到每个平台版本。按设计保留不译的内容：存档区域值（America/Europe/Japan）、硬件设备名（DexDrive、MemCARDuino 等）、文件格式名、表情符号工具栏图标、应用/版本标题 `MemcardRex 2.0 beta`。
