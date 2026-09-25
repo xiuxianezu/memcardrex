@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    MemcardRex 简体中文语言包 (Simplified Chinese language pack)
+    作者: Doubao 办公助手
+    说明: 每个 <string> 条目将界面上的英文文本精确匹配后替换为中文。
+    如需自定义翻译, 可复制本文件到程序目录 Languages\zh-CN.xml 覆盖内置语言包。
+    注意: 换行用 &#10; 表示; 请不要修改 <source> 中的英文原文。
+-->
+<localization language="zh-CN" name="简体中文">
+  <strings>
+
+    <!-- 主菜单 / 工具栏 -->
+    <string><source>File</source><target>文件</target></string>
+    <string><source>Edit</source><target>编辑</target></string>
+    <string><source>Hardware</source><target>硬件</target></string>
+    <string><source>Help</source><target>帮助</target></string>
+    <string><source>Config</source><target>配置</target></string>
+    <string><source>Options</source><target>选项</target></string>
+    <string><source>Plugins</source><target>插件</target></string>
+    <string><source>New</source><target>新建</target></string>
+    <string><source>Open</source><target>打开</target></string>
+    <string><source>Open...</source><target>打开…</target></string>
+    <string><source>Close</source><target>关闭</target></string>
+    <string><source>Close All</source><target>全部关闭</target></string>
+    <string><source>Save</source><target>保存</target></string>
+    <string><source>Save as...</source><target>另存为…</target></string>
+    <string><source>Export save</source><target>导出存档</target></string>
+    <string><source>Export save...</source><target>导出存档…</target></string>
+    <string><source>Export RAW save...</source><target>导出 RAW 存档…</target></string>
+    <string><source>Import save</source><target>导入存档</target></string>
+    <string><source>Import save...</source><target>导入存档…</target></string>
+    <string><source>Delete save</source><target>删除存档</target></string>
+    <string><source>Restore save</source><target>恢复存档</target></string>
+    <string><source>Undo</source><target>撤销</target></string>
+    <string><source>Redo</source><target>重做</target></string>
+    <string><source>Preferences</source><target>偏好设置</target></string>
+    <string><source>Preferences...</source><target>偏好设置…</target></string>
+    <string><source>Quit</source><target>退出</target></string>
+    <string><source>About</source><target>关于</target></string>
+    <string><source>Readme</source><target>自述文件</target></string>
+    <string><source>Information</source><target>信息</target></string>
+
+    <!-- 编辑操作 -->
+    <string><source>Copy save to temp buffer</source><target>复制存档到临时缓冲区</target></string>
+    <string><source>Paste save from temp buffer</source><target>从临时缓冲区粘贴存档</target></string>
+    <string><source>Compare with temp buffer</source><target>与临时缓冲区比较</target></string>
+    <string><source>Edit save header</source><target>编辑存档头</target></string>
+    <string><source>Edit save header...</source><target>编辑存档头…</target></string>
+    <string><source>Edit save icon</source><target>编辑存档图标</target></string>
+    <string><source>Edit save icon...</source><target>编辑存档图标…</target></string>
+    <string><source>Edit save comment</source><target>编辑存档备注</target></string>
+    <string><source>Edit save comment...</source><target>编辑存档备注…</target></string>
+    <string><source>Edit with plugin</source><target>使用插件编辑</target></string>
+    <string><source>Edit icon...</source><target>编辑图标…</target></string>
+    <string><source>Remove save (format slot(s))</source><target>移除存档（格式化插槽）</target></string>
+    <string><source>Export frame...</source><target>导出帧…</target></string>
+    <string><source>Replace frame...</source><target>替换帧…</target></string>
+    <string><source>Save information</source><target>存档信息</target></string>
+
+    <!-- 硬件相关 -->
+    <string><source>Active hardware interface:</source><target>当前硬件接口：</target></string>
+    <string><source>Format card</source><target>格式化存储卡</target></string>
+    <string><source>Dump BIOS</source><target>导出 BIOS</target></string>
+    <string><source>Read save data</source><target>读取存档数据</target></string>
+    <string><source>Write save data</source><target>写入存档数据</target></string>
+    <string><source>Read serial</source><target>读取序列号</target></string>
+    <string><source>Save BIOS</source><target>保存 BIOS</target></string>
+    <string><source>Realtime link</source><target>实时连接</target></string>
+    <string><source>PocketStation</source><target>PocketStation</target></string>
+    <string><source>PocketStation serial:</source><target>PocketStation 序列号：</target></string>
+    <string><source>Com port:</source><target>COM 端口：</target></string>
+    <string><source>Hardware card slot:</source><target>硬件卡槽：</target></string>
+    <string><source>Hardware format type:</source><target>硬件格式化类型：</target></string>
+    <string><source>Remote Address:</source><target>远程地址：</target></string>
+    <string><source>Remote Port:</source><target>远程端口：</target></string>
+    <string><source>Author</source><target>作者</target></string>
+
+    <!-- 通用按钮 -->
+    <string><source>OK</source><target>确定</target></string>
+    <string><source>Cancel</source><target>取消</target></string>
+    <string><source>Abort</source><target>中止</target></string>
+
+    <!-- 设置对话框 -->
+    <string><source>Backup Memory Cards upon opening.</source><target>打开时备份存储卡。</target></string>
+    <string><source>Restore window position on startup</source><target>启动时恢复窗口位置</target></string>
+    <string><source>Show grid on slot list.</source><target>在插槽列表中显示网格。</target></string>
+    <string><source>Show warning messages</source><target>显示警告消息</target></string>
+    <string><source>Try to fix corrupted Memory Cards</source><target>尝试修复损坏的存储卡</target></string>
+    <string><source>Icon background color:</source><target>图标背景颜色：</target></string>
+    <string><source>Icon frames:</source><target>图标帧数：</target></string>
+    <string><source>File type:</source><target>文件类型：</target></string>
+    <string><source>Plugin name</source><target>插件名称</target></string>
+
+    <!-- 存档信息对话框 -->
+    <string><source>Title:</source><target>标题：</target></string>
+    <string><source>Size:</source><target>大小：</target></string>
+    <string><source>Slot:</source><target>插槽：</target></string>
+    <string><source>Region:</source><target>区域：</target></string>
+    <string><source>Identifier:</source><target>标识符：</target></string>
+    <string><source>Product code:</source><target>产品代码：</target></string>
+    <string><source>Supported game(s)</source><target>支持的游戏</target></string>
+    <string><source>Offset (hex, int)</source><target>偏移量（十六进制，整数）</target></string>
+    <string><source>Save1 (hex, int)</source><target>存档1（十六进制，整数）</target></string>
+    <string><source>Save2 (hex, int)</source><target>存档2（十六进制，整数）</target></string>
+    <string><source>Temp buffer is empty</source><target>临时缓冲区为空</target></string>
+    <string><source>Comments are only supported by DexDrive (.gme) files.</source><target>仅 DexDrive（.gme）文件支持备注。</target></string>
+    <string><source>X:</source><target>X：</target></string>
+    <string><source>Y:</source><target>Y：</target></string>
+    <string><source>X: </source><target>X：</target></string>
+    <string><source>Y: </source><target>Y：</target></string>
+
+    <!-- 关于对话框 -->
+    <string><source>Version: </source><target>版本：</target></string>
+    <string><source>Compile date: </source><target>编译日期：</target></string>
+    <string><source>Copyright © Shendo 2025</source><target>版权所有 © Shendo 2025</target></string>
+    <string><source>Authors: Alvaro Tanarro, bitrot-alpha, lmiori92, &#10;Nico de Poel, KuromeSan, Robxnano, Shendo.&#10;&#10;</source><target>作者：Alvaro Tanarro、bitrot-alpha、lmiori92、&#10;Nico de Poel、KuromeSan、Robxnano、Shendo。&#10;&#10;</target></string>
+    <string><source>Beta testers: Gamesoul Master, Xtreme2damax,&#10;Carmax91, NKO. &#10;&#10;</source><target>Beta 测试人员：Gamesoul Master、Xtreme2damax、&#10;Carmax91、NKO。&#10;&#10;</target></string>
+    <string><source>Thanks to: @ruantec, Cobalt, TheCloudOfSmoke,&#10;RedawgTS, Hard core Rikki, RainMotorsports,&#10;Zieg, Bobbi, OuTman, Kevstah2004, Kubusleonidas, &#10;Frédéric Brière, Cor'e, Gemini, DeadlySystem, &#10;Padraig Flood, Martin Korth (nocash).&#10;&#10;</source><target>致谢：@ruantec、Cobalt、TheCloudOfSmoke、&#10;RedawgTS、Hard core Rikki、RainMotorsports、&#10;Zieg、Bobbi、OuTman、Kevstah2004、Kubusleonidas、&#10;Frédéric Brière、Cor'e、Gemini、DeadlySystem、&#10;Padraig Flood、Martin Korth (nocash)。&#10;&#10;</target></string>
+    <string><source>Special thanks to the following people whose&#10;Memory Card utilities inspired me to write my own:&#10;Simon Mallion (PSXMemTool),&#10;Lars Ole Dybdal (PSXGameEdit),&#10;Aldo Vargas (Memory Card Manager),&#10;Neill Corlett (Dexter),&#10;Paul Phoneix (ConvertM).</source><target>特别感谢以下人士，他们的&#10;存储卡工具启发了我编写自己的工具：&#10;Simon Mallion (PSXMemTool)、&#10;Lars Ole Dybdal (PSXGameEdit)、&#10;Aldo Vargas (Memory Card Manager)、&#10;Neill Corlett (Dexter)、&#10;Paul Phoneix (ConvertM)。</target></string>
+
+    <!-- 主窗口状态消息 -->
+    <string><source>Card opened</source><target>已打开存储卡</target></string>
+    <string><source>Card created</source><target>已创建存储卡</target></string>
+    <string><source>Comment edited</source><target>备注已编辑</target></string>
+    <string><source>Save deleted</source><target>存档已删除</target></string>
+    <string><source>Save restored</source><target>存档已恢复</target></string>
+    <string><source>Save removed</source><target>存档已移除</target></string>
+    <string><source>Save pasted</source><target>存档已粘贴</target></string>
+    <string><source>Save imported</source><target>存档已导入</target></string>
+    <string><source>Icon edited</source><target>图标已编辑</target></string>
+    <string><source>Header edited</source><target>存档头已编辑</target></string>
+    <string><source>Edited by plugin</source><target>已通过插件编辑</target></string>
+    <string><source>Card read (</source><target>读取存储卡（</target></string>
+    <string><source>)</source><target>）</target></string>
+    <string><source> (temp buffer)</source><target>（临时缓冲区）</target></string>
+    <string><source>History</source><target>历史记录</target></string>
+    <string><source>Icon, region and title</source><target>图标、区域和标题</target></string>
+    <string><source>Product code</source><target>产品代码</target></string>
+    <string><source>Identifier</source><target>标识符</target></string>
+    <string><source>Free slot</source><target>空闲插槽</target></string>
+    <string><source>Corrupted slot</source><target>损坏的插槽</target></string>
+    <string><source> via TCP</source><target>（TCP 连接）</target></string>
+    <string><source> (TCP)</source><target>（TCP）</target></string>
+    <string><source>Open Memory Card</source><target>打开存储卡</target></string>
+    <string><source>Save Memory Card</source><target>保存存储卡</target></string>
+
+    <!-- 主窗口消息框 -->
+    <string><source>This operation will wipe all data on the Memory Card.&#10;Proceed?</source><target>此操作将清除存储卡上的所有数据。&#10;是否继续？</target></string>
+    <string><source>Format Memory Card</source><target>格式化存储卡</target></string>
+    <string><source>Unable to start </source><target>无法启动 </target></string>
+    <string><source>Time set successfully</source><target>时间设置成功</target></string>
+    <string><source>Error</source><target>错误</target></string>
+    <string><source>Warning</source><target>警告</target></string>
+    <string><source>Memory Card could not be saved.</source><target>存储卡保存失败。</target></string>
+    <string><source>Do you want to save changes to '</source><target>是否保存对 '</target></string>
+    <string><source>'?</source><target>' 的更改？</target></string>
+    <string><source>To complete this operation </source><target>要完成此操作，需要 </target></string>
+    <string><source> free slots are required.</source><target> 个空闲插槽。</target></string>
+    <string><source>To import this save </source><target>要导入此存档，需要 </target></string>
+    <string><source>&#10;Create a new card or remove some existing saves.</source><target>&#10;请新建一张存储卡或删除一些现有存档。</target></string>
+    <string><source>The file could not be opened.</source><target>无法打开该文件。</target></string>
+    <string><source>The selected slot is not empty.</source><target>所选插槽不为空。</target></string>
+    <string><source>'ReadMe.txt' was not found.</source><target>未找到 “ReadMe.txt” 文件。</target></string>
+    <string><source>Temp buffer is empty. Save can't be compared.</source><target>临时缓冲区为空，无法比较存档。</target></string>
+    <string><source>Save file size mismatch. Saves can't be compared.</source><target>存档文件大小不匹配，无法比较存档。</target></string>
+
+    <!-- RAW 导出信息文件 -->
+    <string><source>Region: "</source><target>区域："</target></string>
+    <string><source>Product code: "</source><target>产品代码："</target></string>
+    <string><source>Identifier: "</source><target>标识符："</target></string>
+    <string><source>This text file was created because the exported RAW save file name contains forbidden characters.</source><target>由于导出的 RAW 存档文件名包含非法字符，因此生成了此文本文件。</target></string>
+    <string><source>You can use this info when importing for example with uLaunchELF to make your save valid.</source><target>例如使用 uLaunchELF 导入时，可参考此信息以确保存档有效。</target></string>
+    <string><source>Rename "</source><target>导入存档后，请将 “</target></string>
+    <string><source>" to "</source><target>” 重命名为 “</target></string>
+    <string><source>" after importing the save.</source><target>”。</target></string>
+
+    <!-- 卡片读写窗口 -->
+    <string><source>Reading data from Unirom...</source><target>正在从 Unirom 读取数据…</target></string>
+    <string><source>Waiting for Unirom to store contents in RAM.&#10;Transfer will start after all the sectors have been read.</source><target>正在等待 Unirom 将数据存入内存。&#10;读取完所有扇区后开始传输。</target></string>
+    <string><source>Reading data from </source><target>正在从 </target></string>
+    <string><source>Formatting card on </source><target>正在格式化 </target></string>
+    <string><source>Writing data to </source><target>正在写入 </target></string>
+    <string><source>Dumping BIOS using </source><target>正在通过 </target></string>
+    <string><source> (ver. </source><target>（版本 </target></string>
+    <string><source>)...</source><target>）…</target></string>
+    <string><source>...</source><target>…</target></string>
+    <string><source>&#10;&#10;Make sure to select proper communication port in preferences dialog</source><target>&#10;&#10;请确保在偏好设置对话框中选择了正确的通信端口</target></string>
+    <string><source>Realtime not implemented yet</source><target>实时连接功能尚未实现</target></string>
+    <string><source>Detecting </source><target>正在检测 </target></string>
+    <string><source> on </source><target>，位于 </target></string>
+    <string><source> communication</source><target> 通信</target></string>
+
+    <!-- 比较窗口 -->
+    <string><source>Compare saves</source><target>比较存档</target></string>
+    <string><source>Save 1: </source><target>存档 1：</target></string>
+    <string><source>Save 2: </source><target>存档 2：</target></string>
+    <string><source>Compared saves are identical.</source><target>两个存档完全相同。</target></string>
+
+    <!-- 存档头窗口 -->
+    <string><source>Product code must be exactly 10 characters long.</source><target>产品代码必须恰好为 10 个字符。</target></string>
+
+    <!-- 图标编辑器 -->
+    <string><source>1st frame</source><target>第 1 帧</target></string>
+    <string><source>2nd frame</source><target>第 2 帧</target></string>
+    <string><source>3rd frame</source><target>第 3 帧</target></string>
+    <string><source>Preview</source><target>预览</target></string>
+    <string><source>Open icon</source><target>打开图标</target></string>
+    <string><source>Save icon</source><target>保存图标</target></string>
+    <string><source>Selected image is not a 16x16 pixel image.</source><target>所选图片不是 16×16 像素的图片。</target></string>
+    <string><source>Selected image contains more than 16 colors.</source><target>所选图片包含超过 16 种颜色。</target></string>
+    <string><source>Eraser tool requires transparent entry in the palette.</source><target>橡皮擦工具需要调色板中存在透明色项。</target></string>
+    <string><source>&#10;Do you want to change currently selected color to transparent?</source><target>&#10;是否要将当前选中的颜色改为透明？</target></string>
+    <string><source>Transparent entry required</source><target>需要透明色项</target></string>
+
+    <!-- 存档信息 -->
+    <string><source>Save data</source><target>存档数据</target></string>
+    <string><source>Software (PocketStation)</source><target>软件（PocketStation）</target></string>
+
+    <!-- PocketStation 信息 -->
+    <string><source>PocketStation info</source><target>PocketStation 信息</target></string>
+    <string><source>1st release</source><target>首发版</target></string>
+    <string><source>2nd release</source><target>第二版</target></string>
+    <string><source>Unknown / bad dump</source><target>未知 / 损坏的转储</target></string>
+    <string><source>Save PocketStation BIOS</source><target>保存 PocketStation BIOS</target></string>
+
+    <!-- 插件窗口 -->
+    <string><source>Explorer</source><target>资源管理器</target></string>
+
+    <!-- 状态栏 -->
+    <string><source>BIOS checksum:</source><target>BIOS 校验和：</target></string>
+    <string><source>BIOS date:</source><target>BIOS 日期：</target></string>
+    <string><source>BIOS remark:</source><target>BIOS 备注：</target></string>
+    <string><source>BIOS version:</source><target>BIOS 版本：</target></string>
+    <string><source>Set date / time</source><target>设置日期 / 时间</target></string>
+    <string><source>Realtime link</source><target>实时连接</target></string>
+
+    <!-- Linux (GTK) 专属 -->
+    <string><source>Open a Memory Card</source><target>打开存储卡</target></string>
+    <string><source>SoundScope - Icon Editor</source><target>SoundScope - 图标编辑器</target></string>
+    <string><source>Linux version based on work by Robxnano.&#10;Copyright © Shendo 2026</source><target>基于 Robxnano 作品的 Linux 版本。&#10;版权所有 © Shendo 2026</target></string>
+    <string><source>Waiting for Unirom to prepare data for transfer...</source><target>正在等待 Unirom 准备传输数据…</target></string>
+    <string><source>Open Failed</source><target>打开失败</target></string>
+    <string><source>Save Changes?</source><target>保存更改？</target></string>
+    <string><source>“{0}” has been modified. Unsaved data will be permanently lost.</source><target>“{0}” 已被修改。未保存的数据将永久丢失。</target></string>
+    <string><source>Discard</source><target>放弃</target></string>
+    <string><source>Discard Changes and Quit?</source><target>放弃更改并退出？</target></string>
+    <string><source>If you quit now, unsaved data will be lost.</source><target>如果现在退出，未保存的数据将丢失。</target></string>
+    <string><source>Quit</source><target>退出</target></string>
+    <string><source>All Files</source><target>所有文件</target></string>
+    <string><source>All Supported Files</source><target>所有受支持的文件</target></string>
+    <string><source>RAW single save</source><target>RAW 单存档</target></string>
+    <string><source>Standard Memory Card</source><target>标准存储卡</target></string>
+    <string><source>DexDrive Memory Card</source><target>DexDrive 存储卡</target></string>
+    <string><source>VGS Memory Card</source><target>VGS 存储卡</target></string>
+    <string><source>PSP/Vita Memory Card</source><target>PSP/Vita 存储卡</target></string>
+    <string><source>Comparison error</source><target>比较错误</target></string>
+    <string><source>No differences</source><target>没有差异</target></string>
+    <string><source>Insufficient space</source><target>空间不足</target></string>
+    <string><source>Import error</source><target>导入错误</target></string>
+    <string><source>Format</source><target>格式化</target></string>
+    <string><source>Eraser tool requires transparent entry in the palette.&#10;Do you want to change currently selected color to transparent?</source><target>橡皮擦工具需要调色板中存在透明色项。&#10;是否要将当前选中的颜色改为透明？</target></string>
+    <string><source>Binary image (*.bin)</source><target>二进制镜像 (*.bin)</target></string>
+    <string><source>Color</source><target>颜色</target></string>
+
+    <!-- macOS 专属 -->
+    <string><source>This build is highly experimental.</source><target>此版本为高度实验性版本。</target></string>
+    <string><source>&#10;All funcionality may not be implemented yet or work as intended.</source><target>&#10;并非所有功能都已实现或能按预期工作。</target></string>
+    <string><source>PS1CardLink over TCP</source><target>PS1CardLink（TCP 连接）</target></string>
+    <string><source>Unirom over TCP</source><target>Unirom（TCP 连接）</target></string>
+    <string><source>PS3 Memory Card Adaptor</source><target>PS3 存储卡适配器</target></string>
+    <string><source>Unable to open Memory Card</source><target>无法打开存储卡</target></string>
+    <string><source>Export RAW save</source><target>导出 RAW 存档</target></string>
+    <string><source>Save 1 (hex, int)</source><target>存档 1（十六进制，整数）</target></string>
+    <string><source>Save 2 (hex, int)</source><target>存档 2（十六进制，整数）</target></string>
+    <string><source>&#10;&#10;Make sure to select proper communication port and speed in preferences dialog</source><target>&#10;&#10;请确保在偏好设置对话框中选择了正确的通信端口和速率</target></string>
+    <string><source>Transparent</source><target>透明</target></string>
+    <string><source>Black (Slim PS1 models)</source><target>黑色（Slim PS1 机型）</target></string>
+    <string><source>Gray (Older european PS1 models)</source><target>灰色（旧款欧版 PS1 机型）</target></string>
+    <string><source>Blue (Standard BIOS color)</source><target>蓝色（标准 BIOS 颜色）</target></string>
+    <string><source>Quick format</source><target>快速格式化</target></string>
+    <string><source>Full format</source><target>完整格式化</target></string>
+    <string><source>Slot 1</source><target>插槽 1</target></string>
+    <string><source>Slot 2</source><target>插槽 2</target></string>
+    <string><source>Unirom card slot:</source><target>Unirom 卡槽：</target></string>
+    <string><source>Confirm</source><target>确定</target></string>
+    <string><source>Title</source><target>标题</target></string>
+    <string><source>Icon</source><target>图标</target></string>
+    <string><source>PS Vita 'MCX' PocketStation Memory Card</source><target>PS Vita 'MCX' PocketStation 存储卡</target></string>
+
+  </strings>
+</localization>
