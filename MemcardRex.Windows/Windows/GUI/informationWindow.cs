@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -27,6 +27,8 @@ namespace MemcardRex
         public informationWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         private void OKbutton_Click(object sender, EventArgs e)
@@ -53,8 +55,8 @@ namespace MemcardRex
             regionLabel.Text = saveRegion;
 
             //Save file data type
-            if (saveType == ps1card.DataTypes.save) typeLabel.Text = "Save data";
-            else if (saveType == ps1card.DataTypes.software) typeLabel.Text = "Software (PocketStation)";
+            if (saveType == ps1card.DataTypes.save) typeLabel.Text = Localization.T("Save data");
+            else if (saveType == ps1card.DataTypes.software) typeLabel.Text = Localization.T("Software (PocketStation)");
 
             //Needed for proper scaling on different DPI settings
             iconRender.Width = 48;

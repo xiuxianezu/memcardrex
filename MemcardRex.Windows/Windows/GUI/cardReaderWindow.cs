@@ -1,4 +1,4 @@
-﻿//Hardware card reading device information window
+//Hardware card reading device information window
 //Shendo 2012 - 2024
 
 using System;
@@ -95,7 +95,10 @@ namespace MemcardRex
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.WorkerReportsProgress = true;
 
-            this.Text = hardInterface.Name() + " communication";
+            this.Text = hardInterface.Name() + Localization.T(" communication");
+
+            //Apply Chinese language pack translation
+            Localization.ApplyToForm(this);
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -119,7 +122,7 @@ namespace MemcardRex
                 {
                     progressBar.Visible = true;
                     abortButton.Enabled = true;
-                    deviceLabel.Text = "Reading data from Unirom...";
+                    deviceLabel.Text = Localization.T("Reading data from Unirom...");
                 }
             }
             //First run
@@ -127,8 +130,8 @@ namespace MemcardRex
             {
                 string interfaceDescription = _hardInterface.Name();
 
-                if (_hardInterface.Firmware() != "") interfaceDescription += " (ver. " + _hardInterface.Firmware() + ")...";
-                else interfaceDescription += "...";
+                if (_hardInterface.Firmware() != "") interfaceDescription += Localization.T(" (ver. ") + _hardInterface.Firmware() + Localization.T(")...");
+                else interfaceDescription += Localization.T("...");
 
                 abortButton.Enabled = true;
 
@@ -138,27 +141,27 @@ namespace MemcardRex
                         if (_hardInterface.Type == HardwareInterface.Types.unirom)
                         {
                             //Unirom reading mode is special, we have to wait for it to store contents to RAM
-                            deviceLabel.Text = "Waiting for Unirom to store contents in RAM.\nTransfer will start after all the sectors have been read.";
+                            deviceLabel.Text = Localization.T("Waiting for Unirom to store contents in RAM.\nTransfer will start after all the sectors have been read.");
                             progressBar.Visible = false;
                             abortButton.Enabled = false;
                         }
                         else
                         {
-                            deviceLabel.Text = "Reading data from " + interfaceDescription;
+                            deviceLabel.Text = Localization.T("Reading data from ") + interfaceDescription;
                         }
                         break;
 
                     case HardwareInterface.CommModes.format:
-                        deviceLabel.Text = "Formatting card on " + interfaceDescription;
+                        deviceLabel.Text = Localization.T("Formatting card on ") + interfaceDescription;
                         if (_quickFormat) _hardInterface.FrameCount = 64;
                         break;
 
                     case HardwareInterface.CommModes.write:
-                        deviceLabel.Text = "Writing data to " + interfaceDescription;
+                        deviceLabel.Text = Localization.T("Writing data to ") + interfaceDescription;
                         break;
 
                     case HardwareInterface.CommModes.psbios:
-                        deviceLabel.Text = "Dumping BIOS using " + interfaceDescription;
+                        deviceLabel.Text = Localization.T("Dumping BIOS using ") + interfaceDescription;
                         break;
                 }
                 progressBar.Style = ProgressBarStyle.Continuous;
@@ -184,7 +187,7 @@ namespace MemcardRex
                 _hardInterface.Stop();
 
                 if (_hardInterface.Type != HardwareInterface.Types.ps3mca)
-                    _errorMessage += "\n\nMake sure to select proper communication port in preferences dialog";
+                    _errorMessage += Localization.T("\n\nMake sure to select proper communication port in preferences dialog");
 
                 backgroundWorker.CancelAsync();
                 return;
@@ -194,7 +197,7 @@ namespace MemcardRex
             if(_hardInterface.CommMode == HardwareInterface.CommModes.realtime)
             {
                 _hardInterface.Stop();
-                _errorMessage = "Realtime not implemented yet";
+                _errorMessage = Localization.T("Realtime not implemented yet");
                 return;
             }
 
@@ -324,13 +327,13 @@ namespace MemcardRex
             abortButton.Enabled = false;
 
             //Show detecting message
-            deviceLabel.Text = "Detecting " + _hardInterface.Name();
+            deviceLabel.Text = Localization.T("Detecting ") + _hardInterface.Name();
             if(_hardInterface.Type != HardwareInterface.Types.ps3mca)
             {
                 if(_hardInterface.Mode == HardwareInterface.Modes.tcp)
-                    deviceLabel.Text += " on " + _remoteAddress + ":" + _remoteComPort.ToString();
+                    deviceLabel.Text += Localization.T(" on ") + _remoteAddress + ":" + _remoteComPort.ToString();
                 else
-                    deviceLabel.Text += " on " + _comPort;
+                    deviceLabel.Text += Localization.T(" on ") + _comPort;
             }
 
             //Unirom requires card checksum and has less data frames because of bigger frame size
