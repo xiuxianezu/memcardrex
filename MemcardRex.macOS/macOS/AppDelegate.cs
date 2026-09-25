@@ -178,38 +178,32 @@ namespace MemcardRex
                 commMode = (int)HardwareInterface.CommModes.format;
 
             //Set device id based on menu title
-            switch (menuItem.Title)
+            if (menuItem.Title == "DexDrive")
+                deviceId = (int)HardwareInterface.Types.dexdrive;
+
+            else if (menuItem.Title == "MemCARDuino")
+                deviceId = (int)HardwareInterface.Types.memcarduino;
+
+            else if (menuItem.Title == "PS1CardLink")
+                deviceId = (int)HardwareInterface.Types.ps1cardlink;
+
+            else if (menuItem.Title == Localization.T("PS1CardLink over TCP"))
             {
-                case "DexDrive":
-                    deviceId = (int)HardwareInterface.Types.dexdrive;
-                    break;
-
-                case "MemCARDuino":
-                    deviceId = (int)HardwareInterface.Types.memcarduino;
-                    break;
-
-                case "PS1CardLink":
-                    deviceId = (int)HardwareInterface.Types.ps1cardlink;
-                    break;
-
-                case Localization.T("PS1CardLink over TCP"):
-                    deviceId = (int)HardwareInterface.Types.ps1cardlink;
-                    mode = (int)HardwareInterface.Modes.tcp;
-                    break;
-
-                case "Unirom":
-                    deviceId = (int)HardwareInterface.Types.unirom;
-                    break;
-
-                case Localization.T("Unirom over TCP"):
-                    deviceId = (int)HardwareInterface.Types.unirom;
-                    mode = (int)HardwareInterface.Modes.tcp;
-                    break;
-
-                case Localization.T("PS3 Memory Card Adaptor"):
-                    deviceId = (int)HardwareInterface.Types.ps3mca;
-                    break;
+                deviceId = (int)HardwareInterface.Types.ps1cardlink;
+                mode = (int)HardwareInterface.Modes.tcp;
             }
+
+            else if (menuItem.Title == "Unirom")
+                deviceId = (int)HardwareInterface.Types.unirom;
+
+            else if (menuItem.Title == Localization.T("Unirom over TCP"))
+            {
+                deviceId = (int)HardwareInterface.Types.unirom;
+                mode = (int)HardwareInterface.Modes.tcp;
+            }
+
+            else if (menuItem.Title == Localization.T("PS3 Memory Card Adaptor"))
+                deviceId = (int)HardwareInterface.Types.ps3mca;
 
             //If there are no windows available create a new document
             if (winCtrlList.Count < 1) NewDocument((NSObject)sender);
