@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AppKit;
 using CoreGraphics;
 using Foundation;
@@ -112,7 +112,7 @@ namespace MemcardRex
             if (view == null)
             {
                 view = new NSTableCellView();
-                if (tableColumn.Title == "Icon, region and title")
+                if (tableColumn.Title == Localization.T("Icon, region and title"))
                 {
                     view.ImageView = new NSImageView(new CGRect(0, 0, 48, 16));
                     view.AddSubview(view.ImageView);
@@ -134,7 +134,7 @@ namespace MemcardRex
             // Setup view based on the column selected
             switch (tableColumn.Title)
             {
-                case "Icon, region and title":
+                case Localization.T("Icon, region and title"):
 
                     BmpBuilder bmpImage = new BmpBuilder();
 
@@ -193,13 +193,13 @@ namespace MemcardRex
                     else view.TextField.TextColor = NSColor.Text;*/
                     break;
 
-                case "Product code":
+                case Localization.T("Product code"):
                     view.TextField.StringValue = DataSource.Products[(int)row].ProductCode;
                     /*if (DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
                     else view.TextField.TextColor = NSColor.Text;*/
                     break;
 
-                case "Identifier":
+                case Localization.T("Identifier"):
                     view.TextField.StringValue = DataSource.Products[(int)row].Identifier;
                     /*if (DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
                     else view.TextField.TextColor = NSColor.Text;*/
@@ -226,4 +226,3 @@ namespace MemcardRex
 
 	}*/
 }
-
