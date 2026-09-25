@@ -179,6 +179,16 @@ namespace MemcardRex
 
             //Add event listener for double click on the card list
             CardTable.DoubleClick += CardTable_DoubleClick;
+
+            //Localize menus, toolbar and table headers (zh-CN)
+            Localization.ApplyToMenus();
+            if (View.Window != null) Localization.ApplyToWindow(View.Window);
+
+            foreach (NSTableColumn col in CardTable.TableColumns())
+            {
+                string translated = Localization.T(col.Title);
+                if (translated != col.Title) col.Title = translated;
+            }
         }
 
         //Enable or disable menu items based on the currently selected save

@@ -30,7 +30,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-O3-jiE">
                                 <rect key="frame" x="6" y="-3" width="201" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" title="Comments are only supported by DexDrive (.gme) files." id="pnR-cj-30J">
+                                <textFieldCell key="cell" title="仅 DexDrive（.gme）文件支持备注。" id="pnR-cj-30J">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +39,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmm-qE-56H">
                                 <rect key="frame" x="274" y="5" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Confirm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RBj-XH-jL3">
+                                <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RBj-XH-jL3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -53,7 +53,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k80-DP-aO0">
                                 <rect key="frame" x="202" y="5" width="76" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1S3-Pc-tzf">
+                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1S3-Pc-tzf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -86,7 +86,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qVx-fM-2iX">
                                 <rect key="frame" x="113" y="72" width="90" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Product code:" id="Nnf-Wn-BG5">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="产品代码：" id="Nnf-Wn-BG5">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -104,7 +104,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ST7-FW-Xt9">
                                 <rect key="frame" x="247" y="72" width="62" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Identifier:" id="ARu-w0-cvF">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="标识符：" id="ARu-w0-cvF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -122,7 +122,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etY-Po-nj4">
                                 <rect key="frame" x="5" y="72" width="50" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Region:" id="8kO-sS-Ojm">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="区域：" id="8kO-sS-Ojm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -131,7 +131,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ATy-TO-JMd">
                                 <rect key="frame" x="292" y="6" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Confirm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XOy-D5-h1l">
+                                <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XOy-D5-h1l">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -159,7 +159,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3G5-dK-a5A">
                                 <rect key="frame" x="220" y="6" width="76" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="031-0k-oT1">
+                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="031-0k-oT1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -195,7 +195,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="by1-Vi-8Rn">
                                 <rect key="frame" x="15" y="161" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Title:" id="Xpk-4e-dzk">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="标题：" id="Xpk-4e-dzk">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -204,7 +204,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nbx-St-QRy">
                                 <rect key="frame" x="15" y="140" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Product code:" id="isi-hB-aQU">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="产品代码：" id="isi-hB-aQU">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -213,7 +213,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KPO-6g-xHS">
                                 <rect key="frame" x="15" y="118" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Identifier:" id="O47-Gf-eFU">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="标识符：" id="O47-Gf-eFU">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -222,7 +222,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qLT-hi-pVi">
                                 <rect key="frame" x="15" y="97" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Region:" id="f3B-eO-Z34">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="区域：" id="f3B-eO-Z34">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -231,7 +231,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQG-XK-MN4">
                                 <rect key="frame" x="15" y="54" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Slot:" id="Hbq-zk-LXY">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="插槽：" id="Hbq-zk-LXY">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -240,7 +240,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLx-XC-p0h">
                                 <rect key="frame" x="15" y="33" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Size:" id="udR-PH-UyS">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="大小：" id="udR-PH-UyS">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -249,7 +249,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ddy-pu-A6Q">
                                 <rect key="frame" x="15" y="13" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Icon frames:" id="CtL-7r-ajm">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="图标帧数：" id="CtL-7r-ajm">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -258,7 +258,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5lg-xz-5q3">
                                 <rect key="frame" x="163" y="161" width="247" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Title" id="vgh-qS-zHS">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="标题" id="vgh-qS-zHS">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -267,7 +267,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3E9-SF-csG">
                                 <rect key="frame" x="163" y="140" width="247" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Product code" id="Xfv-f3-1Uf">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="产品代码" id="Xfv-f3-1Uf">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -276,7 +276,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oYX-Ua-xEr">
                                 <rect key="frame" x="163" y="118" width="247" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Identifier" id="ahB-LT-jje">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="标识符" id="ahB-LT-jje">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -285,7 +285,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0E7-G4-nBb">
                                 <rect key="frame" x="163" y="97" width="247" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Region" id="zYc-by-uqT">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="区域" id="zYc-by-uqT">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -294,7 +294,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2c-Y7-5bn">
                                 <rect key="frame" x="163" y="54" width="247" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Slot" id="Vxw-sW-ZvQ">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="插槽" id="Vxw-sW-ZvQ">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -303,7 +303,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-vT-lto">
                                 <rect key="frame" x="163" y="33" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Size" id="nsR-3U-guB">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="大小" id="nsR-3U-guB">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -326,7 +326,7 @@ Gw
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UWU-0J-KWx">
                                 <rect key="frame" x="15" y="76" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="File type:" id="TrS-2R-pph">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="文件类型：" id="TrS-2R-pph">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -349,7 +349,7 @@ Gw
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v99-vz-ayd">
                                 <rect key="frame" x="346" y="6" width="69" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zna-cN-45n">
+                                <buttonCell key="cell" type="push" title="关闭" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zna-cN-45n">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -409,7 +409,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BpM-0Q-KQr">
                                 <rect key="frame" x="319" y="3" width="68" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Abort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zGl-kY-G9E">
+                                <buttonCell key="cell" type="push" title="中止" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zGl-kY-G9E">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
@@ -440,7 +440,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qqJ-2Y-G2u">
                                 <rect key="frame" x="5" y="183" width="155" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Communication port:" id="uaR-kI-dcp">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="通信端口：" id="uaR-kI-dcp">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -449,7 +449,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLh-EE-yqB">
                                 <rect key="frame" x="164" y="181" width="155" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Communication speed:" id="loe-7M-fI6">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="通信速度：" id="loe-7M-fI6">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -458,7 +458,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zIB-x7-fnz">
                                 <rect key="frame" x="164" y="81" width="155" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Unirom card slot:" id="x0N-xM-5GC">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Unirom 卡槽：" id="x0N-xM-5GC">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -467,7 +467,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mio-Tf-N8A">
                                 <rect key="frame" x="5" y="83" width="155" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Hardware format type:" id="HuP-Kg-h9T">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="硬件格式化类型：" id="HuP-Kg-h9T">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -476,7 +476,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WGi-ow-kHg">
                                 <rect key="frame" x="164" y="131" width="155" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Remote Port:" id="PLy-Y5-s0T">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="远程端口：" id="PLy-Y5-s0T">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -485,7 +485,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2im-tG-Zx0">
                                 <rect key="frame" x="5" y="133" width="155" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Remote Address:" id="BZA-vE-AE5">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="远程地址：" id="BZA-vE-AE5">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -494,7 +494,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7QE-CA-XkV">
                                 <rect key="frame" x="5" y="33" width="314" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Icon background color:" id="dbz-vQ-vTa">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="图标背景颜色：" id="dbz-vQ-vTa">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -503,7 +503,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L74-Md-L4S">
                                 <rect key="frame" x="327" y="180" width="250" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Backup Memory Cards upon opening" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iZq-Lf-2ds">
+                                <buttonCell key="cell" type="check" title="打开时备份存储卡" bezelStyle="regularSquare" imagePosition="left" inset="2" id="iZq-Lf-2ds">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -511,7 +511,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yIq-lP-GQB">
                                 <rect key="frame" x="327" y="156" width="240" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Restore window position on startup" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4Hs-4Y-fhb">
+                                <buttonCell key="cell" type="check" title="启动时恢复窗口位置" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4Hs-4Y-fhb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -519,7 +519,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CET-YU-7vC">
                                 <rect key="frame" x="327" y="130" width="235" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Try to fix corrupted Memory Cards" bezelStyle="regularSquare" imagePosition="left" inset="2" id="z6e-wR-Qic">
+                                <buttonCell key="cell" type="check" title="尝试修复损坏的存储卡" bezelStyle="regularSquare" imagePosition="left" inset="2" id="z6e-wR-Qic">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -527,7 +527,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J4x-JL-MJ9">
                                 <rect key="frame" x="501" y="1" width="83" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Confirm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g7u-uO-w0u">
+                                <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g7u-uO-w0u">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -541,7 +541,7 @@ DQ
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1dh-iW-tri">
                                 <rect key="frame" x="432" y="1" width="76" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HVO-q6-W0k">
+                                <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HVO-q6-W0k">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -574,13 +574,13 @@ Gw
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65Y-QI-E2d">
                                 <rect key="frame" x="4" y="53" width="158" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Quick format" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RCb-pb-VdL" id="4cH-Iq-SSG">
+                                <popUpButtonCell key="cell" type="push" title="快速格式化" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RCb-pb-VdL" id="4cH-Iq-SSG">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
                                     <menu key="menu" id="chw-cZ-93X">
                                         <items>
-                                            <menuItem title="Quick format" state="on" id="RCb-pb-VdL"/>
-                                            <menuItem title="Full format" id="fHm-sy-hIU"/>
+                                            <menuItem title="快速格式化" state="on" id="RCb-pb-VdL"/>
+                                            <menuItem title="完整格式化" id="fHm-sy-hIU"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -588,15 +588,15 @@ Gw
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eiL-2p-YxC">
                                 <rect key="frame" x="4" y="4" width="317" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Transparent" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2Pv-2o-OQv" id="dmX-dR-ap3">
+                                <popUpButtonCell key="cell" type="push" title="透明" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2Pv-2o-OQv" id="dmX-dR-ap3">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
                                     <menu key="menu" id="4pr-JN-wyb">
                                         <items>
-                                            <menuItem title="Transparent" state="on" id="2Pv-2o-OQv"/>
-                                            <menuItem title="Black (Slim PS1 models)" id="Nmd-Vt-tan"/>
-                                            <menuItem title="Gray (Older european PS1 models)" id="bXc-Oy-JOd"/>
-                                            <menuItem title="Blue (Standard BIOS color)" id="UhI-SO-IWm"/>
+                                            <menuItem title="透明" state="on" id="2Pv-2o-OQv"/>
+                                            <menuItem title="黑色（Slim PS1 机型）" id="Nmd-Vt-tan"/>
+                                            <menuItem title="灰色（旧款欧版 PS1 机型）" id="bXc-Oy-JOd"/>
+                                            <menuItem title="蓝色（标准 BIOS 颜色）" id="UhI-SO-IWm"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -604,13 +604,13 @@ Gw
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iA8-8H-BAy">
                                 <rect key="frame" x="163" y="153" width="158" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="115200 bps" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="S1R-qF-WwY" id="6Rd-aN-Cqg">
+                                <popUpButtonCell key="cell" type="push" title="115200 波特" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="S1R-qF-WwY" id="6Rd-aN-Cqg">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
                                     <menu key="menu" id="VA3-cI-AxM">
                                         <items>
-                                            <menuItem title="115200 bps" state="on" id="S1R-qF-WwY"/>
-                                            <menuItem title="38400 bps (legacy)" id="rFH-o4-YxJ"/>
+                                            <menuItem title="115200 波特" state="on" id="S1R-qF-WwY"/>
+                                            <menuItem title="38400 波特（旧式）" id="rFH-o4-YxJ"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -627,13 +627,13 @@ Gw
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oda-bC-djK">
                                 <rect key="frame" x="163" y="53" width="158" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Slot 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="PEL-l4-klB" id="oaq-yI-h84">
+                                <popUpButtonCell key="cell" type="push" title="插槽 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="PEL-l4-klB" id="oaq-yI-h84">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message"/>
                                     <menu key="menu" id="YKh-Uf-CxP">
                                         <items>
-                                            <menuItem title="Slot 1" state="on" id="PEL-l4-klB"/>
-                                            <menuItem title="Slot 2" id="4zY-Ie-mKi"/>
+                                            <menuItem title="插槽 1" state="on" id="PEL-l4-klB"/>
+                                            <menuItem title="插槽 2" id="4zY-Ie-mKi"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -675,43 +675,43 @@ Gw
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="MemcardRex" systemMenu="apple" showsStateColumn="NO" autoenablesItems="NO" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About MemcardRex" localization="NO" mirroring="NO" id="5kV-Vb-QxS">
+                                        <menuItem title="关于 MemcardRex" localization="NO" mirroring="NO" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," localization="NO" mirroring="NO" id="BOF-NM-1cW">
+                                        <menuItem title="偏好设置…" keyEquivalent="," localization="NO" mirroring="NO" id="BOF-NM-1cW">
                                             <connections>
                                                 <segue destination="g4R-gj-yVn" kind="modal" identifier="PrefDialogSegue" id="9XC-XN-7tJ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
-                                        <menuItem title="Services" id="NMo-om-nkz">
+                                        <menuItem title="服务" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
+                                            <menu key="submenu" title="服务" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide MemcardRex" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="隐藏 MemcardRex" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                        <menuItem title="隐藏其他" keyEquivalent="h" id="Vdr-fp-XzO">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show All" id="Kd2-mp-pUS">
+                                        <menuItem title="全部显示" id="Kd2-mp-pUS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit MemcardRex" keyEquivalent="q" localization="NO" mirroring="NO" id="4sb-4s-VLi">
+                                        <menuItem title="退出 MemcardRex" keyEquivalent="q" localization="NO" mirroring="NO" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -719,36 +719,36 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="File" id="dMs-cI-mzQ">
+                            <menuItem title="文件" id="dMs-cI-mzQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="File" autoenablesItems="NO" id="bib-Uj-vzu">
+                                <menu key="submenu" title="文件" autoenablesItems="NO" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                                        <menuItem title="新建" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
+                                        <menuItem title="打开…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Close" id="DVo-aG-piG">
+                                        <menuItem title="关闭" id="DVo-aG-piG">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Close All" id="tXI-mr-wws">
+                                        <menuItem title="全部关闭" id="tXI-mr-wws">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                                        <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
+                                        <menuItem title="保存…" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
                                                 <action selector="saveDocument:" target="Ady-hI-5gd" id="teZ-XB-qJY"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
+                                        <menuItem title="另存为…" keyEquivalent="S" id="Bw7-FT-i3A">
                                             <connections>
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
                                             </connections>
@@ -756,91 +756,91 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Edit" localization="NO" mirroring="NO" id="5QF-Oa-p0T">
+                            <menuItem title="编辑" localization="NO" mirroring="NO" id="5QF-Oa-p0T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Edit" showsStateColumn="NO" autoenablesItems="NO" id="W48-6f-4Dl">
+                                <menu key="submenu" title="编辑" showsStateColumn="NO" autoenablesItems="NO" id="W48-6f-4Dl">
                                     <items>
-                                        <menuItem title="Undo" keyEquivalent="z" id="00C-Ip-nhF">
+                                        <menuItem title="撤销" keyEquivalent="z" id="00C-Ip-nhF">
                                             <connections>
                                                 <action selector="undoOperation:" target="Voe-Tx-rLC" id="XqO-R2-T1N"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Redo" keyEquivalent="Z" id="VFX-tN-smY">
+                                        <menuItem title="重做" keyEquivalent="Z" id="VFX-tN-smY">
                                             <connections>
                                                 <action selector="redoOperation:" target="Voe-Tx-rLC" id="36x-fa-2nR"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="H0C-gK-gXW"/>
-                                        <menuItem title="Edit save header..." localization="NO" mirroring="NO" id="dRJ-4n-Yzg">
+                                        <menuItem title="编辑存档头…" localization="NO" mirroring="NO" id="dRJ-4n-Yzg">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="editHeader:" target="Ady-hI-5gd" id="GEi-2h-tO7"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Edit save comment..." localization="NO" mirroring="NO" id="6dh-zS-Vam">
+                                        <menuItem title="编辑存档备注…" localization="NO" mirroring="NO" id="6dh-zS-Vam">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="editSaveComment:" target="Voe-Tx-rLC" id="RSZ-WP-p5g"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
-                                        <menuItem title="Compare with temp buffer" localization="NO" mirroring="NO" id="uRl-iY-unG">
+                                        <menuItem title="与临时缓冲区比较" localization="NO" mirroring="NO" id="uRl-iY-unG">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="compareTempBuffer:" target="Voe-Tx-rLC" id="pt4-QL-F3I"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
-                                        <menuItem title="Edit icon..." localization="NO" mirroring="NO" id="WeT-3V-zwk">
+                                        <menuItem title="编辑图标…" localization="NO" mirroring="NO" id="WeT-3V-zwk">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="editIcon:" target="Voe-Tx-rLC" id="GDf-yz-Iud"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="al8-9n-D8J"/>
-                                        <menuItem title="Delete save" localization="NO" mirroring="NO" id="pa3-QI-u2k">
+                                        <menuItem title="删除存档" localization="NO" mirroring="NO" id="pa3-QI-u2k">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="deleteSave:" target="Voe-Tx-rLC" id="gHQ-9o-rdJ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Restore save" localization="NO" mirroring="NO" id="9WQ-gL-VJB">
+                                        <menuItem title="恢复存档" localization="NO" mirroring="NO" id="9WQ-gL-VJB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="restoreSave:" target="Voe-Tx-rLC" id="9eT-be-KgF"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Remove save (format slot(s))" keyEquivalent="" localization="NO" mirroring="NO" id="zUT-Vz-qPz">
+                                        <menuItem title="移除存档（格式化插槽）" keyEquivalent="" localization="NO" mirroring="NO" id="zUT-Vz-qPz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="removeSave:" target="Voe-Tx-rLC" id="7Go-Kc-bCP"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="q7b-UQ-G8Q"/>
-                                        <menuItem title="Copy save to temp buffer" keyEquivalent="c" id="x3v-GG-iWU">
+                                        <menuItem title="复制存档到临时缓冲区" keyEquivalent="c" id="x3v-GG-iWU">
                                             <connections>
                                                 <action selector="copyToTempBuffer:" target="Voe-Tx-rLC" id="ULw-Ug-GpB"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Paste save from temp buffer" keyEquivalent="v" id="gVA-U4-sdL">
+                                        <menuItem title="从临时缓冲区粘贴存档" keyEquivalent="v" id="gVA-U4-sdL">
                                             <connections>
                                                 <action selector="pasteFromTempBuffer:" target="Voe-Tx-rLC" id="efp-UC-Xcr"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="qxL-pW-f2N"/>
-                                        <menuItem title="Import save..." localization="NO" mirroring="NO" id="7ls-4R-UYJ">
+                                        <menuItem title="导入存档…" localization="NO" mirroring="NO" id="7ls-4R-UYJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="importSave:" target="Voe-Tx-rLC" id="haF-nQ-qIr"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Export save..." localization="NO" mirroring="NO" id="dQI-cb-smB">
+                                        <menuItem title="导出存档…" localization="NO" mirroring="NO" id="dQI-cb-smB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="exportSave:" target="Voe-Tx-rLC" id="lZ4-yN-6Cb"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Export RAW save..." localization="NO" mirroring="NO" id="ZbS-wf-t0z">
+                                        <menuItem title="导出 RAW 存档…" localization="NO" mirroring="NO" id="ZbS-wf-t0z">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="exportSaveRaw:" target="Voe-Tx-rLC" id="GE3-4T-607"/>
@@ -849,26 +849,26 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Hardware" id="jxT-CU-nIS">
+                            <menuItem title="硬件" id="jxT-CU-nIS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Hardware" autoenablesItems="NO" id="GEO-Iw-cKr">
+                                <menu key="submenu" title="硬件" autoenablesItems="NO" id="GEO-Iw-cKr">
                                     <items>
                                         <menuItem title="Interface name" enabled="NO" id="ZnF-uL-g4C">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Hyv-78-3Nb"/>
-                                        <menuItem title="Read save data" id="SLW-bk-zIL">
+                                        <menuItem title="读取存档数据" id="SLW-bk-zIL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Write save data" id="1oM-MU-2c1">
+                                        <menuItem title="写入存档数据" id="1oM-MU-2c1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="a3S-Id-FeK"/>
-                                        <menuItem title="Format card" id="oZ6-6B-O5Z">
+                                        <menuItem title="格式化存储卡" id="oZ6-6B-O5Z">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="PU1-eB-5qa"/>
-                                        <menuItem title="Realtime link" id="xeJ-Be-cjN">
+                                        <menuItem title="实时连接" id="xeJ-Be-cjN">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="cTx-Uo-p86"/>
@@ -876,13 +876,13 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="PocketStation" systemMenu="help" autoenablesItems="NO" id="Jcm-FG-bXD">
                                                 <items>
-                                                    <menuItem title="Read serial" id="oqB-31-sxD">
+                                                    <menuItem title="读取序列号" id="oqB-31-sxD">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Dump BIOS" id="WAR-4t-tnw">
+                                                    <menuItem title="导出 BIOS" id="WAR-4t-tnw">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Set date / time" id="Seu-Cp-3iT">
+                                                    <menuItem title="设置日期 / 时间" id="Seu-Cp-3iT">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                 </items>
@@ -891,11 +891,11 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Help" localization="NO" mirroring="NO" id="wpr-3q-Mcd">
+                            <menuItem title="帮助" localization="NO" mirroring="NO" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" autoenablesItems="NO" id="F2S-fz-NVQ">
+                                <menu key="submenu" title="帮助" systemMenu="help" autoenablesItems="NO" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="MemcardRex Help" keyEquivalent="?" localization="NO" mirroring="NO" id="FKE-Sm-Kum">
+                                        <menuItem title="MemcardRex 帮助" keyEquivalent="?" localization="NO" mirroring="NO" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -947,7 +947,7 @@ Gw
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="PLt-6M-Wft"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="eBr-KD-EO8"/>
-                                <toolbarItem implicitItemIdentifier="7315ED5B-0569-426F-8BBE-8A64ED2C34B3" label="Save" paletteLabel="Save" tag="-1" bordered="YES" autovalidates="NO" id="luT-Nq-bM7">
+                                <toolbarItem implicitItemIdentifier="7315ED5B-0569-426F-8BBE-8A64ED2C34B3" label="保存" paletteLabel="Save" tag="-1" bordered="YES" autovalidates="NO" id="luT-Nq-bM7">
                                     <imageReference key="image" image="internaldrive" catalog="system" symbolScale="large"/>
                                     <size key="minSize" width="30" height="25"/>
                                     <size key="maxSize" width="30" height="25"/>
@@ -955,14 +955,14 @@ Gw
                                         <action selector="saveDocToolbar:" target="B8D-0N-5wS" id="Xgt-nH-d6L"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="6E02FF1C-9015-4427-9D10-01268C7E24C4" label="Edit header" paletteLabel="Edit header" tag="-1" image="NSListViewTemplate" bordered="YES" autovalidates="NO" id="lb7-Cg-PAM">
+                                <toolbarItem implicitItemIdentifier="6E02FF1C-9015-4427-9D10-01268C7E24C4" label="编辑存档头" paletteLabel="Edit header" tag="-1" image="NSListViewTemplate" bordered="YES" autovalidates="NO" id="lb7-Cg-PAM">
                                     <size key="minSize" width="28" height="25"/>
                                     <size key="maxSize" width="28" height="25"/>
                                     <connections>
                                         <action selector="editHeaderToolbar:" target="B8D-0N-5wS" id="eAz-qD-r5R"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="2A80F8E6-28D2-4675-A7D4-7FEA180A7F82" label="Edit comment" paletteLabel="Edit comment" tag="-1" bordered="YES" autovalidates="NO" id="vqI-Pv-7aG">
+                                <toolbarItem implicitItemIdentifier="2A80F8E6-28D2-4675-A7D4-7FEA180A7F82" label="编辑注释" paletteLabel="Edit comment" tag="-1" bordered="YES" autovalidates="NO" id="vqI-Pv-7aG">
                                     <imageReference key="image" image="bubble.right" catalog="system" symbolScale="large"/>
                                     <size key="minSize" width="29" height="25"/>
                                     <size key="maxSize" width="29" height="25"/>
@@ -970,7 +970,7 @@ Gw
                                         <action selector="editCommentToolbar:" target="B8D-0N-5wS" id="Xpz-0A-V7H"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="482F5086-BB56-4AEC-9649-0E9E59EE1EFA" label="Edit icon" paletteLabel="Edit icon" tag="-1" bordered="YES" autovalidates="NO" id="BRt-kh-0mP">
+                                <toolbarItem implicitItemIdentifier="482F5086-BB56-4AEC-9649-0E9E59EE1EFA" label="编辑图标" paletteLabel="Edit icon" tag="-1" bordered="YES" autovalidates="NO" id="BRt-kh-0mP">
                                     <imageReference key="image" image="pencil.line" catalog="system" symbolScale="large"/>
                                     <size key="minSize" width="28" height="25"/>
                                     <size key="maxSize" width="28" height="25"/>
@@ -978,7 +978,7 @@ Gw
                                         <action selector="editIconToolbar:" target="B8D-0N-5wS" id="0oI-5I-qh5"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="35B7A76D-3404-4901-A19A-849950060938" label="Import save" paletteLabel="Import save" tag="-1" bordered="YES" autovalidates="NO" id="l9j-zy-xxG">
+                                <toolbarItem implicitItemIdentifier="35B7A76D-3404-4901-A19A-849950060938" label="导入存档" paletteLabel="Import save" tag="-1" bordered="YES" autovalidates="NO" id="l9j-zy-xxG">
                                     <imageReference key="image" image="circle.grid.3x3.fill" catalog="system" symbolScale="large"/>
                                     <size key="minSize" width="28" height="25"/>
                                     <size key="maxSize" width="28" height="25"/>
@@ -986,7 +986,7 @@ Gw
                                         <action selector="importSaveToolbar:" target="B8D-0N-5wS" id="cOh-o6-wAh"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="AA968D3C-A76E-46C7-B217-8A7BF029110D" label="Export save" paletteLabel="Export save" tag="-1" bordered="YES" autovalidates="NO" id="8pu-0d-ka2">
+                                <toolbarItem implicitItemIdentifier="AA968D3C-A76E-46C7-B217-8A7BF029110D" label="导出存档" paletteLabel="Export save" tag="-1" bordered="YES" autovalidates="NO" id="8pu-0d-ka2">
                                     <imageReference key="image" image="circle.grid.2x1.right.filled" catalog="system" symbolScale="large"/>
                                     <size key="minSize" width="31" height="25"/>
                                     <size key="maxSize" width="31" height="25"/>
@@ -998,28 +998,28 @@ Gw
                                     <size key="minSize" width="4" height="16"/>
                                     <size key="maxSize" width="142" height="16"/>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="229EA5D6-5BE6-42A7-80F6-E18067382E8A" label="Separator" paletteLabel="Separator" tag="-1" title="Title" sizingBehavior="auto" id="v8Q-hO-k2G">
+                                <toolbarItem implicitItemIdentifier="229EA5D6-5BE6-42A7-80F6-E18067382E8A" label="分隔符" paletteLabel="Separator" tag="-1" title="标题" sizingBehavior="auto" id="v8Q-hO-k2G">
                                     <nil key="toolTip"/>
                                     <box key="view" horizontalHuggingPriority="750" boxType="separator" id="Jdd-vP-V1J">
                                         <rect key="frame" x="27" y="14" width="5" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </box>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F719207C-02BF-4581-BFCF-3861975946A0" label="Separator" paletteLabel="Separator" tag="-1" title="Title" sizingBehavior="auto" id="dO6-dN-TSz">
+                                <toolbarItem implicitItemIdentifier="F719207C-02BF-4581-BFCF-3861975946A0" label="分隔符" paletteLabel="Separator" tag="-1" title="标题" sizingBehavior="auto" id="dO6-dN-TSz">
                                     <nil key="toolTip"/>
                                     <box key="view" horizontalHuggingPriority="750" boxType="separator" id="0lU-wl-nih">
                                         <rect key="frame" x="27" y="14" width="5" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </box>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="4B760340-F2A2-494E-8E8B-06A8D5A231CC" label="Separator" paletteLabel="Separator" tag="-1" title="Title" sizingBehavior="auto" id="6AW-ES-i1g">
+                                <toolbarItem implicitItemIdentifier="4B760340-F2A2-494E-8E8B-06A8D5A231CC" label="分隔符" paletteLabel="Separator" tag="-1" title="标题" sizingBehavior="auto" id="6AW-ES-i1g">
                                     <nil key="toolTip"/>
                                     <box key="view" horizontalHuggingPriority="750" boxType="separator" id="sd5-Rg-Bkc">
                                         <rect key="frame" x="27" y="14" width="5" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </box>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="A6C22F52-8C27-475D-A9BD-BD6FAFC30F02" label="Open" paletteLabel="Open" tag="-1" bordered="YES" id="B6l-hM-OTE">
+                                <toolbarItem implicitItemIdentifier="A6C22F52-8C27-475D-A9BD-BD6FAFC30F02" label="打开" paletteLabel="Open" tag="-1" bordered="YES" id="B6l-hM-OTE">
                                     <imageReference key="image" image="folder" catalog="system" symbolScale="large"/>
                                     <size key="minSize" width="35" height="25"/>
                                     <size key="maxSize" width="35" height="25"/>
@@ -1027,7 +1027,7 @@ Gw
                                         <action selector="openDocToolbar:" target="B8D-0N-5wS" id="vqP-lM-w3U"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="19C4D667-D3D2-4257-AEFD-194CE350D2B9" label="Temp buffer" paletteLabel="Temp buffer" tag="-1" autovalidates="NO" id="4Sb-r5-h4L">
+                                <toolbarItem implicitItemIdentifier="19C4D667-D3D2-4257-AEFD-194CE350D2B9" label="临时缓冲区" paletteLabel="Temp buffer" tag="-1" autovalidates="NO" id="4Sb-r5-h4L">
                                     <imageReference key="image" image="tmpbuffer" symbolScale="large"/>
                                     <size key="minSize" width="42" height="25"/>
                                     <size key="maxSize" width="42" height="25"/>
@@ -1035,7 +1035,7 @@ Gw
                                         <action selector="tmpBufferToolbarAction:" target="B8D-0N-5wS" id="F8e-4R-McA"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="662D5B01-8D16-4CB1-B1A0-AE5766543690" label="Separator" paletteLabel="Separator" tag="-1" title="Title" sizingBehavior="auto" id="AFG-bh-mRl">
+                                <toolbarItem implicitItemIdentifier="662D5B01-8D16-4CB1-B1A0-AE5766543690" label="分隔符" paletteLabel="Separator" tag="-1" title="标题" sizingBehavior="auto" id="AFG-bh-mRl">
                                     <nil key="toolTip"/>
                                     <box key="view" horizontalHuggingPriority="750" boxType="separator" id="ujT-Lc-J7n">
                                         <rect key="frame" x="27" y="14" width="5" height="96"/>
@@ -1097,7 +1097,7 @@ Gw
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="title" width="277" minWidth="40" maxWidth="1000" id="SBu-y7-cgJ">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Icon, region and title">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="图标、区域和标题">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1129,7 +1129,7 @@ Gw
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                                 <tableColumn identifier="productcode" width="101" minWidth="40" maxWidth="1000" id="0Eg-gc-SZX">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Product code">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="产品代码">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1161,7 +1161,7 @@ Gw
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                                 <tableColumn identifier="identifier" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" id="Bl3-9d-5Tc">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Identifier">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="标识符">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1341,85 +1341,85 @@ Gw
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu autoenablesItems="NO" id="d2c-82-m5w">
                     <items>
-                        <menuItem title="Edit save header..." localization="NO" mirroring="NO" id="nle-x9-d4H">
+                        <menuItem title="编辑存档头…" localization="NO" mirroring="NO" id="nle-x9-d4H">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="editHeader:" target="rPt-NT-nkU" id="FIz-vb-LIV"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Edit save comment..." localization="NO" mirroring="NO" id="OQG-EB-5LD">
+                        <menuItem title="编辑存档备注…" localization="NO" mirroring="NO" id="OQG-EB-5LD">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="editSaveComment:" target="XfG-lQ-9wD" id="dXh-2O-Bgc"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="maL-nU-zwz"/>
-                        <menuItem title="Compare with temp buffer" localization="NO" mirroring="NO" id="dHP-i7-uu3">
+                        <menuItem title="与临时缓冲区比较" localization="NO" mirroring="NO" id="dHP-i7-uu3">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="compareTempBuffer:" target="XfG-lQ-9wD" id="wnH-h7-IY2"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="poA-6y-XcK"/>
-                        <menuItem title="Edit icon..." localization="NO" mirroring="NO" id="v5p-aH-er6">
+                        <menuItem title="编辑图标…" localization="NO" mirroring="NO" id="v5p-aH-er6">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="editIcon:" target="XfG-lQ-9wD" id="vIs-bt-kez"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="RIH-X4-Fyp"/>
-                        <menuItem title="Delete save" localization="NO" mirroring="NO" id="CKg-X3-GkI">
+                        <menuItem title="删除存档" localization="NO" mirroring="NO" id="CKg-X3-GkI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="deleteSave:" target="XfG-lQ-9wD" id="WZI-pi-BRK"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Restore save" localization="NO" mirroring="NO" id="xoS-VC-FL1">
+                        <menuItem title="恢复存档" localization="NO" mirroring="NO" id="xoS-VC-FL1">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="restoreSave:" target="XfG-lQ-9wD" id="Cvf-Nb-7vi"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Remove save (format slot(s))" localization="NO" mirroring="NO" id="4yC-A6-vtl">
+                        <menuItem title="移除存档（格式化插槽）" localization="NO" mirroring="NO" id="4yC-A6-vtl">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="removeSave:" target="XfG-lQ-9wD" id="cpr-6D-bw9"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="C7p-lG-myT"/>
-                        <menuItem title="Copy save to temp buffer" id="x7c-to-uxm">
+                        <menuItem title="复制存档到临时缓冲区" id="x7c-to-uxm">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="copyToTempBuffer:" target="XfG-lQ-9wD" id="KZY-hq-AQN"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Paste save from temp buffer" id="X8w-i6-elK">
+                        <menuItem title="从临时缓冲区粘贴存档" id="X8w-i6-elK">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="pasteFromTempBuffer:" target="XfG-lQ-9wD" id="s9A-0s-anF"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="QwZ-vW-ckb"/>
-                        <menuItem title="Import save..." localization="NO" mirroring="NO" id="uRC-Dh-hbx">
+                        <menuItem title="导入存档…" localization="NO" mirroring="NO" id="uRC-Dh-hbx">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="importSave:" target="XfG-lQ-9wD" id="WyJ-Ak-X49"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Export save..." localization="NO" mirroring="NO" id="j0M-GX-lb9">
+                        <menuItem title="导出存档…" localization="NO" mirroring="NO" id="j0M-GX-lb9">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="exportSave:" target="XfG-lQ-9wD" id="Rep-Jf-qaV"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Export RAW save..." localization="NO" mirroring="NO" id="xPt-AI-Qwa">
+                        <menuItem title="导出 RAW 存档…" localization="NO" mirroring="NO" id="xPt-AI-Qwa">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="exporrtSaveRaw:" target="XfG-lQ-9wD" id="ddK-I3-YiQ"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="1WE-2s-RgG"/>
-                        <menuItem title="Get info" id="xSZ-Kt-gYE">
+                        <menuItem title="获取信息" id="xSZ-Kt-gYE">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="getInfo:" target="XfG-lQ-9wD" id="HGw-x2-ZAC"/>
