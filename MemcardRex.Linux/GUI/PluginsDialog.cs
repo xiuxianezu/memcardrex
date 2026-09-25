@@ -25,7 +25,7 @@ namespace MemcardRex.Linux
             pluginSystem = plgSys;
             loadedMetadata = plgSys.assembliesMetadata;
 
-            var _builder = new Builder("MemcardRex.Linux.GUI.PluginsDialog.ui")!;
+            var _builder = Localization.Builder("MemcardRex.Linux.GUI.PluginsDialog.ui")!;
 
             _dialog = (Dialog)_builder.GetObject("PluginsDialog")!;
             _dialog.SetTransientFor(parent);
@@ -81,7 +81,7 @@ namespace MemcardRex.Linux
                 var dijelovi = stringObj?.String?.Split(Sep?[0] ?? ' ') ?? Array.Empty<string>();
                 if (label != null && dijelovi != null) label.SetText(dijelovi[0]);
             };
-            var nameColumn = Gtk.ColumnViewColumn.New("Plugin name", nameFactory);
+            var nameColumn = Gtk.ColumnViewColumn.New(Localization.T("Plugin name"), nameFactory);
             nameColumn.FixedWidth = 150;
             _listView.AppendColumn(nameColumn);
 
@@ -97,7 +97,7 @@ namespace MemcardRex.Linux
                 var dijelovi = stringObj?.String?.Split(Sep?[0] ?? ' ') ?? Array.Empty<string>();
                 if (label != null && dijelovi != null) label.SetText(dijelovi.Length > 1 ? dijelovi[1] : "");
             };
-            var versionColumn = Gtk.ColumnViewColumn.New("Author", versionFactory);
+            var versionColumn = Gtk.ColumnViewColumn.New(Localization.T("Author"), versionFactory);
             versionColumn.FixedWidth = 100;
             _listView.AppendColumn(versionColumn);
 
@@ -115,7 +115,7 @@ namespace MemcardRex.Linux
                 var dijelovi = stringObj?.String?.Split(Sep?[0] ?? ' ') ?? Array.Empty<string>();
                 if (label != null && dijelovi != null) label.SetText(dijelovi.Length > 2 ? dijelovi[2] : "");
             };
-            var descColumn = Gtk.ColumnViewColumn.New("Supported game(s)", descFactory);
+            var descColumn = Gtk.ColumnViewColumn.New(Localization.T("Supported game(s)"), descFactory);
             descColumn.Expand = true;
             _listView.AppendColumn(descColumn);
         }
