@@ -58,6 +58,9 @@ namespace MemcardRex
         {
             base.ViewWillAppear();
 
+            //Translate dialog labels (zh-CN)
+            Localization.ApplyToView(this.View);
+
             this.View.Window.Title = DialogTitle;
 
             IdentifierInput.StringValue = IdentifierString;

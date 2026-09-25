@@ -50,6 +50,9 @@ namespace MemcardRex.macOS
         {
             base.ViewWillAppear();
 
+            //Translate dialog labels (zh-CN)
+            Localization.ApplyToView(this.View);
+
             //Set up events for background worker
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
@@ -58,12 +61,12 @@ namespace MemcardRex.macOS
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.WorkerReportsProgress = true;
 
-            this.View.Window.Title = _hardInterface.Name() + " communication";
+            this.View.Window.Title = _hardInterface.Name() + Localization.T(" communication");
 
             string interfaceDescription = _hardInterface.Name();
 
-            if (_hardInterface.Firmware() != "") interfaceDescription += " (ver. " + _hardInterface.Firmware() + ")...";
-            else interfaceDescription += "...";
+            if (_hardInterface.Firmware() != "") interfaceDescription += Localization.T(" (ver. ") + _hardInterface.Firmware() + Localization.T(")...");
+            else interfaceDescription += Localization.T("...");
 
             //Write description based on the current mode
             switch (_hardInterface.CommMode)
@@ -72,23 +75,23 @@ namespace MemcardRex.macOS
                     if(_hardInterface.Type == HardwareInterface.Types.unirom)
                     {
                         //Unirom reading mode is special, we have to wait for it to store contents to RAM
-                        deviceLabel.StringValue = "Waiting for Unirom to store contents in RAM.\nTransfer will start after all the sectors have been read.";
+                        deviceLabel.StringValue = Localization.T("Waiting for Unirom to store contents in RAM.\nTransfer will start after all the sectors have been read.");
                         progressBar.AlphaValue = 0.0f;
                         abortButton.Enabled = false;
                     }
                     else
                     {
-                        deviceLabel.StringValue = "Reading data from " + interfaceDescription;
+                        deviceLabel.StringValue = Localization.T("Reading data from ") + interfaceDescription;
                     }
                     break;
 
                 case HardwareInterface.CommModes.format:
-                    deviceLabel.StringValue = "Formatting card on " + interfaceDescription;
+                    deviceLabel.StringValue = Localization.T("Formatting card on ") + interfaceDescription;
                     if (_quickFormat) _hardInterface.FrameCount = 64;
                     break;
 
                 case HardwareInterface.CommModes.write:
-                    deviceLabel.StringValue = "Writing data to " + interfaceDescription;
+                    deviceLabel.StringValue = Localization.T("Writing data to ") + interfaceDescription;
                     break;
             }
 
@@ -132,7 +135,7 @@ namespace MemcardRex.macOS
                 {
                     progressBar.AlphaValue = 1.0f;
                     abortButton.Enabled = true;
-                    deviceLabel.StringValue = "Reading data from Unirom...";
+                    deviceLabel.StringValue = Localization.T("Reading data from Unirom...");
                 }
             }
 
@@ -148,7 +151,7 @@ namespace MemcardRex.macOS
             //Process all frames of the Memory Card
             while (i < _hardInterface.FrameCount)
             {
-                //Check if the "Abort" button has been pressed
+                //Check if the Abort button has been pressed
                 if (backgroundWorker.CancellationPending == true) return;
 
                 //Are we reading or writing data
