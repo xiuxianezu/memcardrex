@@ -1,4 +1,4 @@
-﻿using AppKit;
+using AppKit;
 
 namespace MemcardRex
 {
@@ -7,6 +7,7 @@ namespace MemcardRex
 		static void Main (string [] args)
 		{
 			NSApplication.Init ();
+			Localization.Initialize ();
 			NSApplication.Main (args);
 		}
 	}

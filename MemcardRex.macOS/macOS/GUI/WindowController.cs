@@ -31,6 +31,9 @@ namespace MemcardRex
 
             Window.TabbingIdentifier = "Main";
 
+            //Translate toolbar and content labels (zh-CN)
+            Localization.ApplyToWindow(Window);
+
             //Disable Temp buffer toolbar button if temp buffer is empty
             if(App.TempBuffer == null) tmpBufferToolbar.Enabled = false;
         }
@@ -84,4 +87,3 @@ namespace MemcardRex
         #endregion
     }
 }
-

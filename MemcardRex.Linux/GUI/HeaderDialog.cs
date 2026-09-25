@@ -16,7 +16,7 @@ public class HeaderDialog
 
     public HeaderDialog(Window parent)
     {
-        var builder = new Builder("MemcardRex.Linux.GUI.HeaderDialog.ui");
+        var builder = Localization.Builder("MemcardRex.Linux.GUI.HeaderDialog.ui");
         
         dialog = (Dialog)builder.GetObject("dialog")!;
         regionCombo = (ComboBox)builder.GetObject("regionCombo")!;

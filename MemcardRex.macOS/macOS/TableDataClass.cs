@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AppKit;
 using CoreGraphics;
 using Foundation;
@@ -112,7 +112,7 @@ namespace MemcardRex
             if (view == null)
             {
                 view = new NSTableCellView();
-                if (tableColumn.Title == "Icon, region and title")
+                if (tableColumn.Title == Localization.T("Icon, region and title"))
                 {
                     view.ImageView = new NSImageView(new CGRect(0, 0, 48, 16));
                     view.AddSubview(view.ImageView);
@@ -132,11 +132,9 @@ namespace MemcardRex
             }
 
             // Setup view based on the column selected
-            switch (tableColumn.Title)
+            if (tableColumn.Title == Localization.T("Icon, region and title"))
             {
-                case "Icon, region and title":
-
-                    BmpBuilder bmpImage = new BmpBuilder();
+                BmpBuilder bmpImage = new BmpBuilder();
 
                     NSData imageData = NSData.FromArray(bmpImage.BuildBmp(DataSource.Products[(int)row].IconData));
                     NSImage image = new NSImage(imageData);
@@ -191,19 +189,20 @@ namespace MemcardRex
 
                     /*if(DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
                     else view.TextField.TextColor = NSColor.Text;*/
-                    break;
+            }
 
-                case "Product code":
-                    view.TextField.StringValue = DataSource.Products[(int)row].ProductCode;
-                    /*if (DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
-                    else view.TextField.TextColor = NSColor.Text;*/
-                    break;
+            else if (tableColumn.Title == Localization.T("Product code"))
+            {
+                view.TextField.StringValue = DataSource.Products[(int)row].ProductCode;
+                /*if (DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
+                else view.TextField.TextColor = NSColor.Text;*/
+            }
 
-                case "Identifier":
-                    view.TextField.StringValue = DataSource.Products[(int)row].Identifier;
-                    /*if (DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
-                    else view.TextField.TextColor = NSColor.Text;*/
-                    break;
+            else if (tableColumn.Title == Localization.T("Identifier"))
+            {
+                view.TextField.StringValue = DataSource.Products[(int)row].Identifier;
+                /*if (DataSource.Products[(int)row].FadedIcons) view.TextField.TextColor = NSColor.SecondaryLabel;
+                else view.TextField.TextColor = NSColor.Text;*/
             }
 
             return view;
@@ -226,4 +225,3 @@ namespace MemcardRex
 
 	}*/
 }
-

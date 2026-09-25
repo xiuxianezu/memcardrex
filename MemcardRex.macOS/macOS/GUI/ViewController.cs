@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using AppKit;
@@ -112,7 +112,7 @@ namespace MemcardRex
                 case "GetInfoSegue":
                     var infoSheet = segue.DestinationController as InfoDialogController;
 
-                    infoSheet.DialogTitle = "Save information";
+                    infoSheet.DialogTitle = Localization.T("Save information");
 
                     infoSheet.SaveTitle = memCard.saveName[selectedSlot];
                     infoSheet.ProductCode = memCard.saveProdCode[selectedSlot];
@@ -179,6 +179,16 @@ namespace MemcardRex
 
             //Add event listener for double click on the card list
             CardTable.DoubleClick += CardTable_DoubleClick;
+
+            //Localize menus, toolbar and table headers (zh-CN)
+            Localization.ApplyToMenus();
+            if (View.Window != null) Localization.ApplyToWindow(View.Window);
+
+            foreach (NSTableColumn col in CardTable.TableColumns())
+            {
+                string translated = Localization.T(col.Title);
+                if (translated != col.Title) col.Title = translated;
+            }
         }
 
         //Enable or disable menu items based on the currently selected save
@@ -294,11 +304,11 @@ namespace MemcardRex
                         break;
 
                     case ps1card.SlotTypes.formatted:
-                        DataSource.Products.Add(new Product("Free slot"));
+                        DataSource.Products.Add(new Product(Localization.T("Free slot")));
                         break;
 
                     case ps1card.SlotTypes.corrupted:
-                        DataSource.Products.Add(new Product("Corrupted slot"));
+                        DataSource.Products.Add(new Product(Localization.T("Corrupted slot")));
                         break;
                 }
             }
@@ -400,13 +410,13 @@ namespace MemcardRex
                 hardInterface.Stop();
 
                 if (deviceId != (int) HardwareInterface.Types.ps3mca)
-                    errMsg += "\n\nMake sure to select proper communication port and speed in preferences dialog";
+                    errMsg += Localization.T("\n\nMake sure to select proper communication port and speed in preferences dialog");
 
                 var alert = new NSAlert()
                 {
                     AlertStyle = NSAlertStyle.Critical,
                     InformativeText = errMsg,
-                    MessageText = "Unable to start " + hardInterface.Name()
+                    MessageText = Localization.T("Unable to start ") + hardInterface.Name()
                 };
 
                 alert.RunModal();
@@ -502,7 +512,7 @@ namespace MemcardRex
 
             var dlg = NSOpenPanel.OpenPanel;
             dlg.CanChooseFiles = true;
-            dlg.Title = "Import save";
+            dlg.Title = Localization.T("Import save");
             dlg.CanChooseDirectories = false;
             dlg.AllowedFileTypes = memCard.SupportedSingleSaveExtensions;
 
@@ -539,7 +549,7 @@ namespace MemcardRex
             int selectedSlot = memCard.GetMasterLinkForSlot((int)CardTable.SelectedRow);
 
             var dlg = new NSSavePanel();
-            dlg.Title = "Export RAW save";
+            dlg.Title = Localization.T("Export RAW save");
 
             string outputFilename = memCard.saveRegionRaw[selectedSlot] +
                 memCard.saveProdCode[selectedSlot] + memCard.saveIdentifier[selectedSlot];
@@ -570,13 +580,13 @@ namespace MemcardRex
                     sw.WriteLine(memCard.saveName[selectedSlot]);
                     sw.WriteLine(completeFileName);
                     sw.WriteLine("");
-                    sw.WriteLine("Region: \"" + memCard.saveRegion[selectedSlot] + "\"");
-                    sw.WriteLine("Product code: \"" + memCard.saveProdCode[selectedSlot] + "\"");
-                    sw.WriteLine("Identifier: \"" + memCard.saveIdentifier[selectedSlot] + "\"");
+                    sw.WriteLine(Localization.T("Region: \"") + memCard.saveRegion[selectedSlot] + "\"");
+                    sw.WriteLine(Localization.T("Product code: \"") + memCard.saveProdCode[selectedSlot] + "\"");
+                    sw.WriteLine(Localization.T("Identifier: \"") + memCard.saveIdentifier[selectedSlot] + "\"");
                     sw.WriteLine("");
-                    sw.WriteLine("This text file was created because the exported RAW save file name contains forbidden characters.");
-                    sw.WriteLine("You can use this info when importing for example with uLaunchELF to make your save valid.");
-                    sw.Write("Rename \"" + outputFilename + "\" to \"" + completeFileName + "\" after importing the save.");
+                    sw.WriteLine(Localization.T("This text file was created because the exported RAW save file name contains forbidden characters."));
+                    sw.WriteLine(Localization.T("You can use this info when importing for example with uLaunchELF to make your save valid."));
+                    sw.Write(Localization.T("Rename \"") + outputFilename + Localization.T("\" to \"") + completeFileName + Localization.T("\" after importing the save."));
                     sw.Close();
                 }
             }
@@ -593,7 +603,7 @@ namespace MemcardRex
 
             var dlg = new NSSavePanel();
             dlg.AllowedFileTypes = memCard.SupportedSingleSaveExtensions;
-            dlg.Title = "Export save";
+            dlg.Title = Localization.T("Export save");
             dlg.ExtensionHidden = false;
 
             //Set output filename to be compatible with PS3
@@ -609,7 +619,7 @@ namespace MemcardRex
             "Smart Link, XP, AR, GS, Caetla, Datel (*.mcb, *.mcx, *.pda, *.psx)" });
 
             var popupLabel = new NSTextField(new CGRect(0, -2, 60, 22));
-            popupLabel.StringValue = "File type:";
+            popupLabel.StringValue = Localization.T("File type:");
             popupLabel.Editable = false;
             popupLabel.Bordered = false;
             popupLabel.DrawsBackground = false;
@@ -746,7 +756,7 @@ namespace MemcardRex
         {
             var dlg = new NSSavePanel();
             dlg.AllowedFileTypes = memCard.SupportedExtensions;
-            dlg.Title = "Save Memory Card";
+            dlg.Title = Localization.T("Save Memory Card");
             dlg.NameFieldStringValue = memCard.cardName;
             dlg.ExtensionHidden = false;
 
@@ -757,7 +767,7 @@ namespace MemcardRex
             "VGS Memory Card (*.vgs, *.mem)"});
 
             var popupLabel = new NSTextField(new CGRect(0, -2, 60, 22));
-            popupLabel.StringValue = "File type:";
+            popupLabel.StringValue = Localization.T("File type:");
             popupLabel.Editable = false;
             popupLabel.Bordered = false;
             popupLabel.DrawsBackground = false;

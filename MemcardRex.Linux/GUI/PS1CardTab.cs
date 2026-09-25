@@ -175,7 +175,7 @@ public class PS1CardTab : Gtk.Box
                 cell.Slot = data;
             }
         };
-        iconColumn = Gtk.ColumnViewColumn.New("Icon", iconFactory);
+        iconColumn = Gtk.ColumnViewColumn.New(Localization.T("Icon"), iconFactory);
         saveList.AppendColumn(iconColumn);
 
         titleFactory = Gtk.SignalListItemFactory.New();
@@ -194,7 +194,7 @@ public class PS1CardTab : Gtk.Box
                 cell.Slot = data;
             }
         };
-        titleColumn = Gtk.ColumnViewColumn.New("Title", titleFactory);
+        titleColumn = Gtk.ColumnViewColumn.New(Localization.T("Title"), titleFactory);
         titleColumn.SetFixedWidth(350);
         saveList.AppendColumn(titleColumn);
 
@@ -214,7 +214,7 @@ public class PS1CardTab : Gtk.Box
                 cell.Slot = data;
             }
         };
-        productCodeColumn = Gtk.ColumnViewColumn.New("Product code", productCodeFactory);
+        productCodeColumn = Gtk.ColumnViewColumn.New(Localization.T("Product code"), productCodeFactory);
         productCodeColumn.SetFixedWidth(130);
         saveList.AppendColumn(productCodeColumn);
 
@@ -234,7 +234,7 @@ public class PS1CardTab : Gtk.Box
                 cell.Slot = data;
             }
         };
-        identifierColumn = Gtk.ColumnViewColumn.New("Identifier", identifierFactory);
+        identifierColumn = Gtk.ColumnViewColumn.New(Localization.T("Identifier"), identifierFactory);
         identifierColumn.SetFixedWidth(100);
         saveList.AppendColumn(identifierColumn);
 
@@ -266,7 +266,7 @@ public class PS1CardTab : Gtk.Box
             }
         };
 
-        historyColumn = Gtk.ColumnViewColumn.New("History", historyFactory);
+        historyColumn = Gtk.ColumnViewColumn.New(Localization.T("History"), historyFactory);
         historyColumn.SetFixedWidth(190);
         historyList.AppendColumn(historyColumn);
 
@@ -313,7 +313,7 @@ public class PS1CardTab : Gtk.Box
         if(readData != null){
             memcard.ReplaceSaveBytes(masterSlot, readData);
             RefreshSaveList();
-            PushHistory("Edited by plugin", GetFirstSelectedItem()!.GetIcon(false));
+            PushHistory(Localization.T("Edited by plugin"), GetFirstSelectedItem()!.GetIcon(false));
         }
     }
 
@@ -334,7 +334,7 @@ public class PS1CardTab : Gtk.Box
             if(editor.OkResponse){
                 memcard.SetIconBytes(masterSlot, editor.iconData);
                 RefreshSaveList();
-                PushHistory("Icon edited", GetFirstSelectedItem()!.GetIcon(false));
+                PushHistory(Localization.T("Icon edited"), GetFirstSelectedItem()!.GetIcon(false));
             }
         };
 
@@ -351,9 +351,9 @@ public class PS1CardTab : Gtk.Box
         RefreshSaveList();
 
         if (memcard.slotType[masterSlot] == ps1card.SlotTypes.deleted_initial)
-            PushHistory("Save deleted", GetFirstSelectedItem()!.GetIcon(false));
+            PushHistory(Localization.T("Save deleted"), GetFirstSelectedItem()!.GetIcon(false));
         else
-            PushHistory("Save restored", GetFirstSelectedItem()!.GetIcon(false));
+            PushHistory(Localization.T("Save restored"), GetFirstSelectedItem()!.GetIcon(false));
     }
 
     //Format selected save
@@ -367,7 +367,7 @@ public class PS1CardTab : Gtk.Box
 
         RefreshSaveList();
 
-        PushHistory("Save removed", saveIcon);
+        PushHistory(Localization.T("Save removed"), saveIcon);
     }
 
     //Bring a new item to the history list
@@ -455,7 +455,7 @@ public class PS1CardTab : Gtk.Box
         //Check if selected saves have the same size
         if (fetchedData.Length != tempBuffer.Length)
         {
-            Utils.ErrorMessage(parent, "Comparison error", "Save file size mismatch. Saves can't be compared.");
+            Utils.ErrorMessage(parent, Localization.T("Comparison error"), Localization.T("Save file size mismatch. Saves can't be compared."));
             return;
         }
 
@@ -476,12 +476,12 @@ public class PS1CardTab : Gtk.Box
         //Check if the list contains any items
         if (diffList.Count < 1)
         {
-            Utils.ErrorMessage(parent, "No differences", "Compared saves are identical.");
+            Utils.ErrorMessage(parent, Localization.T("No differences"), Localization.T("Compared saves are identical."));
             return;
         }
 
         string s1 = memcard.saveName[masterSlot];
-        string s2 = tempBufferName + " (temp buffer)";
+        string s2 = tempBufferName + Localization.T(" (temp buffer)");
 
         var dialog = new SaveCompare(parent, s1, s2, diffList.ToArray());
         dialog.Show();
@@ -491,7 +491,7 @@ public class PS1CardTab : Gtk.Box
     {
         var filter = Gtk.FileFilter.New();
         string[] patterns = ["*.mcs", "*.ps1", "*.PSV", "*.mcb", "*.mcx", "*.pda", "*.psx", "B???????????*"];
-        filter.Name = "All Supported Files";
+        filter.Name = Localization.T("All Supported Files");
         foreach (string pattern in patterns)
         {
             filter.AddPattern(pattern);
@@ -501,7 +501,7 @@ public class PS1CardTab : Gtk.Box
 
     //Import save data from external supported single save
     public void ImportSave(Gtk.Window parent){
-        var fileChooser = Gtk.FileChooserNative.New("Import save", parent, Gtk.FileChooserAction.Open, "Open", "Cancel");
+        var fileChooser = Gtk.FileChooserNative.New(Localization.T("Import save"), parent, Gtk.FileChooserAction.Open, Localization.T("Open"), Localization.T("Cancel"));
         fileChooser.SetModal(true);
         fileChooser.AddFilter(SingleSavesFilter());
         //fileChooser.AddFilter(AllFilesFilter());
@@ -515,7 +515,7 @@ public class PS1CardTab : Gtk.Box
                     if (memcard.OpenSingleSave(file!.GetPath()!, (int) SelectedSave()!, out int requiredSlots))
                     {
                         RefreshSaveList();
-                        PushHistory("Save imported", GetFirstSelectedItem()!.GetIcon(false));
+                        PushHistory(Localization.T("Save imported"), GetFirstSelectedItem()!.GetIcon(false));
                     }
                     else if (requiredSlots > 0)
                     {
@@ -523,7 +523,7 @@ public class PS1CardTab : Gtk.Box
                     }
                     else
                     {
-                        Utils.ErrorMessage(parent, "Import error", "The file could not be opened.");
+                        Utils.ErrorMessage(parent, Localization.T("Import error"), Localization.T("The file could not be opened."));
                     }
             }
             catch { return; }
@@ -560,7 +560,7 @@ public class PS1CardTab : Gtk.Box
             outputFilename = outputFilename.Replace(illegalChar.ToString(), "");
         }
 
-        var fileChooser = Gtk.FileChooserNative.New("Export save", parent, Gtk.FileChooserAction.Save, "Save", "Cancel");
+        var fileChooser = Gtk.FileChooserNative.New(Localization.T("Export save"), parent, Gtk.FileChooserAction.Save, Localization.T("Save"), Localization.T("Cancel"));
         fileChooser.SetModal(true);
         fileChooser.SetCurrentName(outputFilename);
 
@@ -607,13 +607,13 @@ public class PS1CardTab : Gtk.Box
                     StreamWriter sw = File.CreateText(path + "_info.txt");
                     sw.WriteLine(completeFileName);
                     sw.WriteLine("");
-                    sw.WriteLine("Region: \"" + memcard.saveRegion[masterSlot] + "\"");
-                    sw.WriteLine("Product code: \"" + memcard.saveProdCode[masterSlot] + "\"");
-                    sw.WriteLine("Identifier: \"" + memcard.saveIdentifier[masterSlot] + "\"");
+                    sw.WriteLine(Localization.T("Region: \"") + memcard.saveRegion[masterSlot] + "\"");
+                    sw.WriteLine(Localization.T("Product code: \"") + memcard.saveProdCode[masterSlot] + "\"");
+                    sw.WriteLine(Localization.T("Identifier: \"") + memcard.saveIdentifier[masterSlot] + "\"");
                     sw.WriteLine("");
-                    sw.WriteLine("This text file was created because the exported RAW save file name contains forbidden characters.");
-                    sw.WriteLine("You can use this info when importing for example with uLaunchELF to make your save valid.");
-                    sw.Write("Rename \"" + outputFilename + "\" to \"" + completeFileName + "\" after importing the save.");
+                    sw.WriteLine(Localization.T("This text file was created because the exported RAW save file name contains forbidden characters."));
+                    sw.WriteLine(Localization.T("You can use this info when importing for example with uLaunchELF to make your save valid."));
+                    sw.Write(Localization.T("Rename \"") + outputFilename + Localization.T("\" to \"") + completeFileName + Localization.T("\" after importing the save."));
                     sw.Close();
                 }
             }else{
@@ -695,7 +695,7 @@ public class PS1CardTab : Gtk.Box
         {
             memcard.SetHeaderData(masterSlot, dialog.GetProductCode(), dialog.GetIdentifier(), dialog.GetRegion());
 
-            PushHistory("Header edited", GetFirstSelectedItem()!.GetIcon(false));
+            PushHistory(Localization.T("Header edited"), GetFirstSelectedItem()!.GetIcon(false));
 
             //Refresh list
             RefreshSaveList();
@@ -712,7 +712,7 @@ public class PS1CardTab : Gtk.Box
 
         if(dialog.Run()){
             memcard.SetComment(masterSlot, dialog.GetComments());
-            PushHistory("Comment edited", GetFirstSelectedItem()!.GetIcon(false));
+            PushHistory(Localization.T("Comment edited"), GetFirstSelectedItem()!.GetIcon(false));
         }
     }
 
@@ -739,11 +739,11 @@ public class PS1CardTab : Gtk.Box
         var dialog = new Adw.MessageDialog
         {
             Modal = true,
-            Heading = "Insufficient space",
-            Body = "To complete this operation " + requiredSlots.ToString() + " free slots are required.",
+            Heading = Localization.T("Insufficient space"),
+            Body = Localization.T("To complete this operation ") + requiredSlots.ToString() + Localization.T(" free slots are required."),
             TransientFor = parent
         };
-        dialog.AddResponse("cancel", "Close");
+        dialog.AddResponse("cancel", Localization.T("Close"));
         dialog.Show();
         dialog.OnResponse += (_, dialogArgs) => {
             dialog.Destroy();
@@ -761,7 +761,7 @@ public class PS1CardTab : Gtk.Box
         if (memcard.SetSaveBytes(masterSlot, tempBuffer, out requiredSlots))
         {
             RefreshSaveList();
-            PushHistory("Save pasted", GetFirstSelectedItem()!.GetIcon(false));
+            PushHistory(Localization.T("Save pasted"), GetFirstSelectedItem()!.GetIcon(false));
         }
         else
         {
@@ -812,7 +812,7 @@ public class PS1CardTab : Gtk.Box
     //Select name and format of the Memory Card to save
     public void SaveAs(Gtk.Window window)
     {
-        var fileChooser = Gtk.FileChooserNative.New("Save Memory Card", window, Gtk.FileChooserAction.Save, "Save", "Cancel");
+        var fileChooser = Gtk.FileChooserNative.New(Localization.T("Save Memory Card"), window, Gtk.FileChooserAction.Save, Localization.T("Save"), Localization.T("Cancel"));
         fileChooser.SetModal(true);
 
         var filterToType = new Dictionary<Gtk.FileFilter, CardTypes>();
@@ -890,7 +890,7 @@ public class PS1CardTab : Gtk.Box
                 }
             }
 
-            var editWithPluginItem = Gio.MenuItem.New("Edit with plugin", "win.plugin-menu-root");
+            var editWithPluginItem = Gio.MenuItem.New(Localization.T("Edit with plugin"), "win.plugin-menu-root");
             editWithPluginItem.SetLink("submenu", MainWindow.Instance.sharedPluginSubMenu);
 
             if (foundIndex != -1)
@@ -975,5 +975,5 @@ public class PS1CardTab : Gtk.Box
         else return null;
     }
 
-    public PS1CardTab(ps1card card) : this(card, new Gtk.Builder("MemcardRex.Linux.GUI.PS1CardTab.ui"), "card_tab") {}
+    public PS1CardTab(ps1card card) : this(card, Localization.Builder("MemcardRex.Linux.GUI.PS1CardTab.ui"), "card_tab") {}
 }

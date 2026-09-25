@@ -279,12 +279,12 @@ public class MainWindow : Gtk.ApplicationWindow
             var dialog = new Adw.MessageDialog
             {
                 Modal = true,
-                Heading = "Format Memory Card",
-                Body = "This operation will wipe all data on the Memory Card.\nProceed?",
+                Heading = Localization.T("Format Memory Card"),
+                Body = Localization.T("This operation will wipe all data on the Memory Card.\nProceed?"),
                 TransientFor = this
             };
-            dialog.AddResponse("yes", "Format");
-            dialog.AddResponse("no", "Cancel");
+            dialog.AddResponse("yes", Localization.T("Format"));
+            dialog.AddResponse("no", Localization.T("Cancel"));
             dialog.SetResponseAppearance("yes", Adw.ResponseAppearance.Destructive);
             dialog.Show();
             dialog.OnResponse += (_, dialogArgs) => {
@@ -337,7 +337,7 @@ public class MainWindow : Gtk.ApplicationWindow
             //Check if any errors occured and display them
             if(dialog.ErrorMessage != null)
             {
-                Utils.ErrorMessage(this, "Unable to start " + hardInterface.Name(), dialog.ErrorMessage);
+                Utils.ErrorMessage(this, Localization.T("Unable to start ") + hardInterface.Name(), dialog.ErrorMessage);
                 dialog.Close();
                 return;
             }
@@ -366,7 +366,7 @@ public class MainWindow : Gtk.ApplicationWindow
                 //If this was time command display confirmation dialog
                 else if (hardInterface.CommMode == HardwareInterface.CommModes.pstime)
                 {
-                    Utils.ErrorMessage(this, "PocketStation", "Time set successfully");
+                    Utils.ErrorMessage(this, Localization.T("PocketStation"), Localization.T("Time set successfully"));
                 }
             }
 
@@ -386,7 +386,7 @@ public class MainWindow : Gtk.ApplicationWindow
         card.OpenMemoryCardStream(readData, mainApp.Settings.FixCorruptedCards == 1);
 
         //Create a tab page for the new card
-        CreateNewCard(card, "Card read (" + deviceName + ")");
+        CreateNewCard(card, Localization.T("Card read (") + deviceName + ")");
     }
 
     //Change title and location of the currently opened card
@@ -413,7 +413,7 @@ public class MainWindow : Gtk.ApplicationWindow
             HardInterfaces activeInterface = app.activeInterface;
 
             string ifName = activeInterface.hardwareInterface.Name();
-            if (activeInterface.mode == HardwareInterface.Modes.tcp) ifName += " (TCP)";
+            if (activeInterface.mode == HardwareInterface.Modes.tcp) ifName += Localization.T(" (TCP)");
 
             var newItem = Gio.MenuItem.New(ifName, null);
             var subMenu = app_menubar.GetItemLink(2, "submenu"); 
@@ -474,7 +474,7 @@ public class MainWindow : Gtk.ApplicationWindow
             this.sharedPluginSubMenu = pluginSubMenu;
         }
 
-        var editWithPluginItem = Gio.MenuItem.New("Edit with plugin", "win.plugin-menu-root");
+        var editWithPluginItem = Gio.MenuItem.New(Localization.T("Edit with plugin"), "win.plugin-menu-root");
         editWithPluginItem.SetLink("submenu", pluginSubMenu);
 
         editMenu.InsertItem(2, editWithPluginItem);
@@ -530,7 +530,7 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         ps1card card = new ps1card();
         card.OpenMemoryCard(null, mainApp.Settings.FixCorruptedCards == 1);
-        CreateNewCard(card, "Card created");
+        CreateNewCard(card, Localization.T("Card created"));
     }
 
     private void OpenCardFile(string filename){
@@ -552,7 +552,7 @@ public class MainWindow : Gtk.ApplicationWindow
         var card = new ps1card();
         string? result = card.OpenMemoryCard(filename, false);
         if (result != null) {
-            Utils.ErrorMessage(this, "Open Failed", result);
+            Utils.ErrorMessage(this, Localization.T("Open Failed"), result);
             return;
         }
         
@@ -563,12 +563,12 @@ public class MainWindow : Gtk.ApplicationWindow
                 tabView.ClosePage(tabView.GetNthPage(0));
         }
 
-        CreateNewCard(card, "Card opened");
+        CreateNewCard(card, Localization.T("Card opened"));
     }
 
     private void OpenCardAction(Gio.SimpleAction sender, Gio.SimpleAction.ActivateSignalArgs args)
     {
-        var fileChooser = Gtk.FileChooserNative.New("Open Memory Card", this, Gtk.FileChooserAction.Open, "Open", "Cancel");
+        var fileChooser = Gtk.FileChooserNative.New(Localization.T("Open Memory Card"), this, Gtk.FileChooserAction.Open, Localization.T("Open"), Localization.T("Cancel"));
         fileChooser.SetModal(true);
         fileChooser.AddFilter(MemoryCardsFilter());
         fileChooser.AddFilter(AllFilesFilter());
@@ -620,13 +620,13 @@ public class MainWindow : Gtk.ApplicationWindow
             var dialog = new Adw.MessageDialog
             {
                 Modal = true,
-                Heading = "Save Changes?",
-                Body = string.Format("“{0}” has been modified. Unsaved data will be permanently lost.", child.Title),
+                Heading = Localization.T("Save Changes?"),
+                Body = string.Format(Localization.T("“{0}” has been modified. Unsaved data will be permanently lost."), child.Title),
                 TransientFor = this
             };
-            dialog.AddResponse("cancel", "Cancel");
-            dialog.AddResponse("discard", "Discard");
-            dialog.AddResponse("save", "Save");
+            dialog.AddResponse("cancel", Localization.T("Cancel"));
+            dialog.AddResponse("discard", Localization.T("Discard"));
+            dialog.AddResponse("save", Localization.T("Save"));
             dialog.SetResponseAppearance("discard", ResponseAppearance.Destructive);
             dialog.SetResponseAppearance("save", ResponseAppearance.Suggested);
             dialog.Show();
@@ -650,12 +650,12 @@ public class MainWindow : Gtk.ApplicationWindow
             var dialog = new Adw.MessageDialog
             {
                 Modal = true,
-                Heading = "Discard Changes and Quit?",
-                Body = "If you quit now, unsaved data will be lost.",
+                Heading = Localization.T("Discard Changes and Quit?"),
+                Body = Localization.T("If you quit now, unsaved data will be lost."),
                 TransientFor = this
             };
-            dialog.AddResponse("cancel", "Cancel");
-            dialog.AddResponse("quit", "Quit");
+            dialog.AddResponse("cancel", Localization.T("Cancel"));
+            dialog.AddResponse("quit", Localization.T("Quit"));
             dialog.SetResponseAppearance("quit", Adw.ResponseAppearance.Destructive);
             dialog.Show();
             dialog.OnResponse += (_, dialogArgs) => {
@@ -671,7 +671,7 @@ public class MainWindow : Gtk.ApplicationWindow
     internal static Gtk.FileFilter AllFilesFilter()
     {
         var filter = FileFilter.New();
-        filter.Name = "All Files";
+        filter.Name = Localization.T("All Files");
         filter.AddPattern("*");
         return filter;
     }
@@ -694,7 +694,7 @@ public class MainWindow : Gtk.ApplicationWindow
             SingleSaveTypes.mcs => FormatFilter("PSXGameEdit/Memory Juggler", ["*.mcs", "*.ps1"]),
             SingleSaveTypes.psv => FormatFilter("PS3 single save", ["*.psv"]),
             SingleSaveTypes.psx => FormatFilter("Smart Link/XP, AR, GS, Caetla/Datel", ["*.mcb", "*.mcx", "*.pda", "*.psx"]),
-            _ => FormatFilter("RAW single save", ["B???????????*"]),
+            _ => FormatFilter(Localization.T("RAW single save"), ["B???????????*"]),
         };
     }
 
@@ -702,11 +702,11 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         return type switch
         {
-            CardTypes.gme => FormatFilter("DexDrive Memory Card", ["*.gme"]),
-            CardTypes.vgs => FormatFilter("VGS Memory Card", ["*.mem", "*.vgs"]),
-            CardTypes.vmp => FormatFilter("PSP/Vita Memory Card", ["*.VMP"]),
-            CardTypes.mcx => FormatFilter("PS Vita 'MCX' PocketStation Memory Card", ["*.BIN"]),
-            _ => FormatFilter("Standard Memory Card", ["*.mcr", "*.bin", "*.ddf", "*.mc", "*.mcd", "*.mci", "*.ps", "*.psm", "*.sav", "*.srm", "*.vm1", "*.vmc"]),
+            CardTypes.gme => FormatFilter(Localization.T("DexDrive Memory Card"), ["*.gme"]),
+            CardTypes.vgs => FormatFilter(Localization.T("VGS Memory Card"), ["*.mem", "*.vgs"]),
+            CardTypes.vmp => FormatFilter(Localization.T("PSP/Vita Memory Card"), ["*.VMP"]),
+            CardTypes.mcx => FormatFilter(Localization.T("PS Vita 'MCX' PocketStation Memory Card"), ["*.BIN"]),
+            _ => FormatFilter(Localization.T("Standard Memory Card"), ["*.mcr", "*.bin", "*.ddf", "*.mc", "*.mcd", "*.mci", "*.ps", "*.psm", "*.sav", "*.srm", "*.vm1", "*.vmc"]),
         };
     }
 
@@ -714,7 +714,7 @@ public class MainWindow : Gtk.ApplicationWindow
     {
         var filter = Gtk.FileFilter.New();
         string[] patterns = ["*.bin", "*.gme", "*.sav", "*.mcr", "*.VMP", "*.ddf", "*.mc", "*.mcd", "*.mci", "*.ps", "*.psm", "*.srm", "*.vm1", "*.vmc"];
-        filter.Name = "All Supported Files";
+        filter.Name = Localization.T("All Supported Files");
         foreach (string pattern in patterns)
         {
             filter.AddPattern(pattern);
@@ -727,5 +727,5 @@ public class MainWindow : Gtk.ApplicationWindow
         return ps1card.CardTypes.raw;
     }
 
-    public MainWindow() : this(new Gtk.Builder("MemcardRex.Linux.GUI.MainWindow.ui"), "main_window") {}
+    public MainWindow() : this(Localization.Builder("MemcardRex.Linux.GUI.MainWindow.ui"), "main_window") {}
 }

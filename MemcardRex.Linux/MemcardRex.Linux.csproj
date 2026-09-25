@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -67,6 +67,7 @@
     <EmbeddedResource Include="GUI/PocketStationInfo.ui" />
     <EmbeddedResource Include="GUI/PluginsDialog.ui" />
     <EmbeddedResource Include="GUI/AboutDialog.ui" />
+    <EmbeddedResource Include="Languages/zh-CN.xml" />
   </ItemGroup>
 
   <Target Name="SetGitHash" BeforeTargets="BeforeBuild">

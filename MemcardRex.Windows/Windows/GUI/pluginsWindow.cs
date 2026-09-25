@@ -1,4 +1,4 @@
-﻿//Plugin information dialog
+//Plugin information dialog
 //Shendo 2010 - 2024
 
 using System;
@@ -23,6 +23,8 @@ namespace MemcardRex
         public pluginsWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         //Load default values

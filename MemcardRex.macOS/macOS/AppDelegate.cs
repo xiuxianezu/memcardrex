@@ -120,7 +120,7 @@ namespace MemcardRex
             regInterface.displayName = hardInterface.Name();
 
             //Append via TCP if interface mode is tcp
-            if(mode == HardwareInterface.Modes.tcp) regInterface.displayName += " via TCP";
+            if(mode == HardwareInterface.Modes.tcp) regInterface.displayName += Localization.T(" via TCP");
 
             registeredInterfaces.Add(regInterface);
         }
@@ -155,7 +155,7 @@ namespace MemcardRex
             interfaceNameMenu.Title = activeInterface.hardwareInterface.Name();
 
             //Add TCP if TCP interface
-            if (activeInterface.mode == HardwareInterface.Modes.tcp) interfaceNameMenu.Title += " (TCP)";
+            if (activeInterface.mode == HardwareInterface.Modes.tcp) interfaceNameMenu.Title += Localization.T(" (TCP)");
 
             //Enable or disable realtime and PocketStation menus
             //realtimeConnectionToolStripMenuItem.Enabled = ((activeInterface.hardwareInterface.Features() & HardwareInterface.SupportedFeatures.RealtimeMode) > 0);
@@ -171,45 +171,39 @@ namespace MemcardRex
             int mode = (int) HardwareInterface.Modes.serial;
             int commMode = (int) HardwareInterface.CommModes.read;
 
-            if (menuItem.ParentItem.Title == "Write save data")
+            if (menuItem.ParentItem.Title == Localization.T("Write save data"))
                 commMode = (int)HardwareInterface.CommModes.write;
 
-            else if(menuItem.ParentItem.Title == "Format card")
+            else if(menuItem.ParentItem.Title == Localization.T("Format card"))
                 commMode = (int)HardwareInterface.CommModes.format;
 
             //Set device id based on menu title
-            switch (menuItem.Title)
+            if (menuItem.Title == "DexDrive")
+                deviceId = (int)HardwareInterface.Types.dexdrive;
+
+            else if (menuItem.Title == "MemCARDuino")
+                deviceId = (int)HardwareInterface.Types.memcarduino;
+
+            else if (menuItem.Title == "PS1CardLink")
+                deviceId = (int)HardwareInterface.Types.ps1cardlink;
+
+            else if (menuItem.Title == Localization.T("PS1CardLink over TCP"))
             {
-                case "DexDrive":
-                    deviceId = (int)HardwareInterface.Types.dexdrive;
-                    break;
-
-                case "MemCARDuino":
-                    deviceId = (int)HardwareInterface.Types.memcarduino;
-                    break;
-
-                case "PS1CardLink":
-                    deviceId = (int)HardwareInterface.Types.ps1cardlink;
-                    break;
-
-                case "PS1CardLink over TCP":
-                    deviceId = (int)HardwareInterface.Types.ps1cardlink;
-                    mode = (int)HardwareInterface.Modes.tcp;
-                    break;
-
-                case "Unirom":
-                    deviceId = (int)HardwareInterface.Types.unirom;
-                    break;
-
-                case "Unirom over TCP":
-                    deviceId = (int)HardwareInterface.Types.unirom;
-                    mode = (int)HardwareInterface.Modes.tcp;
-                    break;
-
-                case "PS3 Memory Card Adaptor":
-                    deviceId = (int)HardwareInterface.Types.ps3mca;
-                    break;
+                deviceId = (int)HardwareInterface.Types.ps1cardlink;
+                mode = (int)HardwareInterface.Modes.tcp;
             }
+
+            else if (menuItem.Title == "Unirom")
+                deviceId = (int)HardwareInterface.Types.unirom;
+
+            else if (menuItem.Title == Localization.T("Unirom over TCP"))
+            {
+                deviceId = (int)HardwareInterface.Types.unirom;
+                mode = (int)HardwareInterface.Modes.tcp;
+            }
+
+            else if (menuItem.Title == Localization.T("PS3 Memory Card Adaptor"))
+                deviceId = (int)HardwareInterface.Types.ps3mca;
 
             //If there are no windows available create a new document
             if (winCtrlList.Count < 1) NewDocument((NSObject)sender);
@@ -226,9 +220,9 @@ namespace MemcardRex
             var alert = new NSAlert()
             {
                 AlertStyle = NSAlertStyle.Critical,
-                InformativeText = "This build is highly experimental." +
-                "\nAll funcionality may not be implemented yet or work as intended.",
-                MessageText = "Warning",
+                InformativeText = Localization.T("This build is highly experimental.") +
+                Localization.T("\nAll funcionality may not be implemented yet or work as intended."),
+                MessageText = Localization.T("Warning"),
             };
             
             //alert.RunModal();
@@ -240,6 +234,9 @@ namespace MemcardRex
             NSNotificationCenter.DefaultCenter.AddObserver(NSWindow.DidBecomeMainNotification, TabChangeCallback);
 
             BuildHardwareMenus();
+
+            //Translate main menu items (zh-CN)
+            Localization.ApplyToMenus();
 
             appSettings.LoadSettings(settingsPath);
         }
@@ -445,7 +442,7 @@ namespace MemcardRex
                         {
                             AlertStyle = NSAlertStyle.Critical,
                             InformativeText = message,
-                            MessageText = "Unable to open Memory Card"
+                            MessageText = Localization.T("Unable to open Memory Card")
                         };
 
                         alert.RunModal();

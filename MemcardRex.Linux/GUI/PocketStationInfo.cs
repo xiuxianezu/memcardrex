@@ -37,19 +37,19 @@ namespace MemcardRex.Linux
         //Crete array of known releases
         static readonly IList<KnownReleases> releaseArray = new ReadOnlyCollection<KnownReleases>
             (new[] {
-             new KnownReleases ("1st release", 0x27E94C07),
-             new KnownReleases ("2nd release", 0xB16CE96C),
+             new KnownReleases (Localization.T("1st release"), 0x27E94C07),
+             new KnownReleases (Localization.T("2nd release"), 0xB16CE96C),
              new KnownReleases ("DTL-H4000", 0x1BABAF29)
             });
 
         public PocketStationInfo(Gtk.Window parent, bool showFullInfo)
         {
-            this.Title = "PocketStation info";
+            this.Title = Localization.T("PocketStation info");
             this.TransientFor = parent;
             this.Modal = true;
             this.Resizable = false;
 
-            var builder = new Builder("MemcardRex.Linux.GUI.PocketStationInfo.ui");
+            var builder = Localization.Builder("MemcardRex.Linux.GUI.PocketStationInfo.ui");
 
             if (builder.GetObject("main_content") is Gtk.Box mainBox)
             {
@@ -91,11 +91,11 @@ namespace MemcardRex.Linux
             _btnOk.OnClicked += (s, e) => this.Close();
 
             _btnSave.OnClicked += (s, e) => {
-                var fileChooser = Gtk.FileChooserNative.New("Save PocketStation BIOS", parent, Gtk.FileChooserAction.Save, "Save", "Cancel");
+                var fileChooser = Gtk.FileChooserNative.New(Localization.T("Save PocketStation BIOS"), parent, Gtk.FileChooserAction.Save, Localization.T("Save"), Localization.T("Cancel"));
                 fileChooser.SetModal(true);
                 fileChooser.SetCurrentName("BIOS.bin");
                 var filter = Gtk.FileFilter.New();
-                filter.Name = "Binary image (*.bin)";
+                filter.Name = Localization.T("Binary image (*.bin)");
                 filter.AddPattern("*.bin");
                 fileChooser.AddFilter(filter);
 

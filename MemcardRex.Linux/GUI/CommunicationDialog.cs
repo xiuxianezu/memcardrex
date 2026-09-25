@@ -84,7 +84,7 @@ public class CommunicationDialog
 
     public CommunicationDialog(Window parent, HardwareInterface hardInterface)
     {
-        _builder = new Builder("MemcardRex.Linux.GUI.CommunicationDialog.ui")!;
+        _builder = Localization.Builder("MemcardRex.Linux.GUI.CommunicationDialog.ui")!;
 
         _dialog = (Dialog)_builder.GetObject("main_dialog")!;
         _progressBar = (ProgressBar)_builder.GetObject("progress_bar")!;
@@ -96,7 +96,7 @@ public class CommunicationDialog
         _hardInterface = hardInterface!;
 
         //Set title based on the hardware interface name
-        _dialog.SetTitle(hardInterface.Name() + " communication");
+        _dialog.SetTitle(hardInterface.Name() + Localization.T(" communication"));
 
         firstRun = true;
 
@@ -113,13 +113,13 @@ public class CommunicationDialog
             _btnAbort.SetSensitive(false);
             
             //Show detecting message
-            string deviceLabel = "Detecting " + _hardInterface.Name();
+            string deviceLabel = Localization.T("Detecting ") + _hardInterface.Name();
             if(_hardInterface.Type != HardwareInterface.Types.ps3mca)
             {
                 if(_hardInterface.Mode == HardwareInterface.Modes.tcp)
-                    deviceLabel += " on " + _remoteAddress + ":" + _remoteComPort.ToString();
+                    deviceLabel += Localization.T(" on ") + _remoteAddress + ":" + _remoteComPort.ToString();
                 else
-                    deviceLabel += " on " + _comPort;
+                    deviceLabel += Localization.T(" on ") + _comPort;
             }
 
             //Set status message
@@ -169,25 +169,25 @@ public class CommunicationDialog
     private void SetReadingMessage(){
         string interfaceDescription = _hardInterface.Name();
 
-        if (_hardInterface.Firmware() != "") interfaceDescription += " (ver. " + _hardInterface.Firmware() + ")...";
-        else interfaceDescription += "...";
+        if (_hardInterface.Firmware() != "") interfaceDescription += Localization.T(" (ver. ") + _hardInterface.Firmware() + Localization.T(")...");
+        else interfaceDescription += Localization.T("...");
 
         switch (_hardInterface.CommMode)
         {
             case HardwareInterface.CommModes.read:
-                _label.SetText("Reading data from " + interfaceDescription);
+                _label.SetText(Localization.T("Reading data from ") + interfaceDescription);
                 break;
 
             case HardwareInterface.CommModes.format:
-                _label.SetText("Formatting card on " + interfaceDescription);
+                _label.SetText(Localization.T("Formatting card on ") + interfaceDescription);
                 break;
 
             case HardwareInterface.CommModes.write:
-                _label.SetText("Writing data to " + interfaceDescription);
+                _label.SetText(Localization.T("Writing data to ") + interfaceDescription);
                 break;
 
             case HardwareInterface.CommModes.psbios:
-                _label.SetText("Dumping BIOS using " + interfaceDescription);
+                _label.SetText(Localization.T("Dumping BIOS using ") + interfaceDescription);
                 break;
         }
     }
@@ -231,7 +231,7 @@ public class CommunicationDialog
             _hardInterface.Stop();
 
             if (_hardInterface.Type != HardwareInterface.Types.ps3mca)
-                _errorMessage += "\n\nMake sure to select proper communication port in preferences dialog";
+                _errorMessage += Localization.T("\n\nMake sure to select proper communication port in preferences dialog");
 
             OpComplete();
             return;
@@ -241,7 +241,7 @@ public class CommunicationDialog
         if(_hardInterface.CommMode == HardwareInterface.CommModes.realtime)
         {
             _hardInterface.Stop();
-            _errorMessage = "Realtime not implemented yet";
+            _errorMessage = Localization.T("Realtime not implemented yet");
             return;
         }
 
@@ -285,7 +285,7 @@ public class CommunicationDialog
         //Set unirom waiting message or other status messages
         if(_hardInterface.CommMode == HardwareInterface.CommModes.read && 
         _hardInterface.Type == HardwareInterface.Types.unirom)
-            _label.SetText("Waiting for Unirom to prepare data for transfer...");
+            _label.SetText(Localization.T("Waiting for Unirom to prepare data for transfer..."));
         else ReportProgress(0);
 
         //Enable abort button

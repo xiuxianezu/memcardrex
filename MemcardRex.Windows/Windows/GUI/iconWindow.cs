@@ -1,4 +1,4 @@
-﻿//PSX icon editor for MemcardRex
+//PSX icon editor for MemcardRex
 //Shendo 2009-2024
 
 using System;
@@ -53,6 +53,8 @@ namespace MemcardRex
         public iconWindow()
         {
             InitializeComponent();
+            Localization.ApplyToForm(this);
+
         }
 
         //Initialize default values
@@ -69,9 +71,9 @@ namespace MemcardRex
             frameCount = iconFrames;
 
             //Populate icon list with items
-            if (iconFrames > 0) iconListView.Items.Add("1st frame");
-            if (iconFrames > 1) iconListView.Items.Add("2nd frame");
-            if (iconFrames > 2) iconListView.Items.Add("3rd frame");
+            if (iconFrames > 0) iconListView.Items.Add(Localization.T("1st frame"));
+            if (iconFrames > 1) iconListView.Items.Add(Localization.T("2nd frame"));
+            if (iconFrames > 2) iconListView.Items.Add(Localization.T("3rd frame"));
 
             //Assign icon indexes
             for (int i = 0; i < iconListView.Items.Count; i++)
@@ -82,7 +84,7 @@ namespace MemcardRex
             //Add preview pane if the icons are animated
             if (iconFrames > 1)
             {
-                iconListView.Items.Add("Preview");
+                iconListView.Items.Add(Localization.T("Preview"));
 
                 //Preview icon is always index 3
                 iconListView.Items[iconListView.Items.Count - 1].ImageIndex = 3;
@@ -457,7 +459,7 @@ namespace MemcardRex
             byte[,] returnData = new byte[16, 16];
 
             OpenFileDialog openDlg = new OpenFileDialog();
-            openDlg.Title = "Open icon";
+            openDlg.Title = Localization.T("Open icon");
             openDlg.Filter = "All supported|*.bmp;*.gif;*.jpeg;*.jpg;*.png|Bitmap (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPEG (*.jpeg;*.jpg)|*.jpeg;*.jpg|PNG (*.png)|*.png";
 
             //Check if the user pressed OK
@@ -471,7 +473,7 @@ namespace MemcardRex
             catch (Exception e)
             {
                 ;
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, Localization.T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 OpenedBitmap.Dispose();
                 return;
             }
@@ -479,7 +481,7 @@ namespace MemcardRex
             //Check if the image is 16x16 pixels
             if (OpenedBitmap.Width != 16 || OpenedBitmap.Height != 16)
             {
-                MessageBox.Show("Selected image is not a 16x16 pixel image.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.T("Selected image is not a 16x16 pixel image."), Localization.T("Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 OpenedBitmap.Dispose();
                 return;
             }
@@ -497,7 +499,7 @@ namespace MemcardRex
             //Check if the palette has more than 16 colors
             if (foundColors.Count > 16)
             {
-                MessageBox.Show("Selected image contains more than 16 colors.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Localization.T("Selected image contains more than 16 colors."), Localization.T("Warning"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 OpenedBitmap.Dispose();
                 return;
             }
@@ -570,7 +572,7 @@ namespace MemcardRex
             if (selectedIcon >= frameCount) return;
 
             SaveFileDialog saveDlg = new SaveFileDialog();
-            saveDlg.Title = "Save icon";
+            saveDlg.Title = Localization.T("Save icon");
             saveDlg.Filter = "Bitmap (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPEG (*.jpeg;*.jpg)|*.jpeg;*.jpg|PNG (*.png)|*.png";
 
             if (saveDlg.ShowDialog() == DialogResult.OK)
@@ -797,8 +799,8 @@ namespace MemcardRex
             if (Xpos < 0) Xpos = 0;
             if (Ypos < 0) Ypos = 0;
 
-            Xlabel.Text = "X: " + Xpos.ToString();
-            Ylabel.Text = "Y: " + Ypos.ToString();
+            Xlabel.Text = Localization.T("X: ") + Xpos.ToString();
+            Ylabel.Text = Localization.T("Y: ") + Ypos.ToString();
 
             //Draw pixels if arrow is in range and mousebutton is pressed
             if (XposOriginal >= 0 && XposOriginal <= 15 && YposOriginal >= 0
@@ -825,8 +827,8 @@ namespace MemcardRex
         //Mouse has left icon renderer, clear values
         private void iconRender_MouseLeave(object sender, EventArgs e)
         {
-            Xlabel.Text = "X:";
-            Ylabel.Text = "Y:";
+            Xlabel.Text = Localization.T("X:");
+            Ylabel.Text = Localization.T("Y:");
         }
 
         //Cancel is pressed
@@ -941,8 +943,8 @@ namespace MemcardRex
             //Notify user of a required transparent entry
             if(transparentEntry < 0)
             {
-                if(MessageBox.Show("Eraser tool requires transparent entry in the palette." +
-                    "\nDo you want to change currently selected color to transparent?", "Transparent entry required",
+                if(MessageBox.Show(Localization.T("Eraser tool requires transparent entry in the palette.") +
+                    Localization.T("\nDo you want to change currently selected color to transparent?"), Localization.T("Transparent entry required"),
                     MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     //Set transparent color to iconData

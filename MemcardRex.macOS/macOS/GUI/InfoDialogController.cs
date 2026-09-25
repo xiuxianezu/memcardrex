@@ -221,6 +221,8 @@ namespace MemcardRex
 
             base.ViewWillAppear();
 
+            //Translate dialog labels (zh-CN)
+            Localization.ApplyToView(this.View);
             this.View.Window.Title = DialogTitle;
 
             titleLabel.StringValue = SaveTitle;
@@ -230,7 +232,7 @@ namespace MemcardRex
             sizeLabel.StringValue = Size.ToString() + " KB";
             iconFramesLabel.StringValue = Frames.ToString();
 
-            _typeLabel.StringValue = _type == ps1card.DataTypes.software ? "Software (PocketStation)" : "Save data";
+            _typeLabel.StringValue = _type == ps1card.DataTypes.software ? Localization.T("Software (PocketStation)") : Localization.T("Save data");
             
             for (int i = 0; i < Slots.Length; i++)
                 ocupiedSlots += (Slots[i] + 1).ToString() + ", ";
