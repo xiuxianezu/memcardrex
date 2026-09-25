@@ -59,11 +59,14 @@ jobs:
       - name: Assemble package
         shell: bash
         run: |
-          mkdir -p package/Languages package/Plugins
+          mkdir -p package/Languages
           cp -r publish/* package/
           cp MemcardRex.Windows/Languages/zh-CN.xml package/Languages/zh-CN.xml
-          cp MemcardRex.Linux/Languages/zh-CN.xml package/Languages/zh-CN-linux.xml
-          cp MemcardRex.macOS/Languages/zh-CN.xml package/Languages/zh-CN-macos.xml
+
+      - name: Add GTK plugin (Linux only)
+        if: matrix.name == 'Linux-x64'
+        run: |
+          mkdir -p package/Plugins
           cp MemcardRex.Plugins/CrashResign/bin/Release/net8.0/CrashResign.dll package/Plugins/
 
       - name: Zip package
@@ -96,7 +99,7 @@ jobs:
             三平台简体中文版可执行程序，由 GitHub Actions 自动编译，含简体中文界面语言包。
 
             - Windows-x64.zip：双击运行（自包含单文件，无需安装 .NET）
-            - Linux-x64.zip：需要系统安装 GTK4 / libadwaita
+            - Linux-x64.zip：需要系统安装 GTK4 / libadwaita，内含 CrashReSign 插件
             - macOS-arm64.zip：Apple Silicon（M1/M2/M3/M4）
             - macOS-x64.zip：Intel Mac
 
