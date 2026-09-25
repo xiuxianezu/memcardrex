@@ -1,7 +1,7 @@
 /* Copyright (C) 2024 Rob Hall
  * SPDX-License-Identifier: GPL-3.0-or-later */
 
-﻿using System;
+using System;
 using System.Reflection;
 using GdkPixbuf;
 using GObject;
@@ -23,7 +23,7 @@ public class Utils
             Body = message,
             TransientFor = parent
         };
-        dialog.AddResponse("close", "Close");
+        dialog.AddResponse("close", Localization.T("Close"));
         dialog.Show();
         dialog.OnResponse += (_, _) => {
             dialog.Destroy();

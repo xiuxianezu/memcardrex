@@ -14,7 +14,7 @@ public class CommentsDialog
 
     public CommentsDialog(Window parent)
     {
-        var builder = new Builder("MemcardRex.Linux.GUI.CommentsDialog.ui");
+        var builder = Localization.Builder("MemcardRex.Linux.GUI.CommentsDialog.ui");
 
         _window = (Dialog)builder.GetObject("CommentsDialog")!;
         _btnOk = (Button)builder.GetObject("btnOk")!;

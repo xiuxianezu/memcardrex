@@ -33,8 +33,8 @@ public class PS1Slot(ps1card card, int slotNumber) : GObject.Object(true, [])
         get {
             return Type switch
             {
-                SlotTypes.formatted => "Free slot",
-                SlotTypes.corrupted => "Corrupted slot",
+                SlotTypes.formatted => Localization.T("Free slot"),
+                SlotTypes.corrupted => Localization.T("Corrupted slot"),
                 _ => Card.saveName[SlotNumber],
             };
         }

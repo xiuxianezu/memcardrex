@@ -28,7 +28,7 @@ public class AboutDialog : Window
 
     public AboutDialog()
     {
-        var builder = new Builder("MemcardRex.Linux.GUI.AboutDialog.ui");
+        var builder = Localization.Builder("MemcardRex.Linux.GUI.AboutDialog.ui");
         
         var content = builder.GetObject("root_box") as Box;
         if (content != null)
@@ -37,12 +37,12 @@ public class AboutDialog : Window
         }
 
         if (builder.GetObject("lblCompileDate") is Gtk.Label label)
-            label.SetLabel($"Compile date: {GetBuildDate()}");
+            label.SetLabel($"{Localization.T("Compile date: ")}{GetBuildDate()}");
 
         if (builder.GetObject("lblAppVersion") is Gtk.Label verlabel)
-            verlabel.SetLabel($"Version: 2.0 beta ({GetGitHash()})");
+            verlabel.SetLabel($"{Localization.T("Version: ")}2.0 beta ({GetGitHash()})");
 
-        this.SetTitle("About");
+        this.SetTitle(Localization.T("About"));
         this.SetResizable(false);
         this.SetDefaultSize(400, -1);
 
